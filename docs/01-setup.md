@@ -24,7 +24,7 @@ In this step you'll create all of the Azure resources required by the demo. This
 1. Open a bash terminal. CD into the `provision` folder of this repository. The `01-aks-create.sh` script contains a few parameters that are explained below, as each step of the script. Read below, and then edit the script per your own subscription & cluster names, and then run:
 
     ```bash
-    bash 02-aks-create.sh
+    bash 01-aks-create.sh
     ```
 
 1. Set the variables in the script below (the `exports`) and 
