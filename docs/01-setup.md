@@ -98,4 +98,78 @@ run it in the terminal.
 
     ![Dev Spaces Setup](../media/dev-spaces-setup.png)
 
+Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
+
 ## Setup the SmartHotel360 Backend APIs
+
+In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
+
+> Note: Very soon, the repo will be signififcantly updated to make use of Helm as a deployment strategy. For now the scripts are mostly in bash and make use of `kubectl` to interface with the cluster. 
+
+1. CD into the `src/SmartHotel360-Azure-backend/deploy/k8s` directory. 
+1. The end-to-end setup script makes use of some of the `export` environment variables you set earlier, so make sure they're still set by using the `echo` command to make sure they're still set. 
+
+    ```bash
+    echo ${AKS_NAME}
+    echo ${AKS_RG}
+    echo ${ACR_NAME}
+    echo ${AKS_SUB}
+    ```
+1. Execute the `setup.sh` script, which contains an end-to-end package-and-deployment process. 
+
+    ```bash
+    bash ./setup.sh
+    ```
+
+    The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.
+
+1. When the dashboard opens (you may need to hit refresh as it may 404 at first), some of the objects in the cluster may not be fully ready. Hit refresh until these are all green and at 100%. 
+
+    ![Waiting until green](../media/still-yellow.png)
+
+1. Within a few minutes the cluster will show 100% for all of the objects in it. 
+
+    ![All ready](../media/all-green.png)
+
+1. If you forgot to note the `HTTPApplicationRoutingZoneName` property earlier, execute the command below to get the JSON representation of your cluster. 
+
+    ```bash
+    az resource show --api-version 2018-03-31 --id /subscriptions/${AKS_SUB}/resourceGroups/${AKS_RG}/providers/Microsoft.ContainerService/managedClusters/${AKS_NAME}
+    ```
+
+1. You'll see the `HTTPApplicationRoutingZoneName` property in the JSON in the terminal window. Copy this value as it will be needed in the next step. 
+
+    ```json
+    "properties": {
+        "addonProfiles": {
+        "httpApplicationRouting": {
+            "config": {
+            "HTTPApplicationRoutingZoneName": "de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io"
+            }
+    ```
+
+1. Open up the `ingress.yaml` file and see line 14, which has the `host` property set as follows:
+
+    ```yaml
+    spec:
+      rules:
+      - host: sh360.<guid>.<region>.aksapp.io
+          http:
+    ```
+
+1. Replace the `host` property with the value you copied earlier. 
+
+    ```yaml
+    spec:
+      rules:
+      - host: sh360.de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io
+          http:
+    ```
+
+1. Execute the command below to set the AKS cluster ingress. 
+
+    ```bash
+    kubectl apply -f ingress.yaml
+    ```
+
+1. Placeholder
