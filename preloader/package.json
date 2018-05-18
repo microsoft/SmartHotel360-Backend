@@ -1,0 +1,16 @@
+{
+  "name": "aks-demo-preloader",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "keywords": [
+    ""
+  ],
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "repository": "bradygmsft/aks-demo-preloader",
+  "dependencies": {
+    "requestify": "^0.2.5"
+  }
+}

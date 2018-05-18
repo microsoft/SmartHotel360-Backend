@@ -1,0 +1,2 @@
+ContainerLog
+| where LogEntry has "returned 0 results"

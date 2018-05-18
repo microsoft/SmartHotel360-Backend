@@ -1,0 +1,4 @@
+ContainerLog
+| where LogEntry has "returned 0 results"
+| summarize count() by bin(TimeGenerated, 1h)
+| render barchart

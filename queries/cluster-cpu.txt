@@ -1,0 +1,5 @@
+Perf
+| where (CounterName == "cpuUsageNanoCores" or CounterName == "cpuCapacityNanoCores") and ObjectName == "K8SNode"
+| summarize cpuUsage=sumif( CounterValue, CounterName == "cpuUsageNanoCores" ), cpuCapacity=sumif( CounterValue, CounterName == "cpuCapacityNanoCores" ) by bin(TimeGenerated, 15min)
+| project cpuUtilization = cpuUsage*100.0 / cpuCapacity , TimeGenerated
+| render timechart
