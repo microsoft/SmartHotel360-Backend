@@ -23,18 +23,7 @@ SmartHotel360 uses a **microservice oriented** architecture implemented using co
 1. [Demo Setup](docs/01-setup.md) - Create the Azure resources and demo environment setup, and deploy the SmartHotel360 services to the AKS Cluster.
 1. [Demo Script](docs/02-script.md) - Steps and video example for running the demo.
 
-End-to-end setup would take about an hour, with a few long processes that need to run. One segment of the demo shows CPU utilization and log data. 
-
-## Prerequisites
-
-> Note: The code and deployment process are being updated to use Helm and more Kubernetes-conventional tactics. Watch this repository for updates, as they'll be coming between the initial release and Summer 2018.  
-
-* Bash command line, which can be accomplished easily on a Mac or Linux PC or on [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-* [Docker](http://www.docker.com) to build the containers. 
-* [Visual Studio 2017 Preview](https://www.visualstudio.com/vs/preview/) with the ASP.NET Web workload installed. 
-* [Azure Dev Spaces Extension for Visual Studio](https://docs.microsoft.com/en-us/azure/dev-spaces/get-started-netcore-visualstudio#get-the-visual-studio-tools). 
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-* [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+End-to-end setup takes about an hour provided you have all of the development enviroment prerequisites met. 
 
 ## Storyteller's Advice
 Here's an important note if you'd like to run the demo. 
