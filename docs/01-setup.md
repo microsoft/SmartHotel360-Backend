@@ -17,18 +17,15 @@ All of the back-end systems run inside of Docker containers. During the installa
 
 [Create a service principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal?view=azure-cli-latest) and take note of the Application ID and key. The service principal will need to be added to the **Contributor** for the subscription.
 
+If you already have a service principal, you can re-use it, and if you don't and create one for this demo, you can re-use it to create other AKS clusters in the future. 
+
 ## Provision the Azure Resources
 
 In this step you'll create all of the Azure resources required by the demo. This consists of an AKS Cluster and an Azure Container Registry (ACR) instance. The AKS Cluster is pre-configured to use Microsoft Operations Management Suite (OMS) and Log Analytics to enable the rich Container Health Dashboard capabilities. 
 
-1. Open a bash terminal. CD into the `provision` folder of this repository. The `01-aks-create.sh` script contains a few parameters that are explained below, as each step of the script. Read below, and then edit the script per your own subscription & cluster names, and then run:
+1. Open the `provision\01-aks-create.sh` file in a text editor. 
 
-    ```bash
-    bash 01-aks-create.sh
-    ```
-
-1. Set the variables in the script below (the `exports`) and 
-run it in the terminal. 
+1. Set the variables in the script below (the `exports`). 
 
     **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and Eaat US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
 
@@ -42,25 +39,12 @@ run it in the terminal.
     export AKS_REGION=eastus
     ```
 
-1. Run the `az` CLI command below to create a new resource group. 
+    Save the file once you're happy with your edits.
+
+1. Open a bash terminal. CD into the `provision` folder of this repository. Then run the command below. 
 
     ```bash
-    az group create -n ${AKS_NAME} -l ${AKS_REGION}
-    ```
-
-1. Copy the script below and run it in a bash terminal to execute the Azure Resource Manager template using the `az` CLI. 
-
-    ```bash
-    az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file 01-aks-create.json \
-        --parameters \
-        resourceName=${AKS_NAME} \
-        dnsPrefix=${AKS_NAME} \
-        servicePrincipalClientId=${SPN_CLIENT_ID} \
-        servicePrincipalClientSecret=${SPN_PW} \
-        workspaceRegion="Canada Central" \
-        enableHttpApplicationRouting=true \
-        enableOmsAgent=true \
-        containerRegistryName=${ACR_NAME}
+    bash 01-aks-create.sh
     ```
 
     > This command may take a few minutes to complete. 
@@ -118,7 +102,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
 1. Execute the `setup.sh` script, which contains an end-to-end package-and-deployment process. 
 
     ```bash
-    bash ./setup.sh
+    bash ./setup-apis.sh
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.
@@ -157,7 +141,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
           http:
     ```
 
-1. Replace the `host` property with the value you copied earlier. 
+1. Replace the `host` property with the `sh360.` followed by value you copied earlier. 
 
     ```yaml
     spec:
@@ -172,4 +156,40 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     kubectl apply -f ingress.yaml
     ```
 
-1. Placeholder
+## Set up the Public Web App
+
+Now that the back-end APIs are in place the public web app can be pushed into the cluster, too. The spa app makes calls to the APIs running in the cluster and answers HTTP requests at the ingress URL you used earlier.
+
+1. Open up the `src/SmartHotel360-public-web/manifests/ingress.yaml` file and see line 9, which has the `host` property set as follows:
+
+    ```yaml
+    spec:
+      rules:
+      - host: sh360.<guid>.<region>.aksapp.io
+        http:
+    ```
+
+1. Replace the `host` property with the `sh360.` followed by value you copied earlier. 
+
+    ```yaml
+    spec:
+      rules:
+      - host: sh360.de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io
+        http:
+    ```
+
+1. CD into the `src/SmartHotel360-public-web` directory and execute the command below. 
+
+    ```bash
+    bash ./setup-web.sh
+    ```
+
+    The command may take a few minutes to complete. 
+
+1. Once the command completes, paste the string you applied to the `host` property in the `ingress.yaml` files (the `sh360.<guid>.<region>.aksapp.io` string) into a browser, and you'll see the SmartHotel360 public web site load up. 
+
+    ![Public web](../media/public-web.png)
+
+## Success!
+
+Now that the setup is complete, you can read the [Demo Script](02-script.md) to see how to execute the demo. Or, if you want to preload the cluster you just created with data, learn how the [preloading script can help you](03-preload.md). 
