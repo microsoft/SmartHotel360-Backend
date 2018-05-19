@@ -1,4 +1,5 @@
 ContainerLog
 | where LogEntry has "returned 0 results"
+| project LogEntry, TimeGenerated, Computer, Image 
 | summarize count() by bin(TimeGenerated, 1h)
 | render barchart
