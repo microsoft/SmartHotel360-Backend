@@ -190,6 +190,22 @@ Now that the back-end APIs are in place the public web app can be pushed into th
 
     ![Public web](../media/public-web.png)
 
+## Save the Queries
+
+There are three queries provided in the [`queries`](../queries) folder of this repository:
+
+* CPU chart of the entire cluster over time
+* Error log containing "0 results found" log entry
+* Bar chart over time of the error log containing "0 results found" log entry
+
+To make it easy to run these queries during a demo, paste them in the Log Analytics Query Explorer and click the **Save** button, then give the query a name and category. 
+
+![Save the query](../media/save-queries.png)
+
+Then they're readily available in the **Saved Queries** folder in the Query Explorer. 
+
+![Running the query](../media/saved-queries-running.png)
+
 ## Success!
 
 Now that the setup is complete, you can read the [Demo Script](02-script.md) to see how to execute the demo. Or, if you want to preload the cluster you just created with data, learn how the [preloading script can help you](03-preload.md). 
