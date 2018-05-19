@@ -1,0 +1,27 @@
+﻿{
+  "RemoteRoot": "https://lfjwzo1pasw6wks.file.core.windows.net/mindaro/default/discounts",
+  "Files": {
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Startup.cs": 636451643288374777,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\SmartHotel.Services.Discount.csproj": 636451627868727172,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Program.cs": 636451086636493820,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Dockerfile": 636451913427381448,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\azpconfig.yaml": 636451913299862500,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\appsettings.json": 636451086636566116,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\appsettings.Development.json": 636451086928420669,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Services\\LoyaltyService.cs": 636451670490936596,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Properties\\launchSettings.json": 636451913056558648,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Controllers\\Loyalty.cs": 636451646336161213,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Controllers\\HomeController.cs": 636451086636456452,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\Controllers\\DiscountsController.cs": 636451914772325135,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\values.yaml": 636451912924160585,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\Chart.yaml": 636451912924140593,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\.helmignore": 636451912924110588,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\templates\\_helpers.tpl": 636451912924080598,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\templates\\service.yaml": 636451912924040597,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\templates\\NOTES.txt": 636451912923990582,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\templates\\ingress.yaml": 636451912923960591,
+    "C:\\Users\\msspeaker\\source\\repos\\Services\\src\\SmartHotel.Services.Discount\\chart\\templates\\deployment.yaml": 636451912923930582
+  },
+  "SyncTime": 636451914804636048,
+  "Id": "e7dcb73c-68b8-4573-ad90-9dd368860e48"
+}

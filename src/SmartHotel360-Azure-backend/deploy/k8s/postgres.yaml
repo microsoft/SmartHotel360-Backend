@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sh360
+    component: tasks-data
+  name: tasks-data
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: sh360
+    component: tasks-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sh360
+    component: reviews-data
+  name: reviews-data
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: sh360
+    component: reviews-data
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tasks-data
+spec:
+  template:
+    metadata:
+      labels:
+        app: sh360
+        component: tasks-data
+    spec:
+      containers:
+      - name: tasks-data
+        image: postgres:10.3-alpine
+        env:
+        - name: POSTGRES_PASSWORD
+          value: Passw0rd!
+        - name: POSTGRES_USER
+          value: sh360
+        - name: POSTGRES_DB
+          value: tasksdb
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reviews-data
+spec:
+  template:
+    metadata:
+      labels:
+        app: sh360
+        component: reviews-data
+    spec:
+      containers:
+      - name: reviews-data
+        image: postgres:10.3-alpine
+        env:
+        - name: POSTGRES_PASSWORD
+          value: Passw0rd!
+        - name: POSTGRES_USER
+          value: sh360
+        - name: POSTGRES_DB
+          value: reviewsdb
+
+
