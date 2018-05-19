@@ -1,0 +1,3 @@
+﻿# SmartHotel.Services.Suggestions
+
+

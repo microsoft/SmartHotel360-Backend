@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  bookings-api:
+    image: smarthotels/bookings:public
+
+  hotels-api:
+    image: smarthotels/hotels:public
+
+  suggestions-api:
+    image: smarthotels/suggestions:public
+
+  configuration-api:
+    image: smarthotels/configuration:public
+
+  tasks-api:
+    image: smarthotels/tasks:public
+
+  reviews-api:
+    image: smarthotels/reviews:public
+
+  notifications-api:
+    image: smarthotels/notifications:public
+
+  discounts-api:
+    image: smarthotels/discounts:public
+
+
+  profiles-api:
+    image: smarthotels/profiles:public
+
+
+  sql-data:
+    image: microsoft/mssql-server-linux:2017-GA
+
+  tasks-data:
+    image: postgres:10.1
+
+  reviews-data:
+    image: postgres:10.1

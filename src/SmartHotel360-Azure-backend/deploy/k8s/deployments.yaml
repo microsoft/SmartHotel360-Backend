@@ -1,0 +1,440 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hotels
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: hotels
+    spec:
+      containers:
+      - name: hotels
+        image: smarthotels/hotels
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360             
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: PATH_BASE
+          value: /hotels-api
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_ConnectionStrings__DefaultConnection
+        - name: b2c__Tenant
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_b2c__Tenant             
+        - name: b2c__ClientId
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_b2c__ClientId
+        - name: b2c__Audiences
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_b2c__Audiences
+        - name: b2c__Policy
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_b2c__Policy    
+        - name: currency__Badge
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_currency__Badge     
+        - name: currency__BaseConversion
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_currency__BaseConversion             
+        - name: discountsvc
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Hotels_discountsvc                  
+        ports:
+        - containerPort: 80      
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bookings
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: bookings
+    spec:
+      containers:
+      - name: bookings
+        image: smarthotels/bookings
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey        
+        - name: k8sname
+          value: smarthotel360             
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development        
+        - name: PATH_BASE
+          value: /bookings-api
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Bookings_ConnectionStrings__DefaultConnection
+        - name: b2c__Tenant
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Bookings_b2c__Tenant             
+        - name: b2c__ClientId
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Bookings_b2c__ClientId
+        - name: b2c__Audiences
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Bookings_b2c__Audiences
+        - name: b2c__Policy
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Bookings_b2c__Policy
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: suggestions
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: suggestions
+    spec:
+      containers:
+      - name: suggestions
+        image: smarthotels/suggestions
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey      
+        - name: k8sname
+          value: smarthotel360             
+        - name: PATH_BASE
+          value: /suggestions-api
+        - name: PORT
+          value: "80"
+        - name: NODE_ENV
+          value: production             
+        - name: SUGGESTIONS_DATABASE_URL
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: SUGGESTIONS_DATABASE_URL   
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: config
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: config
+    spec:
+      containers:
+      - name: config
+        image: smarthotels/configuration
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360             
+        - name: PATH_BASE
+          value: /configuration-api
+        - name: ASPNET_CONFIGURATION
+          value: Development                
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: customcfg
+          mountPath: /app/cfg/custom.json
+          subPath: custom.json
+      volumes:
+      - name: customcfg
+        configMap:
+          name: discovery-file
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tasks
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: tasks
+    spec:
+      containers:
+      - name: tasks
+        image: smarthotels/tasks
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey      
+        - name: k8sname
+          value: smarthotel360             
+        - name: PORT
+          value: "80"
+        - name: ASPNET_CONFIGURATION
+          value: Development          
+        - name: PATH_BASE
+          value: /tasks-api          
+        - name: sql_server_url
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Tasks_sql_server_url
+        - name: sql_user_name
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Tasks_sql_user_name
+        - name: sql_user_password
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Tasks_sql_user_password
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: notifications
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: notifications
+    spec:
+      containers:
+      - name: notifications
+        image: smarthotels/notifications
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360        
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: PATH_BASE
+          value: /notifications-api
+        - name: b2c__Tenant
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Notifications_b2c__Tenant             
+        - name: b2c__ClientId
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Notifications_b2c__ClientId
+        - name: b2c__Audiences
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Notifications_b2c__Audiences
+        - name: b2c__Policy
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Notifications_b2c__Policy             
+        ports:
+        - containerPort: 80      
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reviews
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: reviews
+    spec:
+      containers:
+      - name: reviews
+        image: smarthotels/reviews
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey      
+        - name: k8sname
+          value: smarthotel360             
+        - name: PORT
+          value: "80"
+        - name: ASPNET_CONFIGURATION
+          value: Development          
+        - name: PATH_BASE
+          value: /reviews-api          
+        - name: sql_server_url
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Reviews_sql_server_url
+        - name: sql_user_name
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Reviews_sql_user_name
+        - name: sql_user_password
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Reviews_sql_user_password
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: discounts
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: discounts
+    spec:
+      containers:
+      - name: discounts
+        image: smarthotels/discounts
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360        
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: PATH_BASE
+          value: /discounts-api
+        - name: profilesvc
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Discounts_profilesvc  
+        ports:
+        - containerPort: 80      
+      imagePullSecrets:
+      - name: registry-key
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: profiles
+spec:
+  paused: true
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: profiles
+    spec:
+      containers:
+      - name: profiles
+        image: smarthotels/profiles
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360        
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: PATH_BASE
+          value: /profiles-api
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: Profiles_ConnectionStrings__DefaultConnection          
+        ports:
+        - containerPort: 80      
+      imagePullSecrets:
+      - name: registry-key

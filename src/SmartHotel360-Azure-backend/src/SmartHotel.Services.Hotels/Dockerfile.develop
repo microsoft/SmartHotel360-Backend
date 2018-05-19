@@ -1,0 +1,16 @@
+FROM microsoft/aspnetcore-build:2.0
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+
+EXPOSE 80
+
+WORKDIR /src
+COPY SmartHotel.Services.Hotels.sln .
+COPY SmartHotel.Services.Seedwork/SmartHotel.Services.Seedwork.csproj ./SmartHotel.Services.Seedwork
+COPY SmartHotel.Services.Hotels/SmartHotel.Services.Hotels.csproj ./SmartHotel.Services.Hotels
+RUN dotnet restore -nowarn:msb3202,nu1503
+COPY . .
+WORKDIR SmartHotel.Services.Hotels
+RUN dotnet build SmartHotel.Services.Hotels.csproj
+
+CMD ["dotnet", "run", "--no-restore", "--no-build", "--no-launch-profile"]

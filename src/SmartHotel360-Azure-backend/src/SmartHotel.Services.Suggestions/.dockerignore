@@ -1,0 +1,8 @@
+.dockerignore
+.gitignore
+node_modules/
+*.njsproj
+*/bin
+*/obj
+!obj/Docker/publish/*
+!obj/Docker/empty/
