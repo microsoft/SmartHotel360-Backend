@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": ".NET Core Launch (AZDS)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build (AZDS)",
+            "cwd": "/src/SmartHotel.Services.Hotels",
+            "program": "/src/SmartHotel.Services.Hotels/bin/Debug/netcoreapp2.0/SmartHotel.Services.Hotels.dll",
+            "sourceFileMap": {
+                "/src/SmartHotel.Services.Hotels": "${workspaceRoot}"
+            },
+            "pipeTransport": {
+                "pipeProgram": "azds",
+                "pipeCwd": "${workspaceRoot}",
+                "debuggerPath": "/vsdbg/vsdbg",
+                "pipeArgs": [
+                    "exec",
+                    "-i",
+                    "--restore-command",
+                    "--no-telemetry",
+                    "--"
+                ],
+                "quoteArgs": false
+            }
+        }
+    ]
+}

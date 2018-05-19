@@ -1,0 +1,13 @@
+Name: discounts
+DockerfilePath: Dockerfile
+BuildContext: .
+SyncTarget: .
+WatchList:
+- GlobPattern: '*'
+ImageName: smarthotelservicesdiscount_img
+Configs:
+  debug:
+    Commands:
+    - /bin/bash
+    - -c
+    - sleep infinity

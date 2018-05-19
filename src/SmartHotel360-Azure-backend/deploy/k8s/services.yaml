@@ -1,0 +1,127 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: hotels
+  name: hotels
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: hotels
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: bookings
+  name: bookings
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: bookings
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: suggestions
+  name: suggestions
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: suggestions
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: config
+  name: config
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: config    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: tasks
+  name: tasks
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: smarthotels
+    component: tasks
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: notifications
+  name: notifications
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: notifications    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: reviews
+  name: reviews
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: smarthotels
+    component: reviews
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: discounts
+  name: discounts
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: discounts  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: smarthotels
+    component: profiles
+  name: profiles
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: smarthotels
+    component: profiles  

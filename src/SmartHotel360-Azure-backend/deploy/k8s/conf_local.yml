@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: externalcfg
+  labels:
+    app: smarthotels  
+data:
+  Hotels_ConnectionStrings__DefaultConnection: Server=...
+  Bookings_ConnectionStrings__DefaultConnection: Server=...
+  Bookings_b2c__Tenant: smarthotel360.onmicrosoft.com
+  Bookings_b2c__ClientId: c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__Policy: B2C_1_SignUpInPolicy
+  Hotels_b2c__Tenant: smarthotel360.onmicrosoft.com
+  Hotels_b2c__ClientId: 9904b38a-126d-40d3-9ace-500ccad15839
+  Hotels_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,9904b38a-126d-40d3-9ace-500ccad15839
+  Hotels_b2c__Policy: B2C_1_SignUpInPolicy
+  Hotels_discountsvc: http://discounts/
+  Hotels_currency__Badge: $
+  Hotels_currency__BaseConversion: "1.0"  
+  Notifications_b2c__Tenant: smarthotel360.onmicrosoft.com
+  Notifications_b2c__ClientId: bd4133bb-d305-4927-baf3-35cb9bdc282c
+  Notifications_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,bd4133bb-d305-4927-baf3-35cb9bdc282c
+  Notifications_b2c__Policy: B2C_1_SignUpInPolicy
+  SUGGESTIONS_DATABASE_URL: mssql://...
+  Tasks_sql_server_url: jdbc:postgresql://...
+  Tasks_sql_user_name: sh360
+  Tasks_sql_user_password: Passw0rd!
+  Reviews_sql_server_url: jdbc:postgresql://...
+  Reviews_sql_user_name: sh360
+  Reviews_sql_user_password: Passw0rd!
+  ApplicationInsights__InstrumentationKey: ID_APPINSIGHTS
+  Discounts_profilesvc: http://profiles/
+  Profiles_ConnectionStrings__DefaultConnection: Server=...

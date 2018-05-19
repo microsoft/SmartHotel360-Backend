@@ -1,0 +1,18 @@
+{
+    "tasks": [
+        {
+            "label": "build (AZDS)",
+            "command": "azds",
+            "args": [
+                "up",
+                "--iterate",
+                "--no-command",
+                "--no-telemetry"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
