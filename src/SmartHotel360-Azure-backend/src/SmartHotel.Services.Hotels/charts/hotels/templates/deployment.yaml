@@ -38,11 +38,6 @@ spec:
           env:
             - name: k8sname
               value: smarthotel360
-            - name: ConnectionStrings__DefaultConnection
-              valueFrom:
-                configMapKeyRef:
-                  name: externalcfg
-                  key: "Hotels_ConnectionStrings__DefaultConnection"
             - name: PATH_BASE
               value: /hotels-api
             - name: discountsvc
@@ -50,7 +45,7 @@ spec:
             {{- $root := . }}
             {{- range $ref, $values := .Values.secrets }}
             {{- range $key, $value := $values }}
-            - name: {{ $ref | upper }}_{{ $key | upper }}
+            - name: {{ $ref }}_{{ $key }}
               valueFrom:
                 secretKeyRef:
                   name: {{ template "hotels.fullname" $root }}-{{ $ref }}
