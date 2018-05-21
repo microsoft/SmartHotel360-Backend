@@ -5,11 +5,6 @@ az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
 az acr login -n ${ACR_NAME}
 
 echo "------------------------------------------------------------"
-echo "Setting context"
-echo "------------------------------------------------------------"
-kubectl config set-context $AKS_NAME --namespace=mainline
-
-echo "------------------------------------------------------------"
 echo "Applying PostgreSQL databases"
 echo "------------------------------------------------------------"
 kubectl apply -f postgres.yaml
