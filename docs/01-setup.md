@@ -64,24 +64,6 @@ In this step you'll create all of the Azure resources required by the demo. This
 
     ```
 
-1. Install the Azure Dev Spaces extension for the `az` CLI. 
-
-    ```bash
-    az extension add --name dev-spaces-preview
-    ```
-
-1. Enable Azure Dev Spaces for your AKS cluster. 
-
-    ```bash
-    az aks use-dev-spaces -n ${AKS_NAME} -g ${AKS_RG}
-    ```
-
-    > This command may take a few minutes to complete. 
-
-    As Azure Dev Spaces is enabled in your cluster you'll see updates on-screen, and eventually be presented with a confirmation message. 
-
-    ![Dev Spaces Setup](../media/dev-spaces-setup.png)
-
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
 
 ## Setup the SmartHotel360 Backend APIs
