@@ -16,8 +16,7 @@ az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file 01-
         servicePrincipalClientSecret=${SPN_PW} \
         workspaceRegion="Canada Central" \
         enableHttpApplicationRouting=true \
-        enableOmsAgent=true \
-        containerRegistryName=${ACR_NAME}
+        enableOmsAgent=true
 
 az extension add --name dev-spaces-preview
 
