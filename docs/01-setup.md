@@ -23,6 +23,12 @@ If you already have a service principal, you can re-use it, and if you don't and
 
 In this step you'll create all of the Azure resources required by the demo. This consists of an AKS Cluster and an Azure Container Registry (ACR) instance. The AKS Cluster is pre-configured to use Microsoft Operations Management Suite (OMS) and Log Analytics to enable the rich Container Health Dashboard capabilities. 
 
+1. Install the Azure Dev Spaces **preview** extension for the Azure CLI by entering the following command. 
+
+    ```bash
+    az extension add --name dev-spaces-preview
+    ```
+
 1. Open the `setup\00-set-vars.sh` file in a text editor. 
 
 1. Set the variables in the script below (the `exports`). 
