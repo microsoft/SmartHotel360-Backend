@@ -1,3 +1,5 @@
+cd ../src/SmartHotel360-public-web/
+
 echo "------------------------------------------------------------"
 echo "Building and pushing container"
 echo "------------------------------------------------------------"
@@ -16,3 +18,5 @@ kubectl set image deployments/publicweb publicweb=${ACR_NAME}.azurecr.io/smartho
 kubectl rollout resume deployments/publicweb
 kubectl apply -f service.yaml
 kubectl apply -f ingress.yaml
+
+cd ../../../setup
