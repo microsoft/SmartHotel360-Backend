@@ -50,10 +50,9 @@ In this step you'll create all of the Azure resources required by the demo. This
 1. Open a bash terminal. CD into the `setup` folder of this repository. Then run the command below. 
 
     ```bash
-    bash 01-aks-create.sh
+    . 00-set-vars.sh
+    . 01-aks-create.sh
     ```
-
-    > This command may take a few minutes to complete. 
 
 1. Once the cluster is created, take note of the URL value for the `HTTPApplicationRoutingZoneName` property in the response JSON payload. Copy this URL, as it will be used later when deploying the microservices. 
 
@@ -87,10 +86,10 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     echo ${ACR_NAME}
     echo ${AKS_SUB}
     ```
-1. Execute the `setup.sh` script, which contains an end-to-end package-and-deployment process. CD into the `setup` directory (if not already there) and run this command:
+1. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
-    bash ./deploy-apis.sh
+    . 02-deploy-apis.sh
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.
@@ -179,7 +178,7 @@ Now that the back-end APIs are in place the public web app can be pushed into th
 1. CD into the `setup` directory if you're not already there, and execute the command below. 
 
     ```bash
-    bash ./setup-web.sh
+    . 03-deploy-web.sh
     ```
 
     The command may take a few minutes to complete. 
