@@ -23,25 +23,25 @@ If you already have a service principal, you can re-use it, and if you don't and
 
 In this step you'll create all of the Azure resources required by the demo. This consists of an AKS Cluster and an Azure Container Registry (ACR) instance. The AKS Cluster is pre-configured to use Microsoft Operations Management Suite (OMS) and Log Analytics to enable the rich Container Health Dashboard capabilities. 
 
-1. Open the `provision\01-aks-create.sh` file in a text editor. 
+1. Open the `setup\00-set-vars.sh` file in a text editor. 
 
 1. Set the variables in the script below (the `exports`). 
 
     **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and Eaat US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
 
     ```bash
-    export SPN_PW=<service principal password> \ 
-    export SPN_CLIENT_ID=<service principal app id> \ 
     export AKS_SUB=<azure subscription id> \ 
     export AKS_RG=<resource group name> \ 
     export AKS_NAME=<AKS cluster name> \ 
     export ACR_NAME=<Azure Container Registry name> \ 
-    export AKS_REGION=eastus
+    export AKS_REGION=eastus \ 
+    export SPN_CLIENT_ID=<service principal app id> \ 
+    export SPN_PW=<service principal password>
     ```
 
-    Save the file once you're happy with your edits.
+    Save the file once you're happy with your edits. If you open a new instance of your terminal window or close before ending the process, you can re-run `setup/00-set-vars.sh` to reset the environment variables the other scripts will use. 
 
-1. Open a bash terminal. CD into the `provision` folder of this repository. Then run the command below. 
+1. Open a bash terminal. CD into the `setup` folder of this repository. Then run the command below. 
 
     ```bash
     bash 01-aks-create.sh
@@ -66,14 +66,14 @@ In this step you'll create all of the Azure resources required by the demo. This
 
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
 
-## Setup the SmartHotel360 Backend APIs
+## Deploy the SmartHotel360 Backend APIs
 
 In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
 
 > Note: Very soon, the repo will be signififcantly updated to make use of Helm as a deployment strategy. For now the scripts are mostly in bash and make use of `kubectl` to interface with the cluster. 
 
-1. CD into the `src/SmartHotel360-Azure-backend/deploy/k8s` directory. 
-1. The end-to-end setup script makes use of some of the `export` environment variables you set earlier, so make sure they're still set by using the `echo` command to make sure they're still set. 
+
+1. The end-to-end setup script makes use of some of the `export` environment variables you set earlier, so make sure they're still set by using the `echo` command to make sure they're still set. If you don't see values when you `echo` these environment variables, re-run `setup/00-set-vars.sh`. 
 
     ```bash
     echo ${AKS_NAME}
@@ -81,10 +81,10 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     echo ${ACR_NAME}
     echo ${AKS_SUB}
     ```
-1. Execute the `setup.sh` script, which contains an end-to-end package-and-deployment process. 
+1. Execute the `setup.sh` script, which contains an end-to-end package-and-deployment process. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
-    bash ./setup-apis.sh
+    bash ./deploy-apis.sh
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.
@@ -96,6 +96,14 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
 1. Within a few minutes the cluster will show 100% for all of the objects in it. 
 
     ![All ready](../media/all-green.png)
+
+Congratulations! You've deployed the APIs. You're 75% of the way there, now, and all that remains is to deploy the public web site. This is a good opportunity for a much-earned break!
+
+## Set up Ingress
+
+In order to route traffic to the various APIs within the AKS cluster, you'll need to set up a front door, or "ingress." 
+
+> Note: Eventually this step will be deprecated in lieu of the integrated ingress features of AKS. We're in the process of improving the deployment by using Helm charts, and when we do that we'll start using AKS's integrated ingress features. 
 
 1. If you forgot to note the `HTTPApplicationRoutingZoneName` property earlier, execute the command below to get the JSON representation of your cluster. 
 
@@ -138,10 +146,6 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     kubectl apply -f ingress.yaml
     ```
 
-## Set up the Public Web App
-
-Now that the back-end APIs are in place the public web app can be pushed into the cluster, too. The spa app makes calls to the APIs running in the cluster and answers HTTP requests at the ingress URL you used earlier.
-
 1. Open up the `src/SmartHotel360-public-web/manifests/ingress.yaml` file and see line 9, which has the `host` property set as follows:
 
     ```yaml
@@ -160,7 +164,13 @@ Now that the back-end APIs are in place the public web app can be pushed into th
         http:
     ```
 
-1. CD into the `src/SmartHotel360-public-web` directory and execute the command below. 
+## Deploy the Public Web App
+
+Now that the back-end APIs are in place the public web app can be pushed into the cluster, too. The spa app makes calls to the APIs running in the cluster and answers HTTP requests at the ingress URL you used earlier.
+
+1. The end-to-end setup script makes use of some of the `export` environment variables you set earlier, so make sure they're still set by using the `echo` command to make sure they're still set. If you don't see values when you `echo` these environment variables, re-run `setup/00-set-vars.sh`. 
+
+1. CD into the `setup` directory if you're not already there, and execute the command below. 
 
     ```bash
     bash ./setup-web.sh

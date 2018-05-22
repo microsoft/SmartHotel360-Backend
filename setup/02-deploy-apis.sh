@@ -1,7 +1,13 @@
+cd ../src/SmartHotel360-Azure-backend/deploy/k8s
+
+echo "------------------------------------------------------------"
+echo "Creating the registry ${ACR_NAME}"
+echo "------------------------------------------------------------"
+az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
+
 echo "------------------------------------------------------------"
 echo "Logging into the registry ${ACR_NAME}"
 echo "------------------------------------------------------------"
-az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
 az acr login -n ${ACR_NAME}
 
 echo "------------------------------------------------------------"
@@ -28,3 +34,5 @@ echo "------------------------------------------------------------"
 echo "Opening the dashboard"
 echo "------------------------------------------------------------"
 az aks browse -n ${AKS_NAME} -g ${AKS_RG}
+
+cd ../../../../setup
