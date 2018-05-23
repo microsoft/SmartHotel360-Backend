@@ -3,12 +3,7 @@ cd ../src/SmartHotel360-Azure-backend/deploy/k8s
 echo "------------------------------------------------------------"
 echo "Creating the registry ${ACR_NAME}"
 echo "------------------------------------------------------------"
-az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
-
-echo "------------------------------------------------------------"
-echo "Logging into the registry ${ACR_NAME}"
-echo "------------------------------------------------------------"
-az acr login -n ${ACR_NAME}
+#az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
 
 echo "------------------------------------------------------------"
 echo "Applying PostgreSQL databases"
@@ -23,12 +18,12 @@ kubectl apply -f sql-data.yaml
 echo "------------------------------------------------------------"
 echo "Building and pushing to ACR"
 echo "------------------------------------------------------------"
-bash ./build-push.sh ${ACR_NAME}.azurecr.io
+. build-push.sh ${ACR_NAME}
 
 echo "------------------------------------------------------------"
 echo "Deploying the code"
 echo "------------------------------------------------------------"
-bash ./deploy.sh ${ACR_NAME}.azurecr.io
+. deploy.sh ${ACR_NAME}.azurecr.io
 
 echo "------------------------------------------------------------"
 echo "Opening the dashboard"
