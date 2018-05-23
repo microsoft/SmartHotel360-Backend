@@ -13,11 +13,16 @@ export TAG=$imageTag
 docker-compose -p .. -f ../../src/docker-compose.yml -f ../../src/docker-compose-tagged.yml build
 
 echo "------------------------------------------------------------"
-echo "Pushing images to $registry/$dockerOrg..."
+echo "Logging into the registry ${ACR_NAME}"
+echo "------------------------------------------------------------"
+az acr login -n $registry
+
+echo "------------------------------------------------------------"
+echo "Pushing images to $registry.azurecr.io/$dockerOrg..."
 echo "------------------------------------------------------------"
 services="bookings hotels suggestions tasks configuration notifications reviews discounts profiles"
 for service in $services; do
-  imageFqdn=$registry/${dockerOrg}/${service}
+  imageFqdn=$registry.azurecr.io/${dockerOrg}/${service}
   docker tag smarthotels/${service}:public ${imageFqdn}:$imageTag
   docker push ${imageFqdn}:$imageTag
 done
