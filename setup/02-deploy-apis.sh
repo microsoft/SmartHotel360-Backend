@@ -1,9 +1,11 @@
+#!/bin/bash
+
 cd ../src/SmartHotel360-Azure-backend/deploy/k8s
 
 echo "------------------------------------------------------------"
 echo "Creating the registry ${ACR_NAME}"
 echo "------------------------------------------------------------"
-#az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
+az acr create -n ${ACR_NAME} -g ${AKS_RG} --admin-enabled --sku Basic
 
 echo "------------------------------------------------------------"
 echo "Applying PostgreSQL databases"

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -x
 registry=$1
 dockerOrg=${3:-smarthotels}
