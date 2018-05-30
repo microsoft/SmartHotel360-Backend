@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export AKS_SUB=<your subscription id>
 export AKS_RG=<your resource group name>
 export AKS_NAME=<your cluster name>
