@@ -47,7 +47,19 @@ In this step you'll create all of the Azure resources required by the demo. This
 
     Save the file once you're happy with your edits. If you open a new instance of your terminal window or close before ending the process, you can re-run `setup/00-set-vars.sh` to reset the environment variables the other scripts will use. 
 
-1. Open a bash terminal. CD into the `setup` folder of this repository. Then run the command below. 
+1. Open a bash terminal. CD into the `setup` folder of this repository. 
+1. Some Linux distributions require setting execute permissions on `.sh` files prior to executing them. To be safe, running the command below results in the bash scripts being enabled with execution priveleges. 
+
+    ```bash
+    chmod +x ./00-set-vars.sh
+    chmod +x ./01-aks-create.sh
+    chmod +x ./02-deploy-apis.sh
+    chmod +x ./03-deploy-web.sh
+    chmod +x ../src/SmartHotel360-Azure-backend/deploy/k8s/build-push.sh
+    chmod +x ../src/SmartHotel360-Azure-backend/deploy/k8s/deploy.sh
+    ```
+
+1. Run the command below. 
 
     ```bash
     . 00-set-vars.sh
