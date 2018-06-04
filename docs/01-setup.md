@@ -160,7 +160,7 @@ In order to route traffic to the various APIs within the AKS cluster, you'll nee
 1. Execute the command below to set the AKS cluster ingress. 
 
     ```bash
-    kubectl apply -f ingress.yaml
+    kubectl apply -f ../src/SmartHotel360-Azure-backend/deploy/k8s/ingress.yaml
     ```
 
 1. Open up the `src/SmartHotel360-public-web/manifests/ingress.yaml` file and see line 9, which has the `host` property set as follows:
