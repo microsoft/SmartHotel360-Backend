@@ -1,0 +1,14 @@
+{{- $name := include "sh360-profiles.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-profiles.name" . }}
+    chart: {{ template "sh360-profiles.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  Profiles_ConnectionStrings__DefaultConnection: Server=sql-data;Initial Catalog=ProfilesDb;Perssh360;Password=Password!;MultipleActiveResultSets=False;Connection Timeout=30;
