@@ -20,12 +20,12 @@ kubectl apply -f sql-data.yaml
 echo "------------------------------------------------------------"
 echo "Building and pushing to ACR"
 echo "------------------------------------------------------------"
-. build-push.sh ${ACR_NAME}
+source build-push.sh ${ACR_NAME}
 
 echo "------------------------------------------------------------"
 echo "Deploying the code"
 echo "------------------------------------------------------------"
-. deploy.sh ${ACR_NAME}.azurecr.io
+source deploy.sh ${ACR_NAME}.azurecr.io
 
 echo "------------------------------------------------------------"
 echo "Opening the dashboard"
