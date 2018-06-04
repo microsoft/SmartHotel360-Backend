@@ -210,7 +210,6 @@
             "count": "[variables('agentCount')]",
             "vmSize": "[variables('agentVMSize')]",
             "osType": "[variables('osType')]",
-            "maxPods": "[variables('maxPods')]",
             "storageProfile": "ManagedDisks"
           }
         ],
