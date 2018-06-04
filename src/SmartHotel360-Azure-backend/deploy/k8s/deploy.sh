@@ -5,12 +5,13 @@ registry=$1
 dockerOrg=${3:-smarthotels}
 imageTag=${2:-$(git rev-parse --abbrev-ref HEAD)}
 
-echo "Removing existing services & deployments.."
-kubectl delete -f deployments.yaml
-kubectl delete -f services.yaml
-kubectl delete configmap config-files
-kubectl delete configmap externalcfg
-kubectl delete configmap discovery-file
+# Uncomment the following lines after you run this the first time
+#echo "Removing existing services & deployments.."
+#kubectl delete -f deployments.yaml
+#kubectl delete -f services.yaml
+#kubectl delete configmap config-files
+#kubectl delete configmap externalcfg
+#kubectl delete configmap discovery-file
 
 kubectl create configmap config-files --from-file=nginx-conf=nginx.conf
 kubectl label configmap config-files app=smarthotels
