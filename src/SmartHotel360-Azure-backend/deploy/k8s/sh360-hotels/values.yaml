@@ -3,9 +3,6 @@ applicationName: sh360
 clusterName: sh360-aks
 pathBase: /hotels-api
 
-shared:
-  appInsights: ID_APPINSIGHTS
-
 image:
   repository: smarthotels/hotels
   tag: latest
