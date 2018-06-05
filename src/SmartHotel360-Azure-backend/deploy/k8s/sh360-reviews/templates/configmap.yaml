@@ -1,0 +1,16 @@
+{{- $name := include "sh360-reviews.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-reviews.name" . }}
+    chart: {{ template "sh360-reviews.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  Reviews_sql_server_url: jdbc:postgresql://reviews-data:5432/reviewsdb
+  Reviews_sql_user_name: sh360
+  Reviews_sql_user_password: Passw0rd!
