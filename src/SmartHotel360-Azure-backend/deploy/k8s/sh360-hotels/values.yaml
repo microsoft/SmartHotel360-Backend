@@ -32,6 +32,11 @@ tolerations: []
 
 affinity: {}
 
+sql:
+  user: sa
+  pwd: Password!
+#  host: sh360-sql-data    ## This host name overrides the generated one
+
 # env defines the environment variables that will be declared in the pod
 env:
   # configmap declares variables which value is taken from the config map defined in template configmap.yaml (name is name of var and key the key in configmap)

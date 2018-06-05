@@ -1,4 +1,5 @@
 {{- $name := include "sh360-profiles.fullname" . -}}
+{{- $sqlsrv := include "sql-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -11,4 +12,4 @@ metadata:
     heritage: {{ .Release.Service }}
 data:
   ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
-  Profiles_ConnectionStrings__DefaultConnection: Server=sql-data;Initial Catalog=ProfilesDb;Perssh360;Password=Password!;MultipleActiveResultSets=False;Connection Timeout=30;
+  Profiles_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=ProfilesDb;Persist Security Info=False;User Id={{ .Values.sql.user }};Password={{ .Values.sql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
