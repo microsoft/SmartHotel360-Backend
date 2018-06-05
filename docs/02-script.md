@@ -161,7 +161,7 @@ In this demo, the presenter is a new developer working for SmartHotel360, a hote
 1. Change the code to match this:
 
     ```csharp
-    _citiesQuery.Get(name);
+    await _citiesQuery.Get(name);
     ```
 
     ![Get method](../media/demo-script/15-fixed-code.png)
