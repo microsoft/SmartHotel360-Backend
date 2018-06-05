@@ -224,6 +224,7 @@ In this demo, the presenter is a new developer working for SmartHotel360, a hote
 
 1. Once the site opens, zoom in on the URL to show the Dev Space prefix. 
 1. Scroll down and search for **Seattle** in the city search box. 
+1. In a moment, Visual Studio should obtain focus and the debugger should stop on the line with the breakpoint. 
     
     ![Search for Seattle](../media/demo-script/24-breakpoint-hit.png)
 
