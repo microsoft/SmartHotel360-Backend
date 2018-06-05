@@ -1,0 +1,48 @@
+replicaCount: 1
+applicationName: sh360
+clusterName: sh360-aks
+pathBase: /tasks-api
+
+image:
+  repository: smarthotels/tasks
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  configmap:
+    - name: ApplicationInsights__InstrumentationKey
+      key: ApplicationInsights__InstrumentationKey
+    - name: sql_server_url
+      key: Tasks_sql_server_url
+    - name: sql_user_name
+      key: Tasks_sql_user_name
+    - name: sql_user_password
+      key: Tasks_sql_user_password
+  value:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development
