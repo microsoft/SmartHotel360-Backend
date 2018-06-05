@@ -1,0 +1,16 @@
+{{- $name := include "sh360-tasks.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-tasks.name" . }}
+    chart: {{ template "sh360-tasks.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  Tasks_sql_server_url: jdbc:postgresql://tasks-data:5432/tasksdb
+  Tasks_sql_user_name: sh360
+  Tasks_sql_user_password: Passw0rd!

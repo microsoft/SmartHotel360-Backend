@@ -1,0 +1,14 @@
+{{- $name := include "sh360-suggestions.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-suggestions.name" . }}
+    chart: {{ template "sh360-suggestions.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey: ID_APPINSIGHTS
+  SUGGESTIONS_DATABASE_URL:  mssql://sa:Password!@sql-data:1433/SuggestionsDb
