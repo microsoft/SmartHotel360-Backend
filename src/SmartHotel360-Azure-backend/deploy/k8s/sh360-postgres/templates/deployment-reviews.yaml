@@ -1,9 +1,9 @@
--{{$name := include "sh360-postgres.fullname" . }} 
--{{$fullname := printf "%s-%s" "reviews" $name -}}
+{{- $pg := include "reviews-postgres-name" . -}}
+
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ $fullname }}
+  name: {{ $pg }}
   labels:
     app: {{ template "sh360-postgres.name" . }}
     chart: {{ template "sh360-postgres.chart" . }}
@@ -33,11 +33,11 @@ spec:
               protocol: TCP
           env:
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.pwd }}
+              value: {{ .Values.pg.pwd }}
             - name: POSTGRES_USER
-              value: {{ .Values.postgres.user }}
+              value: {{ .Values.pg.user }}
             - name: POSTGRES_DB
-              value: {{ .Values.postgres.dbs.tasks }}
+              value: {{ .Values.pg.dbs.reviews }}
            resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

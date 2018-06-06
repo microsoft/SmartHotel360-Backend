@@ -1,9 +1,8 @@
--{{$name := include "sh360-postgres.fullname" . }} 
--{{$fullname := printf "%s-%s" "tasks" $name -}}
+{{- $pg := include "tasks-postgres-name" . -}}
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ $fullname }}
+  name: {{ $pg }}
   labels:
     app: {{ template "sh360-postgres.name" . }}
     chart: {{ template "sh360-postgres.chart" . }}
@@ -29,11 +28,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.pwd }}
+              value: {{ .Values.pg.pwd }}
             - name: POSTGRES_USER
-              value: {{ .Values.postgres.user }}
+              value: {{ .Values.pg.user }}
             - name: POSTGRES_DB
-              value: {{ .Values.postgres.dbs.reviews }}
+              value: {{ .Values.pg.dbs.tasks }}
           ports:
             - name: http
               containerPort: 5432

@@ -9,7 +9,8 @@ service:
   type: ClusterIP
   port: 5432
 
-postgres:
+pg:
+# host: pg-sh360    # Uncomment to override generated host name
   user: sh360
   pwd: Passw0rd!
   dbs:
