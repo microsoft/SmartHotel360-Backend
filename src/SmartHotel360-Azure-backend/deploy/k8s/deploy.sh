@@ -1,51 +1,71 @@
 #!/bin/bash
 
-set -x
-registry=$1
-dockerOrg=${3:-smarthotels}
-imageTag=${2:-$(git rev-parse --abbrev-ref HEAD)}
+registry=
+clean=0
+imageTag=$(git rev-parse --abbrev-ref HEAD)
+release=
+dockerOrg="smarthotels"
 
-echo "Removing existing services & deployments.."
-kubectl delete -f deployments.yaml
-kubectl delete -f services.yaml
-kubectl delete configmap config-files
-kubectl delete configmap externalcfg
-kubectl delete configmap discovery-file
 
-kubectl create configmap config-files --from-file=nginx-conf=nginx.conf
-kubectl label configmap config-files app=smarthotels
+while [ "$1" != "" ]; do
+    case $1 in
+        -c | --clean)                   clean=1
+                                        ;;
+        -r | --registry)                shift
+                                        registry=$1
+                                        ;;
+        -t | --tag)                     shift
+                                        imageTag=$1
+                                        ;;
+        -o | --org)                     shift
+                                        dockerOrg=$1
+                                        ;;
+        -n | --name)                    shift
+                                        release=$1
+                                        ;;
+       * )                              echo "Invalid param. Use -c (--clean), -r (--registry), -o (--org) or -t (--tag)"
+                                        exit 1
+    esac
+    shift
+done
 
-echo "Creating empty discovery service file from $discoveryServiceFile. This is not an error!"
-kubectl create configmap discovery-file --from-file=custom.json=empty.json
+echo "Installing release $release"
+echo "Using registry: $registry, tag $imageTag & organization $dockerOrg"
 
-echo "Deploying WebAPIs"
-kubectl create -f services.yaml
+if (( clean == 1 ))
+then
+  echo "cleaning all helm releases from cluster"
+  helm ls --short | xargs -L1 helm delete
+fi
 
-echo "Deploying configuration from conf_all.yml"
-kubectl create -f conf_all.yml
 
-echo "Creating deployments on k8s..."
-kubectl create -f deployments.yaml
+declare -a infra=("sh360-postgres" "sh360-sql-data")
 
-# update deployments with the correct image (with tag and/or registry)
-echo "Update Image containers to use prefix \"$registry/$dockerOrg\" and tag \"$imageTag\""
-kubectl set image deployments/hotels hotels=${registry}/${dockerOrg}/hotels:$imageTag
-kubectl set image deployments/bookings bookings=${registry}/${dockerOrg}/bookings:$imageTag
-kubectl set image deployments/suggestions suggestions=${registry}/${dockerOrg}/suggestions:$imageTag
-kubectl set image deployments/tasks tasks=${registry}/${dockerOrg}/tasks:$imageTag
-kubectl set image deployments/config config=${registry}/${dockerOrg}/configuration:$imageTag
-kubectl set image deployments/notifications notifications=${registry}/${dockerOrg}/notifications:$imageTag
-kubectl set image deployments/reviews reviews=${registry}/${dockerOrg}/reviews:$imageTag
-kubectl set image deployments/discounts discounts=${registry}/${dockerOrg}/discounts:$imageTag
-kubectl set image deployments/profiles profiles=${registry}/${dockerOrg}/profiles:$imageTag
+for inf in "${infra[@]}"
+do
+  echo "Installing infrastructure $inf"
+  helm install $svc --name=$release
+done
 
-echo "Execute rollout..."
-kubectl rollout resume deployments/hotels
-kubectl rollout resume deployments/bookings
-kubectl rollout resume deployments/suggestions
-kubectl rollout resume deployments/config
-kubectl rollout resume deployments/tasks
-kubectl rollout resume deployments/notifications
-kubectl rollout resume deployments/reviews
-kubectl rollout resume deployments/discounts
-kubectl rollout resume deployments/profiles
+declare -a arr=("sh360-hotels|hotels" "sh360-bookings|2" "sh360-config|3" "sh360-discounts|4" "sh360-notifications|5" "sh360-profiles|6" "sh360-reviews|7" "sh360-suggestions|8" "sh360-tasks|9")
+
+for svc in "${arr[@]}"
+do
+  IFS='|' read -r -a array <<< "$svc"
+  currentImage=${array[1]}
+  
+  if [[ "$dockerOrg" != "" ]]
+  then
+    currentImage="$dockerOrg/$currentImage"
+  fi
+
+  if [[ "$registry" != "" ]]
+  then
+    currentImage="$registry/$currentImage"
+  fi
+
+  echo "Installing service ${array[0]} (image $currentImage)"
+  helm install $svc --name=$release --set image.tag=$imageTag --set image.repository=$currentImage
+done
+
+
