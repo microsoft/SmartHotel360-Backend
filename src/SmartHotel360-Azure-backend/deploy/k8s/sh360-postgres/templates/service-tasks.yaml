@@ -1,9 +1,8 @@
--{{$name := include "sh360-postgres.fullname" . }}
--{{$fullname := printf "%s-%s" "tasks" $name -}}
+{{- $pg := include "tasks-postgres-name" . -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $fullname }}
+  name: {{ $pg }}
   labels:
     app: {{ template "sh360-postgres.name" . }}
     chart: {{ template "sh360-postgres.chart" . }}

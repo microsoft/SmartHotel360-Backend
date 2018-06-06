@@ -1,4 +1,5 @@
 {{- $name := include "sh360-tasks.fullname" . -}}
+{{- $pg := include "postgres-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -11,6 +12,6 @@ metadata:
     heritage: {{ .Release.Service }}
 data:
   ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
-  Tasks_sql_server_url: jdbc:postgresql://tasks-data:5432/tasksdb
-  Tasks_sql_user_name: sh360
-  Tasks_sql_user_password: Passw0rd!
+  Tasks_sql_server_url: jdbc:postgresql://{{ $pg }}:{{ .Values.pg.port }}/tasksdb
+  Tasks_sql_user_name: {{ .Values.pg.usr }}
+  Tasks_sql_user_password: {{ .Values.pg.pwd }}
