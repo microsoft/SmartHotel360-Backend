@@ -38,7 +38,7 @@ spec:
               value: {{ .Values.pg.user }}
             - name: POSTGRES_DB
               value: {{ .Values.pg.dbs.reviews }}
-           resources:
+          resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

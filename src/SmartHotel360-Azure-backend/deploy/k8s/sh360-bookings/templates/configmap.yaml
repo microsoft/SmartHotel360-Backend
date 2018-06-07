@@ -1,5 +1,5 @@
 {{- $name := include "sh360-bookings.fullname" . -}}
-{{- $sqlsrv := include "sql-name" . -}}
+{{- $sqlsrv := include .mssql.name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -11,7 +11,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  Bookings_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=BookingsDb;Persist Security Info=False;User ID={{ .Values.sql.user }};Password={{ .Values.sql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
+  Bookings_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=BookingsDb;Persist Security Info=False;User ID={{ .Values.mssql.user }};Password={{ .Values.mssql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
   Bookings_b2c__Tenant: smarthotel360.onmicrosoft.com
   Bookings_b2c__ClientId: c40d4573-4164-42be-9ef9-54f16ca15f2f
   Bookings_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,c40d4573-4164-42be-9ef9-54f16ca15f2f

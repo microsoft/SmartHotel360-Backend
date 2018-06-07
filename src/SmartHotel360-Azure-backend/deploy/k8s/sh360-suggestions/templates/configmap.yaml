@@ -1,4 +1,5 @@
 {{- $name := include "sh360-suggestions.fullname" . -}}
+{{- $sqlsrv := include "sql-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -11,4 +12,4 @@ metadata:
     heritage: {{ .Release.Service }}
 data:
   ApplicationInsights__InstrumentationKey: ID_APPINSIGHTS
-  SUGGESTIONS_DATABASE_URL:  mssql://sa:Password!@sql-data:1433/SuggestionsDb
+  SUGGESTIONS_DATABASE_URL:  mssql://{{.Values.mssql.user}}:{{.Values.mssql.pwd}}@{{ $sqlsrv }}:1433/SuggestionsDb

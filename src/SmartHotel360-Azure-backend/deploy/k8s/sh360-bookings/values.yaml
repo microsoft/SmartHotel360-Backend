@@ -12,7 +12,7 @@ service:
   type: ClusterIP
   port: 80
 
-sql:
+mssql:
   user: sa
   pwd: Password!
 #  host: sh360-sql-data   # Uncomment to override the generated host name

@@ -37,7 +37,7 @@ spec:
             - name: http
               containerPort: 5432
               protocol: TCP
-           resources:
+          resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

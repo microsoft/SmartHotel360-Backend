@@ -11,7 +11,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  Hotels_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=HotelsDb;Persist Security Info=False;User ID={{ .Values.sql.user }};Password={{ .Values.sql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
+  Hotels_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=HotelsDb;Persist Security Info=False;User ID={{ .Values.mssql.user }};Password={{ .Values.mssql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
   Hotels_b2c__Tenant: smarthotel360.onmicrosoft.com
   Hotels_b2c__ClientId: 9904b38a-126d-40d3-9ace-500ccad15839
   Hotels_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,9904b38a-126d-40d3-9ace-500ccad15839

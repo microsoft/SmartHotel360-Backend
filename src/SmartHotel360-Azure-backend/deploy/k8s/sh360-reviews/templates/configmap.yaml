@@ -1,5 +1,5 @@
 {{- $name := include "sh360-reviews.fullname" . -}}
-{{- $pg := include "postgres-name" . -}}
+{{- $pg := include "reviews-postgres-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap

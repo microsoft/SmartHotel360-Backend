@@ -1,5 +1,5 @@
 {{- $name := include "sh360-tasks.fullname" . -}}
-{{- $pg := include "postgres-name" . -}}
+{{- $pg := include "tasks-postgres-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap

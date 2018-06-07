@@ -54,11 +54,7 @@ spec:
           - name: customcfg
             mountPath: /app/cfg/custom.json
             subPath: custom.json
-        volumes:
-        - name: customcfg
-          configMap:
-            name: discovery-file
-            resources:
+          resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -72,4 +68,8 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+        volumes:
+        - name: customcfg
+          configMap:
+            name: discovery-file
 
