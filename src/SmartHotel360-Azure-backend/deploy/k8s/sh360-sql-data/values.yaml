@@ -10,6 +10,7 @@ service:
   port: 1433
 
 mssql:
+# host: sql-sh360   # Uncomment to override generated host name
   pid: Developer
   pwd: Password!
 

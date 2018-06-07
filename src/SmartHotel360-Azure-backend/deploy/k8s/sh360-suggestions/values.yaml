@@ -12,6 +12,11 @@ service:
   type: ClusterIP
   port: 80
 
+mssql:
+  user: sa
+  pwd: Password!
+#  host: sh360-sql-data    ## This host name overrides the generated one
+
 ingress:
   enabled: false
   annotations: {}

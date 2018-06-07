@@ -32,7 +32,7 @@ tolerations: []
 
 affinity: {}
 
-sql:
+mssql:
   user: sa
   pwd: Password!
 #  host: sh360-sql-data    ## This host name overrides the generated one

@@ -5,6 +5,7 @@ clean=0
 imageTag=$(git rev-parse --abbrev-ref HEAD)
 release=
 dockerOrg="smarthotels"
+appName=
 
 
 while [ "$1" != "" ]; do
@@ -21,6 +22,9 @@ while [ "$1" != "" ]; do
                                         dockerOrg=$1
                                         ;;
         -n | --name)                    shift
+                                        appName=$1
+                                        ;;
+        --release)                      shift
                                         release=$1
                                         ;;
        * )                              echo "Invalid param. Use -c (--clean), -r (--registry), -o (--org) or -t (--tag)"
@@ -29,25 +33,38 @@ while [ "$1" != "" ]; do
     shift
 done
 
-echo "Installing release $release"
+echo "Base name for releases is (empty means random for each release): $release"
 echo "Using registry: $registry, tag $imageTag & organization $dockerOrg"
+
+if [[ "$appName" == "" ]]
+then
+  echo "must provide a name using -n or --name"
+  exit 1
+fi
 
 if (( clean == 1 ))
 then
   echo "cleaning all helm releases from cluster"
-  helm ls --short | xargs -L1 helm delete
+  helm ls --short | xargs -L1 helm delete --purge
 fi
 
 
-declare -a infra=("sh360-postgres" "sh360-sql-data")
+declare -a infra=("sh360-postgres|postgres" "sh360-sql-data|sql")
 
 for inf in "${infra[@]}"
-do
-  echo "Installing infrastructure $inf"
-  helm install $svc --name=$release
+do 
+  IFS='|' read -r -a array <<< "$inf"
+  echo "Installing infrastructure ${array[0]}"
+
+  if [[ "$release" != "" ]]
+  then
+    fullrelease="$release-${array[1]}"
+  fi
+
+  helm install ${array[0]} --name=$fullrelease --set appName=$appName
 done
 
-declare -a arr=("sh360-hotels|hotels" "sh360-bookings|2" "sh360-config|3" "sh360-discounts|4" "sh360-notifications|5" "sh360-profiles|6" "sh360-reviews|7" "sh360-suggestions|8" "sh360-tasks|9")
+declare -a arr=("sh360-hotels|hotels" "sh360-bookings|bookings" "sh360-config|configuration" "sh360-discounts|discounts" "sh360-notifications|notifications" "sh360-profiles|profiles" "sh360-reviews|reviews" "sh360-suggestions|suggestions" "sh360-tasks|tasks")
 
 for svc in "${arr[@]}"
 do
@@ -64,8 +81,13 @@ do
     currentImage="$registry/$currentImage"
   fi
 
+  if [[ "$release" != "" ]]
+  then
+    fullrelease="$release-${array[1]}"
+  fi
+
   echo "Installing service ${array[0]} (image $currentImage)"
-  helm install $svc --name=$release --set image.tag=$imageTag --set image.repository=$currentImage
+  helm install ${array[0]} --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName
 done
 
 

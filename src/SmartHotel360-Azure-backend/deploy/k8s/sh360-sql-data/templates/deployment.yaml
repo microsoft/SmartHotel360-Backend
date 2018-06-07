@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "sh360-sql-data.fullname" . }}
+  name: {{ template "sql-name" . }}
   labels:
     app: {{ template "sh360-sql-data.name" . }}
     chart: {{ template "sh360-sql-data.chart" . }}
