@@ -1,11 +1,15 @@
 #!/bin/bash
 
-set -ex
 
-registry=$1
+registry=${1:-${ACR_NAME}}
 dockerOrg=${3:-smarthotels}
 imageTag=${2:-$(git rev-parse --abbrev-ref HEAD)}
-echo "Docker image Tag: $imageTag"
+
+if [[ "$registry" == "" ]]
+then
+  echo "Must specify registry or set ACR_NAME env variable"
+  exit 1
+fi
 
 echo "------------------------------------------------------------"
 echo "Building Docker images tagged with $imageTag"
@@ -14,7 +18,7 @@ export TAG=$imageTag
 docker-compose -p .. -f ../../src/docker-compose.yml -f ../../src/docker-compose-tagged.yml build
 
 echo "------------------------------------------------------------"
-echo "Logging into the registry ${ACR_NAME}"
+echo "Logging into the registry $registry
 echo "------------------------------------------------------------"
 az acr login -n $registry
 
