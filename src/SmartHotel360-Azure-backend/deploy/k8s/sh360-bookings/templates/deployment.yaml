@@ -22,6 +22,12 @@ spec:
         app: {{ template "sh360-bookings.name" . }}
         release: {{ .Release.Name }}
     spec:
+      {{ if .Values.imagePullSecrets -}}
+      imagePullSecrets:
+      {{ range .Values.imagePullSecrets -}}
+        - name: {{ .name }}
+      {{- end -}}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

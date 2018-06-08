@@ -1,10 +1,10 @@
 replicaCount: 1
 applicationName: sh360
 clusterName: sh360-aks
-pathBase: /suggestions-api
+pathBase: /bookings
 
 image:
-  repository: smarthotels/suggestions
+  repository: smarthotels/bookings
   tag: latest
   pullPolicy: Always
 
