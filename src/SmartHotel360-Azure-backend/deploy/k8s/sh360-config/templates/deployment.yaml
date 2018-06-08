@@ -34,7 +34,7 @@ spec:
           {{- if .Values.env.values -}}
           {{- range .Values.env.values }}
             - name: {{ .name }}
-              value: {{ .value }}
+              value: {{ .value | quote }}
           {{- end -}}
           {{- end -}}
           {{- if .Values.env.configmap -}}
@@ -68,8 +68,8 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-        volumes:
-        - name: customcfg
-          configMap:
-            name: discovery-file
+      volumes:
+      - name: customcfg
+        configMap:
+          name: discovery-file
 

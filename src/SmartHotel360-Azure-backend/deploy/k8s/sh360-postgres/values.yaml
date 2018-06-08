@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: potsgres
-  tag: 10.3-alpìne
+  repository: postgres
+  tag: 10.3-alpine
   pullPolicy: IfNotPresent
 
 service:

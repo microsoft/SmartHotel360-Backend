@@ -1,8 +1,11 @@
+{{- $name := include "sh360-reviews.fullname" . -}}
+{{- $cfgname := printf "%s-%s" "cfg" $name -}}
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "sh360-reviews.fullname" . }}
   labels:
+    ufo: {{ $cfgname}}
     app: {{ template "sh360-reviews.name" . }}
     chart: {{ template "sh360-reviews.chart" . }}
     release: {{ .Release.Name }}
@@ -23,18 +26,30 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: PATH_BASE
+              value: {{ .Values.pathBase  }}
+            - name: k8sname
+              value: {{ .Values.clusterName }}
+          {{- if .Values.env.values -}}
+          {{- range .Values.env.values }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{- end -}}
+          {{- end -}}
+          {{- if .Values.env.configmap -}}
+          {{- range .Values.env.configmap }}
+            - name: {{ .name }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ $cfgname }}
+                  key: {{ .key }}
+          {{- end -}}
+          {{- end }}
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
@@ -49,3 +64,4 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+

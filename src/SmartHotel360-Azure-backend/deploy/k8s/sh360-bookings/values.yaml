@@ -51,7 +51,7 @@ env:
     - name: b2c__Audiences
       key: Bookings_b2c__Audiences
     - name: b2c__Policy
-      key: Boolings_b2c__Policy
+      key: Bookings_b2c__Policy
   values:
     - name: ASPNETCORE_ENVIRONMENT
       value: Development

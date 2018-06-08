@@ -6,7 +6,7 @@ imageTag=$(git rev-parse --abbrev-ref HEAD)
 release=
 dockerOrg="smarthotels"
 appName=
-
+nginxip=$(kubectl get svc -n kube-system | grep "LoadBalancer" | awk '{print $4}')
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -27,12 +27,18 @@ while [ "$1" != "" ]; do
         --release)                      shift
                                         release=$1
                                         ;;
-       * )                              echo "Invalid param. Use -c (--clean), -r (--registry), -o (--org) or -t (--tag)"
+        -d | --dns | --ip)              shift
+                                        dns=$1
+                                        ;;
+       * )                              echo "Invalid param. Use mandatory -n (or --name)"
+                                        echo "Optionals -c (--clean), -r (--registry), -o (--org) or -t (--tag), --release"
                                         exit 1
     esac
     shift
 done
 
+
+echo "DNS used to ingress resources (if any): $dns. nginx-ingress IP value detected is: $nginxip"
 echo "Base name for releases is (empty means random for each release): $release"
 echo "Using registry: $registry, tag $imageTag & organization $dockerOrg"
 
@@ -54,14 +60,14 @@ declare -a infra=("sh360-postgres|postgres" "sh360-sql-data|sql")
 for inf in "${infra[@]}"
 do 
   IFS='|' read -r -a array <<< "$inf"
-  echo "Installing infrastructure ${array[0]}"
 
   if [[ "$release" != "" ]]
   then
     fullrelease="$release-${array[1]}"
   fi
 
-  helm install ${array[0]} --name=$fullrelease --set appName=$appName
+  echo "Installing infrastructure ${array[0]} (helm release name is $fullrelease (blank means random)"
+  helm install ${array[0]} --name=$fullrelease --set appName=$appName 
 done
 
 declare -a arr=("sh360-hotels|hotels" "sh360-bookings|bookings" "sh360-config|configuration" "sh360-discounts|discounts" "sh360-notifications|notifications" "sh360-profiles|profiles" "sh360-reviews|reviews" "sh360-suggestions|suggestions" "sh360-tasks|tasks")
@@ -87,7 +93,8 @@ do
   fi
 
   echo "Installing service ${array[0]} (image $currentImage)"
-  helm install ${array[0]} --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName
+
+   helm install ${array[0]} --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns}
 done
 
 
