@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "sh360-suggestions.fullname" . -}}
-{{- $ingressPath := .Values.ingress.path -}}
+{{- $ingressPath := .Values.pathBase -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

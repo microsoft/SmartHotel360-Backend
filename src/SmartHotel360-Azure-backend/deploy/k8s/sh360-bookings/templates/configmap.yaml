@@ -1,5 +1,5 @@
 {{- $name := include "sh360-bookings.fullname" . -}}
-{{- $sqlsrv := include .mssql.name" . -}}
+{{- $sqlsrv := include "sql-name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
