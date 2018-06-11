@@ -7,7 +7,7 @@
 3. If using custom images: [images built and pushed in a ACR](./build-and-push.md)
 4. If using custom images: docker login secret loaded into the cluster
 
-**All tasks must be performed from `/src/SmartHotel360-Azure-backend/deploy/k8s folder`**
+**All tasks must be performed from `/src/SmartHotel360-Azure-backend/deploy/k8s` folder**
 
 ## Deploy Backend Services
 
@@ -54,3 +54,5 @@ Also following ingress annotations are set:
 
 * `kubernetes.io/ingress.class` to `addon-http-application-routing` to use ingress controller provided by AKS
 * `ingress.kubernetes.io/ssl-redirect` to `false` to disallow http to https redirect
+
+Go to [Deploy Backend services on AKS main topic](../02-depkoy-apis.md)
