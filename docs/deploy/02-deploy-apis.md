@@ -21,7 +21,7 @@ Run the `02-deploy-apis.sh` to build backend Docker images and deploy them on cl
 * `-o`: Docker organization of the images. Defaults to `smarthotels`.
 * `-n`: Name of the SmartHotel360 application to be deployed. Defaults to the `SH360_APPNAME` env value.
 * `--user <login>`: Needed if pushing to a non ACR registry (if `-r` used). Is the login of the Docker Registry
-* `--password <login>`: Needed if pushing to a non ACR registry (if `-r` used). Is the password of the Docker Registry
+* `--password <password>`: Needed if pushing to a non ACR registry (if `-r` used). Is the password of the Docker Registry
 * `--no-clean`: By default script cleans all Helm releases of the cluster. Passing this parameter avoids this cleanup.
 * `--release`: Base name to be used for the Helm releases. If not passed every Helm release has a random name.
 
