@@ -56,10 +56,10 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          volumeMounts:
-          - name: customcfg
-            mountPath: /app/cfg/custom.json
-            subPath: custom.json
+#          volumeMounts:
+#          - name: customcfg
+#            mountPath: /app/cfg/custom.json
+#            subPath: custom.json
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
@@ -74,8 +74,8 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-      volumes:
-      - name: customcfg
-        configMap:
-          name: discovery-file
+#      volumes:
+#      - name: customcfg
+#        configMap:
+#          name: discovery-file
 
