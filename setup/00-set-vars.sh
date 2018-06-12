@@ -10,7 +10,7 @@ spn_pw=
 sh360_appname=myapp
 
 usage() {
-   echo "Usage: 00-set-vars.sh  -p value (or --parameter value). Parameters are:"
+   echo "Usage: source 00-set-vars.sh  -p value (or --parameter value). Parameters are:"
    echo "   -g (--resource-group): Your resource group name"
    echo "   -s (--subscripion): Subscription id"
    echo "   -n (--name): Cluster name"
