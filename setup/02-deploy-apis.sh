@@ -127,6 +127,7 @@ else
   ./deploy.sh  --release $appName -n $appName -t $imageTag
 fi
 
+popd ../../../../setup
 
 if [[ "$aksName" != "" ]]
 then
@@ -134,7 +135,5 @@ then
   echo "------------------------------------------------------------"
   echo "Opening the dashboard"
   echo "------------------------------------------------------------"
-  az aks browse -n $sksName -g $aksRg
+  az aks browse -n $aksName -g $aksRg
 fi
-
-popd ../../../../setup
