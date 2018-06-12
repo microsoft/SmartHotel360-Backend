@@ -29,24 +29,6 @@ In this step you'll create all of the Azure resources required by the demo. This
     az extension add --name dev-spaces-preview
     ```
 
-1. Open the `setup\00-set-vars.sh` file in a text editor. 
-
-1. Set the variables in the script below (the `exports`). 
-
-    **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and Eaat US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
-
-    ```bash
-    export AKS_SUB=<azure subscription id> \ 
-    export AKS_RG=<resource group name> \ 
-    export AKS_NAME=<AKS cluster name> \ 
-    export ACR_NAME=<Azure Container Registry name> \ 
-    export AKS_REGION=eastus \ 
-    export SPN_CLIENT_ID=<service principal app id> \ 
-    export SPN_PW=<service principal password>
-    ```
-
-    Save the file once you're happy with your edits. If you open a new instance of your terminal window or close before ending the process, you can re-run `setup/00-set-vars.sh` to reset the environment variables the other scripts will use. 
-
 1. Open a bash terminal. CD into the `setup` folder of this repository. 
 1. Some Linux distributions require setting execute permissions on `.sh` files prior to executing them. To be safe, running the command below results in the bash scripts being enabled with execution priveleges. 
 
@@ -59,11 +41,18 @@ In this step you'll create all of the Azure resources required by the demo. This
     chmod +x ../src/SmartHotel360-Azure-backend/deploy/k8s/deploy.sh
     ```
 
-1. Run the command below. 
+1. Run the command below, replacing the parameters with your own values. 
 
     ```bash
-    . 00-set-vars.sh
-    . 01-aks-create.sh
+    source 00-set-vars.sh -g <resource group> -s <subscription id> -n <cluster name> -r <ACR name> -l eastus -c <service principal app id> -p <service principal password>
+    ```
+
+    > **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and Eaat US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
+
+1. Once the script has run, create the Azure resources you'll need by running this script:
+
+    ```bash
+    source 01-aks-create.sh
     ```
 
 1. Once the cluster is created, take note of the URL value for the `HTTPApplicationRoutingZoneName` property in the response JSON payload. Copy this URL, as it will be used later when deploying the microservices. 
@@ -101,7 +90,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
 1. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
-    . 02-deploy-apis.sh
+    source 02-deploy-apis.sh
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.
@@ -190,7 +179,7 @@ Now that the back-end APIs are in place the public web app can be pushed into th
 1. CD into the `setup` directory if you're not already there, and execute the command below. 
 
     ```bash
-    . 03-deploy-web.sh
+    source 03-deploy-web.sh
     ```
 
     The command may take a few minutes to complete. 
