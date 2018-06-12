@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 aks_sub=
 aks_rg=
