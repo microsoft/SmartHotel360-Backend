@@ -12,7 +12,7 @@ aksRg=${AKS_RG}
 clean=0
 useAcr=1
 release=
-appName=
+appName=publicweb
 push=1
 build=1
 
