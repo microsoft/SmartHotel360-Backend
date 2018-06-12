@@ -141,4 +141,4 @@ echo "Installing publicweb ($currentImage)"
 
 helm install sh360-web --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml
 
-popd
+popd ../../setup
