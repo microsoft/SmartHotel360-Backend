@@ -1,4 +1,5 @@
 {{- $name := include "sh360-web.fullname" . -}}
+{{- $cfgname := include "sh360-config.name" . -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -10,4 +11,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
- ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  SettingsUrl: http://{{ $cfgname }}/cfg/aks
