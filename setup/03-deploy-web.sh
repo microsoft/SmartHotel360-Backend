@@ -12,7 +12,7 @@ aksRg=${AKS_RG}
 clean=0
 useAcr=1
 release=
-appName=publicweb
+appName=publicwebsite
 push=1
 build=1
 
@@ -129,6 +129,9 @@ fi
 
 if [[ "$registry" != "" ]]
 then
+echo "------------------------------------------------------------"
+echo "$registry/$currentImage"
+echo "------------------------------------------------------------"
   currentImage="$registry/$currentImage"
 fi
 
@@ -139,6 +142,7 @@ fi
 
 echo "Installing publicweb ($currentImage)"
 
+echo "helm install sh360-web --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml"
 helm install sh360-web --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml
 
 popd
