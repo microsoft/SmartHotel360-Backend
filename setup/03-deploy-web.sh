@@ -132,7 +132,7 @@ echo "Deploying chart to cluster"
 echo "Ingress dns is $dns"
 echo "------------------------------------------------------------"
 
-currentImage="publicweb:$imageTag"
+currentImage="publicweb"
 
 if [[ "$dockerOrg" != "" ]]
   then
