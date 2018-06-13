@@ -30,3 +30,11 @@ Create chart name and version as used by the chart label.
 {{- define "sh360-web.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{- define "sh360-config.name" -}}
+{{- if .Values.configEndpoint -}}
+{{- .Values.configEndpoint -}}
+{{- else -}}
+{{- printf "%s-%s" .Values.appName "configuration-sh360-config" -}}
+{{- end -}}
+{{- end -}}

@@ -53,6 +53,6 @@ env:
   configmap:
     - name: ApplicationInsights__InstrumentationKey
       key: ApplicationInsights__InstrumentationKey
-  values:
-    - name: ASPNETCORE_ENVIRONMENT
-      value: Development
+      name: SettingsUrl
+      key: SettingsUrl
+  values: {}
