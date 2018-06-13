@@ -54,7 +54,7 @@ while [ "$1" != "" ]; do
                                         ;;
         --no-push)                      push=0
                                         ;;
-        --no-build)                     build=0i
+        --no-build)                     build=0
                                         ;;
         -d | --dns)                     shift
                                         dns=$1
