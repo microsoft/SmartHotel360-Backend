@@ -68,13 +68,6 @@
         "description": "The type of operating system."
       }
     },
-    "maxPods": {
-      "type": "int",
-      "defaultValue": 30,
-      "metadata": {
-        "description": "max pods per node"
-      }
-    },
     "kubernetesVersion": {
       "type": "string",
       "defaultValue": "1.9.6",
@@ -147,7 +140,6 @@
     "servicePrincipalClientId": "[parameters('servicePrincipalClientId')]",
     "servicePrincipalClientSecret": "[parameters('servicePrincipalClientSecret')]",
     "osType": "[parameters('osType')]",
-    "maxPods": "[parameters('maxPods')]",
     "kubernetesVersion": "[parameters('kubernetesVersion')]"
   },
   "resources": [
@@ -210,7 +202,6 @@
             "count": "[variables('agentCount')]",
             "vmSize": "[variables('agentVMSize')]",
             "osType": "[variables('osType')]",
-            "maxPods": "[variables('maxPods')]",
             "storageProfile": "ManagedDisks"
           }
         ],
