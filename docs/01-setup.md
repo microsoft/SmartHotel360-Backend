@@ -12,6 +12,7 @@ All of the back-end systems run inside of Docker containers. During the installa
 * [Azure Dev Spaces Extension for Visual Studio](https://docs.microsoft.com/en-us/azure/dev-spaces/get-started-netcore-visualstudio#get-the-visual-studio-tools). 
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 * [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing. 
 
 ## Set up a Service Principal 
 
