@@ -12,6 +12,7 @@ All of the back-end systems run inside of Docker containers. During the installa
 * [Azure Dev Spaces Extension for Visual Studio](https://docs.microsoft.com/en-us/azure/dev-spaces/get-started-netcore-visualstudio#get-the-visual-studio-tools). 
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 * [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing. 
 
 ## Set up a Service Principal 
 
@@ -104,71 +105,6 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     ![All ready](../media/all-green.png)
 
 Congratulations! You've deployed the APIs. You're 75% of the way there, now, and all that remains is to deploy the public web site. This is a good opportunity for a much-earned break!
-
-## Set up Ingress
-
-In order to route traffic to the various APIs within the AKS cluster, you'll need to set up a front door, or "ingress." 
-
-> Note: Eventually this step will be deprecated in lieu of the integrated ingress features of AKS. We're in the process of improving the deployment by using Helm charts, and when we do that we'll start using AKS's integrated ingress features. 
-
-1. If you forgot to note the `HTTPApplicationRoutingZoneName` property earlier, execute the command below to get the JSON representation of your cluster. 
-
-    ```bash
-    az resource show --api-version 2018-03-31 --id /subscriptions/${AKS_SUB}/resourceGroups/${AKS_RG}/providers/Microsoft.ContainerService/managedClusters/${AKS_NAME}
-    ```
-
-1. You'll see the `HTTPApplicationRoutingZoneName` property in the JSON in the terminal window. Copy this value as it will be needed in the next step. 
-
-    ```json
-    "properties": {
-        "addonProfiles": {
-        "httpApplicationRouting": {
-            "config": {
-            "HTTPApplicationRoutingZoneName": "de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io"
-            }
-    ```
-
-1. Open up the `ingress.yaml` file and see line 14, which has the `host` property set as follows:
-
-    ```yaml
-    spec:
-      rules:
-      - host: sh360.<guid>.<region>.aksapp.io
-          http:
-    ```
-
-1. Replace the `host` property with the `sh360.` followed by value you copied earlier. 
-
-    ```yaml
-    spec:
-      rules:
-      - host: sh360.de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io
-          http:
-    ```
-
-1. Execute the command below to set the AKS cluster ingress. 
-
-    ```bash
-    kubectl apply -f ingress.yaml
-    ```
-
-1. Open up the `src/SmartHotel360-public-web/manifests/ingress.yaml` file and see line 9, which has the `host` property set as follows:
-
-    ```yaml
-    spec:
-      rules:
-      - host: sh360.<guid>.<region>.aksapp.io
-        http:
-    ```
-
-1. Replace the `host` property with the `sh360.` followed by value you copied earlier. 
-
-    ```yaml
-    spec:
-      rules:
-      - host: sh360.de44228e-2c3e-4bd8-98df-cdc6e54e272a.eastus.aksapp.io
-        http:
-    ```
 
 ## Deploy the Public Web App
 
