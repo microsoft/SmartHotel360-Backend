@@ -15,6 +15,7 @@ release=
 appName=publicwebsite
 push=1
 build=1
+dns="none"
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -53,7 +54,10 @@ while [ "$1" != "" ]; do
                                         ;;
         --no-push)                      push=0
                                         ;;
-        --no-build)                     build=0
+        --no-build)                     build=0i
+                                        ;;
+        -d | --dns)                     shift
+                                        dns=$1
                                         ;;
         * )                             echo "Invalid param. Use mandatory -n (or --name)"
                                         echo "Optionals -c (--clean), -r (--registry), -o (--org) or -t (--tag), .-a (--acr) or --release"
@@ -80,6 +84,13 @@ fi
 if [[ "$acrName" != "" && "$registry" == "" ]]
 then
   registry=$acrName.azurecr.io
+fi
+
+if [[ "$registry" == "" ]]
+then
+  echo "Push and build disabled because no registry has been set. Use -a (or ACR_NAME env value) to use an ACR or use -r <fqdn> to use any other docker registry"
+  build=0
+  push=0
 fi
 
 pushd ../src/SmartHotel360-public-web/
@@ -118,6 +129,7 @@ pushd deploy/k8s
 
 echo "------------------------------------------------------------"
 echo "Deploying chart to cluster"
+echo "Ingress dns is $dns"
 echo "------------------------------------------------------------"
 
 currentImage="publicweb:$imageTag"
