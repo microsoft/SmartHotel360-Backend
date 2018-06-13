@@ -15,7 +15,7 @@ release=
 appName=publicwebsite
 push=1
 build=1
-dns="none"
+dns=""
 
 while [ "$1" != "" ]; do
     case $1 in
