@@ -11,6 +11,7 @@ aksName=${AKS_NAME}
 aksRg=${AKS_RG}
 createAcr=1
 clean=1
+dns="none"
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -47,6 +48,9 @@ while [ "$1" != "" ]; do
                                         release=$1
                                         ;;
         --no-clean)                     clean=0
+                                        ;;
+        -d | --dns)                     shift
+                                        dns=$1
                                         ;;
        * )                              echo "Invalid param. Use mandatory -n (or --name)"
                                         echo "Optionals -c (--clean), -r (--registry), -o (--org) or -t (--tag), .-a (--acr) or --release"
@@ -113,21 +117,21 @@ then
   echo "Cleaning skipped (--no-clean used)"
 fi
 
-if [[ "$registry" != "" ]]
-
 echo "------------------------------------------------------------"
 echo "Deploying the code from registry '$registry'"
 echo "Application Name used: $appName"
 echo "Image tag is: $imageTag"
+echo "Ingess DNS: $dns"
 echo "------------------------------------------------------------"
 
+if [[ "$registry" != "" ]]
 then
-  ./deploy.sh  --registry $registry --release $appName -n $appName -t $imageTag
+  ./deploy.sh  --registry $registry --release $appName -n $appName -t $imageTag -d $dns
 else
-  ./deploy.sh  --release $appName -n $appName -t $imageTag
+  ./deploy.sh  --release $appName -n $appName -t $imageTag -d $dns
 fi
 
-popd ../../../../setup
+popd 
 
 if [[ "$aksName" != "" ]]
 then

@@ -6,7 +6,7 @@ imageTag=$(git rev-parse --abbrev-ref HEAD)
 release=
 dockerOrg="smarthotels"
 appName=
-nginxip=$(kubectl get svc -n kube-system | grep "LoadBalancer" | awk '{print $4}')
+dns=""
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -38,15 +38,24 @@ while [ "$1" != "" ]; do
 done
 
 
-echo "DNS used to ingress resources (if any): $dns. nginx-ingress IP value detected is: $nginxip"
-echo "Base name for releases is (empty means random for each release): $release"
-echo "Using registry: $registry, tag $imageTag & organization $dockerOrg"
+if [[ "$dns" == "none" ]]
+then
+  dns=""
+fi
 
 if [[ "$appName" == "" ]]
 then
   echo "must provide a name using -n or --name"
   exit 1
 fi
+
+
+echo "Using registry: $registry, tag $imageTag & organization $dockerOrg"
+echo "Base name for releases is (empty means random for each release): $release"
+
+echo "Getting the nginx controller ip of the cluster... (this can take a while)"
+nginxip=$(kubectl get svc -n kube-system | grep "LoadBalancer" | awk '{print $4}')
+echo "DNS used to ingress resources (if any): '$dns' (Use -d <dns> to config  DNS for ingress). nginx-ingress IP value detected is: $nginxip"
 
 if (( clean == 1 ))
 then
