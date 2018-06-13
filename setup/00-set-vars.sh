@@ -25,11 +25,8 @@ usage() {
 if [ "$1" == "" ]
 then
   usage
-  exit 1
-fi
-
-
-while [ "$1" != "" ]; do
+else
+  while [ "$1" != "" ]; do
     case $1 in
       -g | --resoure-group)   shift
                               aks_rg=$1
@@ -62,13 +59,14 @@ while [ "$1" != "" ]; do
                               exit 1
       esac
     shift
-done
+  done
 
-export AKS_SUB=$aks_sub
-export AKS_RG=$aks_rg
-export AKS_NAME=$aks_name
-export ACR_NAME=$acr_name
-export AKS_REGION=$aks_region
-export SPN_CLIENT_ID=$spn_client_id
-export SPN_PW=$spn_pw
-export SH360_APPNAME=$sh360_appname
+  export AKS_SUB=$aks_sub
+  export AKS_RG=$aks_rg
+  export AKS_NAME=$aks_name
+  export ACR_NAME=$acr_name
+  export AKS_REGION=$aks_region
+  export SPN_CLIENT_ID=$spn_client_id
+  export SPN_PW=$spn_pw
+  export SH360_APPNAME=$sh360_appname
+fi
