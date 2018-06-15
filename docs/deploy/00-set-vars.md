@@ -12,7 +12,7 @@ The script expects following parameters:
 * `-s <subscription>`: Azure Subscription to use
 * `-n <name>`: AKS cluster name to be used
 * `-r <name>`: ACR name to be used (just name, not FQDN)
-* `-l <location>`: Location to be used. Defaults to `esatus`
+* `-l <location>`: Location to be used. Defaults to `eastus`
 * `-c <spn-client>`: Service principal app id
 * `-p <spn-pwd>`: Service principal password
 * `-a <name>`: Name of the Sh360 app to be installed in the cluster. Defaults to  `myapp`
