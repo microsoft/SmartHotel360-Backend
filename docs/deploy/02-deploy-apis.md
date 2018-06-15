@@ -2,12 +2,6 @@
 
 **Note**: All commands from this doc must be run from `/setup` folder
 
-## Prerequisites
-
-* [Environment setup](./00-set-vars.md)
-* [AKS created](./01-aks-create.md)
-* kubectl set to the Kubernetes cluster to use
-
 ## Deploy the services in the cluster
 
 Run the `02-deploy-apis.sh` to build backend Docker images and deploy them on cluster. Script accept following parameters:
@@ -33,4 +27,3 @@ This scripts does the following:
 4. Runs the `/src/SmartHotel360-Azure-backend/deploy/k8s/clean.sh` script to [clean the Kubernetes cluster](../../src/SmartHotel360-Azure-backend/docs/clean-cluster.md), unless the `--no-clean` is used.
 5. Runs the  `/src/SmartHotel360-Azure-backend/deploy/k8s/deploy.sh` to [deploy the Backend services using Helm](.backend/deploy.md).
 
-Next step: [Deploy Web](./03-deploy-web.md)
