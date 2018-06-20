@@ -12,6 +12,7 @@ aksRg=${AKS_RG}
 createAcr=1
 clean=1
 dns="none"
+httpRouting=0
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -52,12 +53,28 @@ while [ "$1" != "" ]; do
         -d | --dns)                     shift
                                         dns=$1
                                         ;;
+        --httpRouting)                  httpRouting=1
+                                        ;;
        * )                              echo "Invalid param. Use mandatory -n (or --name)"
                                         echo "Optionals -c (--clean), -r (--registry), -o (--org) or -t (--tag), .-a (--acr) or --release"
                                         exit 1
     esac
     shift
 done
+
+if (( $httpRouting == 1 ))
+then
+  echo "Use of --httpRouting overrides -d"
+  echo "Autodetecting DNS of $aksName in $aksRg"
+  dns=$(az aks show -n $aksName -g $aksRg --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')
+  echo "DNS detected is: $dns"
+  if [[ "$dns" == "" ]]
+  then
+    echo "No DNS could be auto-detected. Ensure cluster is AKS with HTTP Routing Enabled & AZ CLI is properly configured"
+    exit 1
+  fi
+  dns="$appName.$dns"
+fi
 
 if [[ "$acrName" != "" && "$registry" == "" ]]
 then
