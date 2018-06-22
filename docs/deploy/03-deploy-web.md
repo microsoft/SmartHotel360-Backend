@@ -1,15 +1,5 @@
 # Deploy public web on AKS
 
-
-## Prerequisites
-
-* [Environment setup](./00-set-vars.md)
-* [AKS created](./01-aks-create.md)
-* kubectl set to the Kubernetes cluster to use
-* [Backend deployed](./02-deploy-apis.md)
-
-## Deploy the web in the cluster
-
 Run the `03-deploy-web.sh` script to build and deploy the public web in the cluster. This script accept following parameters:
 
 * `-a <name>`: ACR name to use. Defaults to the value of `ACR_NAME` environment variable.
@@ -24,4 +14,3 @@ Run the `03-deploy-web.sh` script to build and deploy the public web in the clus
 * `--no-build`: If passed web image is not built locally
 * `--no-push`: If passed web image is not pushed to the Docker registry
 
-Go back to [Start](../00-README.md)
