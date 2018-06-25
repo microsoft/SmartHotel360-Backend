@@ -13,6 +13,7 @@ All of the back-end systems run inside of Docker containers. During the installa
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 * [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing. 
+* [Helm](https://helm.sh/) and [Draft](https://github.com/Azure/draft) will also need to be installed as they are both used in the Kubernetes deployment. 
 
 ## Set up a Service Principal 
 
@@ -76,7 +77,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
 1. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
-    source 02-deploy-apis.sh
+    source 02-deploy-apis.sh --httpRouting
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.  Details on this script can be found [here](deploy/02-deploy-apis.md), so you can customize creation if you desire. The script above should be enough once the environment variables are set in the previous step. 
