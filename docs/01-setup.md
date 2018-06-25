@@ -30,7 +30,7 @@ In this step you'll create all of the Azure resources required by the demo. This
     az extension add --name dev-spaces-preview
     ```
 
-1. Open a bash terminal. CD into the `setup` folder of this repository. 
+1. Open a bash terminal. git clone this repository. Then CD into the `setup` folder of this repository. 
 1. Some Linux distributions require setting execute permissions on `.sh` files prior to executing them. To be safe, running the command below results in the bash scripts being enabled with execution priveleges. 
 
     ```bash
@@ -57,7 +57,7 @@ In this step you'll create all of the Azure resources required by the demo. This
     source 00-set-vars.sh -g <resource group> -s <subscription id> -n <cluster name> -r <ACR name> -l eastus -c <service principal app id> -p <service principal password>
     ```
 
-    > **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and Eaat US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
+    > **Important Note:** The only regions in which AKS and Azure Dev Spaces are currently supported are Canada East and East US. So when creating a new AKS cluster for this scenario use either **canadaeast** or **eastus** for the **AKS_REGION** variable.
 
 1. Once the script has run, create the Azure resources you'll need by running this script:
 
