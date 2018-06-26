@@ -1,14 +1,14 @@
 #!/bin/bash
 
 registry=
-acrName=${ACR_NAME}
+acrName="${ACR_NAME}"
 imageTag=$(git rev-parse --abbrev-ref HEAD)
 dockerOrg="smarthotels"
-appName=${SH360_APPNAME}
+appName="${SH360_APPNAME}"
 customLogin=""
 customPassword=""
-aksName=${AKS_NAME}
-aksRg=${AKS_RG}
+aksName="${AKS_NAME}"
+aksRg="${AKS_RG}"
 createAcr=1
 clean=1
 dns="none"
@@ -65,7 +65,7 @@ done
 function validateParams {
   if (( $httpRouting == 1 ))
   then
-    if [[ "$askName" == "" ]]
+    if [[ "$aksName" == "" ]]
     then
       echo "No cluster is specified. Please use --aks-name or set the AKS_NAME env value."
       . show-env.sh
