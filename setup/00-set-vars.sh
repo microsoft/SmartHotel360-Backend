@@ -74,4 +74,4 @@ export AKS_REGION=$aks_region
 export SPN_CLIENT_ID=$spn_client_id
 export SPN_PW=$spn_pw
 export SH360_APPNAME=$sh360_appname
-
+. show-env.sh

@@ -62,6 +62,37 @@ while [ "$1" != "" ]; do
     shift
 done
 
+function validateParams {
+  if (( $httpRouting == 1 ))
+  then
+    if [[ "$askName" == "" ]]
+    then
+      echo "No cluster is specified. Please use --aks-name or set the AKS_NAME env value."
+      . show-env.sh
+      exit 1
+    fi
+    if [[ "$aksRg" == "" ]]
+    then
+      echo "No resource group is specified. Please use --aks-rg or set the AKS_RG env value".
+      . show-env.sh
+      exit 1
+    fi
+  fi
+
+  if (( $createAcr ))
+  then
+    if [[ "$aksRg" == "" ]]
+    then
+      echo "No resource group is specified. Please use --aks-rg or set the AKS_RG env value".
+      . show-env.sh
+      exit 1
+    fi
+  fi
+}
+
+
+validateParams
+
 if (( $httpRouting == 1 ))
 then
   echo "Use of --httpRouting overrides -d"
