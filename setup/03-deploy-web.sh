@@ -2,6 +2,8 @@
 
 registry=
 acrName=${ACR_NAME}
+aksName="${AKS_NAME}" 
+aksRg="${AKS_RG}"
 imageTag=$(git rev-parse --abbrev-ref HEAD)
 dockerOrg="smarthotels"
 appName=${SH360_APPNAME}
@@ -12,10 +14,10 @@ aksRg=${AKS_RG}
 clean=0
 useAcr=1
 release=
-appName=publicwebsite
 push=1
 build=1
 dns=""
+httpRouting=0
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -25,6 +27,12 @@ while [ "$1" != "" ]; do
                                         ;;
         -n | --name)                    shift
                                         appName=$1
+                                        ;;
+        --aks-name)                     shift
+                                        aksName=$1
+                                        ;;
+        --aks-rg)                       shift
+                                        aksRg=$1
                                         ;;
         --release)                      shift
                                         release=$1
@@ -38,8 +46,7 @@ while [ "$1" != "" ]; do
         -o | --org)                     shift
                                         dockerOrg=$1
                                         ;;
-        -n | --name)                    shift
-                                        appName=$1
+       --httpRouting)                  httpRouting=1
                                         ;;
         --user)                         shift
                                         customLogin=$1
@@ -67,13 +74,42 @@ while [ "$1" != "" ]; do
 done
 
 
+if (( $httpRouting == 1 ))
+then     
+  if [[ "$aksName" == "" ]]     
+  then       
+    echo "No cluster is specified. Please use --aks-name or set the AKS_NAME env value."       
+    . show-env.sh       
+  exit 1     
+  fi     
+  if [[ "$aksRg" == "" ]]     
+  then       
+    echo "No resource group is specified. Please use --aks-rg or set the AKS_RG env value".       
+    . show-env.sh       
+    exit 1     
+  fi   
+fi
 
 if [[ "$appName" == "" ]]
 then
   echo "must provide a name using -n or --name"
+  . show-env.sh  
   exit 1
 fi
 
+if (( $httpRouting == 1 ))
+then
+  echo "Use of --httpRouting overrides -d"   
+  echo "Autodetecting DNS of $aksName in $aksRg"   
+  dns=$(az aks show -n $aksName -g $aksRg --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')   
+  echo "DNS detected is: $dns"   
+  if [[ "$dns" == "" ]]   
+  then     
+    echo "No DNS could be auto-detected. Ensure cluster is AKS with HTTP Routing Enabled & AZ CLI is properly configured"     
+    exit 1   
+  fi   
+  dns="$appName.$dns" 
+fi
 
 if (( clean == 1 ))
 then
