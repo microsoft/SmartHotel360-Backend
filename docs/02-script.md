@@ -181,7 +181,7 @@ In this demo, the presenter is a new developer working for SmartHotel360, a hote
 1. Right-click the `SmartHotel.Services.Hotels` Visual Studio project. 
 1. Select **Properties** from the flyout menu. 
 
-    > **Talk track:** Luckilly, that's exactly what **Azure Dev Spaces** can do for me. Without setting up anything, I can select Dev Spaces to use when I want to debug my code. Then, a copy of my service is deployed into AKS, and commands will be routed to that copy of the service. That way, I can debug my code changes **in my own space** without impacting either the production environment **or** my teammates, all of whom may have code running in their own Dev Spaces. 
+    > **Talk track:** Luckilly, that's exactly what **Azure Dev Spaces**, which you get by installing the **Kubernetes Tools for Visual Studio**, can do for me. Without setting up anything, I can select Dev Spaces to use when I want to debug my code. Then, a copy of my service is deployed into AKS, and commands will be routed to that copy of the service. That way, I can debug my code changes **in my own space** without impacting either the production environment **or** my teammates, all of whom may have code running in their own Azure Dev Spaces. 
 
 1. Select **Debug** in the left navigation. 
 1. Select **Azure Dev Spaces** from the Profile menu. 
@@ -238,4 +238,4 @@ In this demo, the presenter is a new developer working for SmartHotel360, a hote
 
     > You see can see that with Azure Kubernetes Service, developers will get the best end-to-end experience in the industry for building apps in containers using Kubernetes. Using the Container Health Monitoring you’ll have deep telemetry on how the code is running in your AKS cluster. 
 
-    > When issues arise, you’ll use the integrated Azure Dev Spaces in Visual Studio and VS Code to build and debug your applications in your own spaces, without messing with teammate or production code, and without having to spend days getting up and running. 
+    > When issues arise, you’ll use the integrated Kubernetes Tools for Visual Studio and Azure Dev Spaces to build and debug your applications in your own spaces, without messing with teammate or production code, and without having to spend days getting up and running. 
