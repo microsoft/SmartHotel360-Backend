@@ -13,6 +13,7 @@ All of the back-end systems run inside of Docker containers. During the installa
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 * [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing. 
+* [Helm](https://helm.sh/) and [Draft](https://github.com/Azure/draft) to ease Kubernetes deployment
 
 ## Set up a Service Principal 
 
