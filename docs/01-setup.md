@@ -101,7 +101,7 @@ Now that the back-end APIs are in place the public web app can be pushed into th
 1. CD into the `setup` directory if you're not already there, and execute the command below. 
 
     ```bash
-    ./03-deploy-web.sh
+    ./03-deploy-web.sh --httpRouting
     ```
 
     The command may take a few minutes to complete. Details on how to customize the deployment using the script's parameters are [here](deploy/03-deploy-web.md), but the above script should be good enough for you to deploy the web app. 
