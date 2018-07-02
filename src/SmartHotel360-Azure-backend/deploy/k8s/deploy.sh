@@ -76,7 +76,7 @@ do
   fi
 
   echo "Installing infrastructure ${array[0]} (helm release name is $fullrelease (blank means random)"
-  helm install ${array[0]} --name=$fullrelease --set appName=$appName 
+  helm install ${array[0]} --name=$fullrelease --set appName=$appName -f infrastructure_values.yml 
 done
 
 declare -a arr=("sh360-hotels|hotels" "sh360-bookings|bookings" "sh360-config|configuration" "sh360-discounts|discounts" "sh360-notifications|notifications" "sh360-profiles|profiles" "sh360-reviews|reviews" "sh360-suggestions|suggestions" "sh360-tasks|tasks")
