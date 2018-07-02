@@ -13,7 +13,7 @@ service:
   port: 80
 
 pg:
-#  host: tasks-sh360-pg    # Uncomment to override the postgreSQL host name generated
+#  hostReviews: tasks-sh360-pg    # Uncomment to override the postgreSQL host name generated
   usr: sh360
   pwd: Passw0rd!
   port: 5432

@@ -16,8 +16,8 @@
 {{- end -}}
 
 {{- define "tasks-postgres-name" -}}
-{{- if .Values.pg.host -}}
-{{- .Values.pg.host -}}
+{{- if .Values.pg.hostTasks -}}
+{{- .Values.pg.hostTasks -}}
 {{- else -}}
 {{- $suffix := include "suffix-name" . -}}
 {{- printf "%s-%s-%s" "tasks" "sh360-postgres" $suffix | -}}
@@ -25,8 +25,8 @@
 {{- end -}}
 
 {{- define "reviews-postgres-name" -}}
-{{- if .Values.pg.host -}}
-{{- .Values.pg.host -}}
+{{- if .Values.pg.hostReviews -}}
+{{- .Values.pg.hostReviews -}}
 {{- else -}}
 {{- $suffix := include "suffix-name" . -}}
 {{- printf "%s-%s-%s" "reviews" "sh360-postgres" $suffix | -}}
