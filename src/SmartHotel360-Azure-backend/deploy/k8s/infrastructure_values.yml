@@ -1,0 +1,5 @@
+pg:
+  hostTasks: "tasks-pg"
+  hostReviews: "reviews-pg"
+mssql:
+  host: "sql-data"
