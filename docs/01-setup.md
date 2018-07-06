@@ -72,8 +72,6 @@ Now that the AKS cluster has been created we can publish the SmartHotel360 micro
 
 In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
 
-> Note: Very soon, the repo will be signififcantly updated to make use of Helm as a deployment strategy. For now the scripts are mostly in bash and make use of `kubectl` to interface with the cluster. 
-
 1. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
@@ -123,6 +121,12 @@ Now that the back-end APIs are in place the public web app can be pushed into th
 1. Open a browser window and paste the URL into a browser and the public site should appear. 
 
     ![Public web](../media/public-web.png)
+
+1. The final step is to enable your cluster with **Azure Dev Spaces**, which enables rich debugging capabilities within Visual Studio and Visual Studio Code. Run this script to setup Azure Dev Spaces into the cluster. 
+
+    ```bash
+    az aks use-dev-spaces -n ${AKS_NAME} -g ${AKS_RG} --space default --update --yes
+    ```
 
 ## Save the Queries
 
