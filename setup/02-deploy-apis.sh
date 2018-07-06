@@ -180,11 +180,11 @@ fi
 
 popd 
 
-if [[ "$aksName" != "" ]]
-then
+#if [[ "$aksName" != "" ]]
+#then
 
-  echo "------------------------------------------------------------"
-  echo "Opening the dashboard"
-  echo "------------------------------------------------------------"
-  az aks browse -n $aksName -g $aksRg
-fi
+  #echo "------------------------------------------------------------"
+  #echo "Opening the dashboard"
+  #echo "------------------------------------------------------------"
+  #az aks browse -n $aksName -g $aksRg
+#fi
