@@ -2,6 +2,7 @@
 
 
 acrName=${ACR_NAME}
+aksRg="${AKS_RG}"
 dockerOrg=smarthotels
 imageTag=$(git rev-parse --abbrev-ref HEAD)
 customLogin=
@@ -70,7 +71,7 @@ then
   echo "------------------------------------------------------------"
   echo "Logging into ACR $acrName"
   echo "------------------------------------------------------------"
-  az acr login -n $acrName
+  az acr login -n $acrName -g $aksRg
 else
   echo "------------------------------------------------------------"
   echo "Logging into custom registry $registry"
