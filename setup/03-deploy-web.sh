@@ -149,7 +149,7 @@ then
   if (( $useAcr ))
   then
     echo "Signing into ACR"
-    az acr login -n ${ACR_NAME}
+    az acr login -n ${ACR_NAME} -g $aksRg
   else
     if [[ "$customLogin" == "" || "$customPassword" == "" ]]
     then

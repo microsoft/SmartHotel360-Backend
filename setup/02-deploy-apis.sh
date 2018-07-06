@@ -121,7 +121,7 @@ then
     echo "------------------------------------------------------------"
     echo "Creating the registry $acrName" in rg $aksRg
     echo "------------------------------------------------------------"
-    az acr create -n $acrName -g $aksRg --admin-enabled --sku Basic
+    az acr create -n $acrName -g $aksRg --admin-enabled true --sku Basic
   else
     echo "Skipping ACR creation for $acrName (--acr-no-create used)"
   fi
