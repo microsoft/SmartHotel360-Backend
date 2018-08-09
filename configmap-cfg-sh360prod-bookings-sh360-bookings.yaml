@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  ApplicationInsights__InstrumentationKey: 508ea0d0-5fe5-456b-a55b-65a1d721c510
+  Bookings_ConnectionStrings__DefaultConnection: Server=sql-data;Initial Catalog=BookingsDb;Persist
+    Security Info=False;User ID=sa;Password=Password!;MultipleActiveResultSets=False;Connection
+    Timeout=30;
+  Bookings_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__ClientId: c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__Policy: B2C_1_SignUpInPolicy
+  Bookings_b2c__Tenant: smarthotel360.onmicrosoft.com
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2018-08-09T07:38:12Z
+  labels:
+    app: sh360-bookings
+    chart: sh360-bookings-0.1.0
+    heritage: Tiller
+    release: sh360prod-bookings
+  name: cfg-sh360prod-bookings-sh360-bookings
+  namespace: default
+  resourceVersion: "245552"
+  selfLink: /api/v1/namespaces/default/configmaps/cfg-sh360prod-bookings-sh360-bookings
+  uid: 2b8a872f-9ba7-11e8-a82c-6a4cc533ab51

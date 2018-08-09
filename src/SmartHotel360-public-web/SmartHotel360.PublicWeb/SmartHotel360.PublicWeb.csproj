@@ -6,9 +6,12 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <ApplicationInsightsResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsResourceId>
+      <ApplicationInsightsAnnotationResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.SnapshotCollector">
       <Version>1.0.11</Version>
     </PackageReference>

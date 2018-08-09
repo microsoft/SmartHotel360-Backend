@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aac7c434-1c6d-424d-aa82-ad5699c0b120</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
