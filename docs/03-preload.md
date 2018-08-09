@@ -10,6 +10,9 @@ AKS makes it easy for developers to see their log data in the dashboard, too, bo
 
 To generate these logs, a Node.js script has been provided. It simply hits the Hotels API in the AKS cluster in a variety of ways - searching for a city, searching for hotels, and so on. The code simply repeats every 10 seconds, but you can tweak this if you like. 
 
+## Prerequisites
+If you want to run the preloader, you will need to do so in an environment that supports Node.js. So you'll either need to download Node.js from the [official Node.js web site](http://nodejs.org), or use another means to install such as [Chocolatey](https://chocolatey.org/) on Windows or [HomeBrew](https://brew.sh/) on Mac OS. 
+
 ## Customizing the Script for your Cluster(s)
 The code for the preload is contained in [`preloader/app.js`](../preloader/app.js), and requires one minor customization. The first line of code in [`preloader/app.js`](../preloader/app.js) is an array variable of URL bases (if you're doing this as demo it never hurts to have a backup environment). 
 
