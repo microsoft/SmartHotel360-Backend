@@ -1,20 +1,13 @@
 ﻿{
   "urls": {
-    "hotels": "http://sh360.<string>.<region>.aksapp.io/hotels-api/",
-    "bookings": "http://sh360.<string>.<region>.aksapp.io/bookings-api/",
-    "suggestions": "http://sh360.<string>.<region>.aksapp.io/suggestions-api/",
-    "tasks": "http://sh360.<string>.<region>.aksapp.io/tasks-api/",
-    "notifications": "http://sh360.<string>.<region>.aksapp.io/notifications-api/",
-    "reviews": "http://sh360.<string>.<region>.aksapp.io/reviews-api/",
-    "discounts": "http://sh360.<string>.<region>.aksapp.io/discounts-api/",
+    "hotels": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/hotels-api/",
+    "bookings": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/bookings-api/",
+    "suggestions": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/suggestions-api/",
+    "tasks": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/tasks-api/",
+    "notifications": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/notifications-api/",
+    "reviews": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/reviews-api/",
+    "discounts": "http://sh360prod.2d4452c164c64ff1bc66.eastus.aksapp.io/discounts-api/",
     "images_base": "https://sh360imgdev.blob.core.windows.net/"
-  },
-  "pets_config": {
-    "blobName": "PUT YOUR LOCAL BLOB NAME HERE",
-    "blobKey": "PUT THE BLOB KEY HERE",
-    "cosmosUri": "https://YOUR-COSMOS-DB-HERE.documents.azure.com:443/",
-    "cosmosKey": "PUT THE COSMOS DB HERE"
-
   },
   "tokens": {
     "bingmaps": "PUT YOUR BING MAPS TOKEN"
