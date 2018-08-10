@@ -9,13 +9,6 @@
     "discounts": "http://localhost:6107/",
     "images_base": "https://sh360imgdev.blob.core.windows.net/"
   },
-  "pets_config": {
-    "blobName": "PUT YOUR LOCAL BLOB NAME HERE",
-    "blobKey": "PUT THE BLOB KEY HERE",
-    "cosmosUri": "https://YOUR-COSMOS-DB-HERE.documents.azure.com:443/",
-    "cosmosKey": "PUT THE COSMOS DB HERE"
-
-  },
   "tokens": {
     "bingmaps": "PUT YOUR BING MAPS TOKEN"
   },
