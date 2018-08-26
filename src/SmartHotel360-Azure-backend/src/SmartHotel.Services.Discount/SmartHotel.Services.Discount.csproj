@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aac7c434-1c6d-424d-aa82-ad5699c0b120</UserSecretsId>
-    <ApplicationInsightsResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsResourceId>
-    <ApplicationInsightsAnnotationResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,15 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore">
-      <Version>2.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector">
-      <Version>2.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.Kubernetes">
-      <Version>1.0.0-beta1</Version>
-    </PackageReference>    
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.7.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.Kubernetes" Version="1.0.0-beta9" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
 

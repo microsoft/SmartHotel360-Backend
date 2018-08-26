@@ -3,8 +3,6 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ApplicationInsightsResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsResourceId>
-    <ApplicationInsightsAnnotationResourceId>/subscriptions/dd323474-a5cb-40c9-9360-3dbc04a7cf90/resourcegroups/SmartHotel360-Production/providers/microsoft.insights/components/SmartHotel360-Production</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration">
       <Version>2.0.0</Version>
     </PackageReference>
