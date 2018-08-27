@@ -1,7 +1,7 @@
 ﻿{
   "urls": {
     "hotels": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/hotels-api/",
-    "bookings": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/bookings-api/",
+    "bookings": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/bookings/",
     "suggestions": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/suggestions-api/",
     "tasks": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/tasks-api/",
     "notifications": "http://sh360production.2c3abf6edd44497688b2.westus.aksapp.io/notifications-api/",
