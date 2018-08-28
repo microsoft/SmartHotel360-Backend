@@ -5,12 +5,13 @@ During **Connect(); 2017** event this year we presented beautiful app demos usin
 For this reference app scenario, we built several consumer and line-of-business apps and an Azure backend. You can find all SmartHotel360 repos in the following locations:
 
 * [SmartHotel360 ](https://github.com/Microsoft/SmartHotel360)
-* [Backend Services V2 (AKS Optimized)](https://github.com/Microsoft/SmartHotel360-AKS-backend)
-* [Backend Services](https://github.com/Microsoft/SmartHotel360-Azure-backend)
+* [Backend Services (optimized for Kubernetes)](https://github.com/Microsoft/SmartHotel360-AKS-DevSpaces-Demo)
 * [Public Website](https://github.com/Microsoft/SmartHotel360-public-web)
+* [Pet Checker Serverless Function](https://github.com/Microsoft/SmartHotel360-PetCheckerFunction)
 * [Mobile Apps](https://github.com/Microsoft/SmartHotel360-mobile-desktop-apps)
 * [Sentiment Analysis](https://github.com/Microsoft/SmartHotel360-Sentiment-Analysis-App)
 * [Migrating Internal apps to Azure](https://github.com/Microsoft/SmartHotel360-internal-booking-apps)
+* [Original Backend Services](https://github.com/Microsoft/SmartHotel360-Azure-backend)
 
 # SmartHotel360 - Backend Services
 
