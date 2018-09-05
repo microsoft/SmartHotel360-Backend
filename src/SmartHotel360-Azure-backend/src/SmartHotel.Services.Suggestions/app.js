@@ -8,8 +8,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const appInsights = require("applicationinsights");
-appInsights.setup();
+let appInsightsIK = process.env.APPLICATION_INSIGHTS_IKEY;
+appInsights.setup(appInsightsIK);
 appInsights.start();
+
+var client = appInsights.defaultClient;
 
 var routes = require('./routes/index');
 var suggestions = require('./routes/suggestions');
@@ -27,6 +30,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function (req, res, next) {
+    client.trackNodeHttpRequest({request: req, response: res});
+    next();
+});
 
 app.use('/', routes);
 app.use('/suggestions', suggestions);

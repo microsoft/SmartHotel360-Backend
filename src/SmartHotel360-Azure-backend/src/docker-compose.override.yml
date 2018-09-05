@@ -21,6 +21,7 @@ services:
       - PORT=80
       - SUGGESTIONS_DATABASE_URL=mssql://sa:Passw0rd!@sql-data:1433/SuggestionsDb
       - NODE_ENV=docker
+      - APPLICATION_INSIGHTS_IKEY=
     ports:
       - "6102:80"
 
@@ -50,6 +51,7 @@ services:
       - sql_server_url=jdbc:postgresql://reviews-data:5432/reviewsdb
       - sql_user_name=admin
       - sql_user_password=Passw0rd!
+      - APPLICATION_INSIGHTS_IKEY=
       - PATH_BASE=/
     ports:
       - "6106:8080"
