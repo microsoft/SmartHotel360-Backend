@@ -39,6 +39,7 @@ services:
       - sql_user_name=admin
       - sql_user_password=Passw0rd!
       - PATH_BASE=/
+      - APPLICATION_INSIGHTS_IKEY=
     ports:
       - "6104:8080"
 
