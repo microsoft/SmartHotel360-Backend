@@ -5,6 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Hotels;User Id=sa;Password=Passw0rd!
+      - ApplicationInsights__InstrumentationKey=
     ports:
       - "6100:80"
       
@@ -13,6 +14,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Bookings;User Id=sa;Password=Passw0rd!
       - discountsvc=http://discounts-api/
+      - ApplicationInsights__InstrumentationKey=
     ports:
       - "6101:80"
 
@@ -21,6 +23,7 @@ services:
       - PORT=80
       - SUGGESTIONS_DATABASE_URL=mssql://sa:Passw0rd!@sql-data:1433/SuggestionsDb
       - NODE_ENV=docker
+      - APPLICATION_INSIGHTS_IKEY=
     ports:
       - "6102:80"
 
@@ -36,12 +39,14 @@ services:
       - sql_user_name=admin
       - sql_user_password=Passw0rd!
       - PATH_BASE=/
+      - APPLICATION_INSIGHTS_IKEY=
     ports:
       - "6104:8080"
 
   notifications-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ApplicationInsights__InstrumentationKey=
     ports:
       - "6105:80"  
 
@@ -50,6 +55,7 @@ services:
       - sql_server_url=jdbc:postgresql://reviews-data:5432/reviewsdb
       - sql_user_name=admin
       - sql_user_password=Passw0rd!
+      - APPLICATION_INSIGHTS_IKEY=
       - PATH_BASE=/
     ports:
       - "6106:8080"
@@ -58,6 +64,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - profilesvc=http://profiles-api/
+      - ApplicationInsights__InstrumentationKey=
     ports:
       - "6107:80"
 
@@ -65,6 +72,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Profiles;User Id=sa;Password=Passw0rd!
+      - ApplicationInsights__InstrumentationKey=
     ports:
       - "6108:80"
 

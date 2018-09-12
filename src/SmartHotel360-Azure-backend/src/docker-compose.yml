@@ -18,6 +18,8 @@ services:
     build:
       context: ./SmartHotel.Services.Suggestions
       dockerfile: Dockerfile
+    depends_on:
+      - sql-data
 
   configuration-api:
     image: smarthotels/configuration
@@ -35,7 +37,7 @@ services:
     image: smarthotels/reviews
     build:
       context: ./SmartHotel.Services.Reviews
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile    
 
   notifications-api:
     image: smarthotels/notifications
