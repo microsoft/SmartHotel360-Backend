@@ -2,14 +2,14 @@
 
 # Sets secrets to Azure KeyVault service
 # Requirement:
-#   00-set-vars.sh must be executed
+#   00-set-vars.sh must be executed Or Set Env. Var. described below
+# Environment Variables:
+#	SH360_APPNAME: Name of the KeyVault service
 # Usage:
 #	./set-secrets-keyvault.sh secret1=value1 secret2=value2
 #
 
 KeyVaultName="${SH360_APPNAME}"
-aksRg="${AKS_RG}"
-aksRegion="${AKS_REGION}"
 
 
 for ARGUMENT in "$@"
