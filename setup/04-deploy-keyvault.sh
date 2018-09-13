@@ -10,7 +10,7 @@
 # Usage:
 #	./deploy-keyvault.sh
 
-KeyVaultName="${SH360_APPNAME}"
+KeyVaultName="${AKS_NAME}"
 aksRg="${AKS_RG}"
 aksRegion="${AKS_REGION}"
 
