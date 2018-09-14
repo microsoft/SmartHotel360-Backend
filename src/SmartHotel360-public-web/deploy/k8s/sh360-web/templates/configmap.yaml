@@ -11,5 +11,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  ApplicationInsights__InstrumentationKey:  ID_APP_INSIGHTS
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
   SettingsUrl: http://{{ $cfgname }}/cfg/aks
