@@ -40,8 +40,8 @@ affinity: {}
 
 env:
   configmap:
-    - name: ApplicationInsights__InstrumentationKey
-      key: ApplicationInsights__InstrumentationKey
+    - name: APPLICATION_INSIGHTS_IKEY
+      key: APPLICATION_INSIGHTS_IKEY
     - name: SUGGESTIONS_DATABASE_URL
       key: SUGGESTIONS_DATABASE_URL
 

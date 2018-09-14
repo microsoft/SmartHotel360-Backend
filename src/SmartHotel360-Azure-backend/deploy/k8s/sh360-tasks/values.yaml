@@ -40,8 +40,8 @@ affinity: {}
 
 env:
   configmap:
-    - name: ApplicationInsights__InstrumentationKey
-      key: ApplicationInsights__InstrumentationKey
+    - name: APPLICATION_INSIGHTS_IKEY
+      key: APPLICATION_INSIGHTS_IKEY
     - name: sql_server_url
       key: Tasks_sql_server_url
     - name: sql_user_name
