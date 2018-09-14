@@ -3,3 +3,5 @@ pg:
   hostReviews: "reviews-pg"
 mssql:
   host: "sql-data"
+appinsights:
+  id: ""

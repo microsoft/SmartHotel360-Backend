@@ -11,5 +11,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  ApplicationInsights__InstrumentationKey: ID_APPINSIGHTS
+  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
   SUGGESTIONS_DATABASE_URL:  mssql://{{.Values.mssql.user}}:{{.Values.mssql.pwd}}@{{ $sqlsrv }}:1433/SuggestionsDb
