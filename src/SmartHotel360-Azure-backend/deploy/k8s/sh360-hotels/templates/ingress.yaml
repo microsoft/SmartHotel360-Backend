@@ -32,7 +32,7 @@ spec:
         paths:
           - path: {{ $ingressPath }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: {{  .Values.svc.hotels }}
               servicePort: http
   {{- end }}
 {{- end }}
