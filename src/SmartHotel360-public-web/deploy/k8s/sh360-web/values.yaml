@@ -53,6 +53,6 @@ env:
   configmap:
     - name: ApplicationInsights__InstrumentationKey
       key: ApplicationInsights__InstrumentationKey
-      name: SettingsUrl
+    - name: SettingsUrl
       key: SettingsUrl
   values: {}
