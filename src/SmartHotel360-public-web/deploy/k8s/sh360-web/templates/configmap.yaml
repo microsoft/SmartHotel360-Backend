@@ -14,13 +14,13 @@ metadata:
 data:
   ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
   SettingsUrl: http://{{ $cfgname }}/cfg/aks
-  urls__hotels: http://{{ $host }}/hotels-api
-  urls__bookings: http://{{ $host }}/bookings
-  urls__suggestions: http://{{ $host }}/suggestions-api
-  urls__tasks: http://{{ $host }}/tasks-api
-  urls__notifications: http://{{ $host }}/notifications-api
-  urls__reviews: http://{{ $host }}/reviews-api
-  urls__discounts: http://{{ $host }}/discounts-api
+  urls__hotels: http://{{ $host }}/hotels-api/
+  urls__bookings: http://{{ $host }}/bookings/
+  urls__suggestions: http://{{ $host }}/suggestions-api/
+  urls__tasks: http://{{ $host }}/tasks-api/
+  urls__notifications: http://{{ $host }}/notifications-api/
+  urls__reviews: http://{{ $host }}/reviews-api/
+  urls__discounts: http://{{ $host }}/discounts-api/
   urls__images_base: {{ .Values.urls.images }}
 # PetsConfig configuration
   petsconfig__blobName: {{ .Values.petsconfig.blobname }}
