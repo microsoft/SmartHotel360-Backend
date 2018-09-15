@@ -1,5 +1,6 @@
 {{- $name := include "sh360-web.fullname" . -}}
 {{- $cfgname := include "sh360-config.name" . -}}
+{{- $host := index .Values.ingress.hosts 0 -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -13,13 +14,13 @@ metadata:
 data:
   ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
   SettingsUrl: http://{{ $cfgname }}/cfg/aks
-  urls__hotels: http://{{ .Values.svc.hotels }}
-  urls__bookings: http://{{ .Values.svc.bookings }}
-  urls__suggestions: http://{{ .Values.svc.suggestions }}
-  urls__tasks: http://{{ .Values.svc.tasks }}
-  urls__notifications: http://{{ .Values.svc.notifications }}
-  urls__reviews: http://{{ .Values.svc.reviews }}
-  urls__discounts: http://{{ .Values.svc.discounts }}
+  urls__hotels: http://{{ $host }}/hotels-api
+  urls__bookings: http://{{ $host }}/bookings
+  urls__suggestions: http://{{ $host }}/suggestions-api
+  urls__tasks: http://{{ $host }}/tasks-api
+  urls__notifications: http://{{ $host }}/notifications-api
+  urls__reviews: http://{{ $host }}/reviews-api
+  urls__discounts: http://{{ $host }}/discounts-api
   urls__images_base: {{ .Values.urls.images }}
 # PetsConfig configuration
   petsconfig__blobName: {{ .Values.petsconfig.blobname }}

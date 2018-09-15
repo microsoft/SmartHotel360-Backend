@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "sh360-discounts.fullname" . }}
+  name: {{ .Values.svc.discounts }}
   labels:
     app: {{ template "sh360-discounts.name" . }}
     chart: {{ template "sh360-discounts.chart" . }}
