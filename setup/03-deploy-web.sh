@@ -185,7 +185,7 @@ fi
 
 if [[ "$release" == "" ]]
   then
-  release=appName
+  release=$appName
 fi
 
 fullrelease="$release-publicweb"
