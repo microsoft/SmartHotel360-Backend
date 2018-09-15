@@ -5,3 +5,13 @@ mssql:
   host: "sql-data"
 appinsights:
   id: ""
+svc:
+  bookings: "bookings"
+  config: "configuration"
+  hotels: "hotels"
+  notifications: "notifications"
+  profiles: "profiles"
+  reviews: "reviews"
+  suggestions: "suggestions"
+  tasks: "tasks"
+  discounts: "discounts"

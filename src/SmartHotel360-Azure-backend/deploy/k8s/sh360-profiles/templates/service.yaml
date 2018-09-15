@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "sh360-profiles.fullname" . }}
+  name: {{ Values.svc.profiles }}
   labels:
     app: {{ template "sh360-profiles.name" . }}
     chart: {{ template "sh360-profiles.chart" . }}

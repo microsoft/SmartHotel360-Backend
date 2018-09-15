@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "sh360-hotels.fullname" . }}
+  name: {{ .Values.svc.hotels }}
   labels:
     app: {{ template "sh360-hotels.name" . }}
     chart: {{ template "sh360-hotels.chart" . }}
