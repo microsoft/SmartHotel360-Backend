@@ -55,4 +55,38 @@ env:
       key: ApplicationInsights__InstrumentationKey
     - name: SettingsUrl
       key: SettingsUrl
+    - name: urls__hotels
+      key: urls__hotels
+    - name: urls__bookings
+      key: urls__bookings
+    - name: urls__suggestions
+      key: urls__suggestions
+    - name: urls__tasks
+      key: urls__tasks
+    - name: urls__notifications
+      key: urls__notifications
+    - name: urls__reviews
+      key: urls__reviews
+    - name: urls__discounts
+      key: urls__discounts
+    - name: urls__images_base
+      key: urls__images_base
+# PetsConfig entries
+    - name: petsconfig__blobName
+      key: petsconfig__blobName
+    - name: petsconfig__blobKey
+      key: petsconfig__blobKey
+    - name: petsconfig__cosmosUri
+      key: petsconfig__cosmosUri
+    - name: petsconfig__cosmosKey
+      key: petsconfig__cosmosKey
+    - name: petsconfig__api
+      key: petsconfig__api
+# Fakeauth entries
+    - name: fakeauth__name
+      key: fakeauth__name
+    - name: fakeauth__picurl
+      key: fakeauth__picurl
+    - name: fakeauth__userid
+      key: fakeauth__userid
   values: {}

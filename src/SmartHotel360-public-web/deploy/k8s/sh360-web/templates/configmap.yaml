@@ -13,3 +13,21 @@ metadata:
 data:
   ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
   SettingsUrl: http://{{ $cfgname }}/cfg/aks
+  urls__hotels: http://{{ .Values.svc.hotels }}
+  urls__bookings: http://{{ .Values.svc.bookings }}
+  urls__suggestions: http://{{ .Values.svc.suggestions }}
+  urls__tasks: http://{{ .Values.svc.tasks }}
+  urls__notifications: http://{{ .Values.svc.notifications }}
+  urls__reviews: http://{{ .Values.svc.reviews }}
+  urls__discounts: http://{{ .Values.svc.discounts }}
+  urls__images_base: {{ .Values.urls.images }}
+# PetsConfig configuration
+  petsconfig__blobName: {{ .Values.petsconfig.blobname }}
+  petsconfig__blobKey: {{ .Values.petsconfig.blobkey }}
+  petsconfig__cosmosUri: {{ .Values.petsconfig.cosmosuri }}
+  petsconfig__cosmosKey: {{ .Values.petsconfig.cosmoskey }}
+  petsconfig__api: {{ .Values.petsconfig.api }}
+# FakeAuth configuration
+  fakeauth__name: {{ .Values.fakeauth.name }}
+  fakeauth__picurl: {{ .Values.petsconfig.picurl }}
+  fakeauth__userid: {{ .Values.petsconfig.userid }}
