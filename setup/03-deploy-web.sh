@@ -183,10 +183,12 @@ echo "------------------------------------------------------------"
   currentImage="$registry/$currentImage"
 fi
 
-if [[ "$release" != "" ]]
+if [[ "$release" == "" ]]
   then
-  fullrelease="$release-publicweb"
+  release=appName
 fi
+
+fullrelease="$release-publicweb"
 
 echo "Installing publicweb ($currentImage)"
 
