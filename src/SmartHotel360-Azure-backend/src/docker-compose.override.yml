@@ -4,15 +4,15 @@ services:
   bookings-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Hotels;User Id=sa;Password=Passw0rd!
       - ApplicationInsights__InstrumentationKey=
+      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Bookings;User Id=sa;Password=Passw0rd!
     ports:
       - "6100:80"
       
   hotels-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Bookings;User Id=sa;Password=Passw0rd!
+      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Hotels;User Id=sa;Password=Passw0rd!
       - discountsvc=http://discounts-api/
       - ApplicationInsights__InstrumentationKey=
     ports:

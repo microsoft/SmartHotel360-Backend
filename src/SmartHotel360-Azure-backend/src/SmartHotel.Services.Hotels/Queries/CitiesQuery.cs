@@ -44,7 +44,7 @@ namespace SmartHotel.Services.Hotels.Queries
             return Task.FromResult(new[]
             {
                 new CityResult() { Id = 10, Name = "New York", Country = "United States"},
-                new CityResult() { Id = 11, Name = "New Orleans", Country = "United States"},
+                new CityResult() { Id = 11, Name = "Orlando", Country = "United States"},
                 new CityResult() { Id = 30,  Name = "Barcelona", Country = "Spain"},
                 new CityResult() { Id = 20,  Name = "Rome", Country = "Italy" }
             } as IEnumerable<CityResult>);

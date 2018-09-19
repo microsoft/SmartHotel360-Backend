@@ -74,10 +74,10 @@ namespace SmartHotel.Services.Hotels.Data.Seed
             cities.Add(new City
             {
                 Id = 11,
-                Name = "New Orleans",
+                Name = "Orlando",
                 Country = "United States",
-                Latitude = 30.0125961f,
-                Longitude = -90.0161775f
+                Latitude = 28.553182f,
+                Longitude = -81.382293f
             });
 
             cities.Add(new City
