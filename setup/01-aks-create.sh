@@ -3,16 +3,16 @@
 . show-env.sh
 
 echo "------------------------------------------------------------"
+echo "Creating Resource Group ${AKS_RG}"
+echo "------------------------------------------------------------"
+az group create -n ${AKS_RG} -l ${AKS_REGION}
+
+echo "------------------------------------------------------------"
 echo "Creating KeyVault ${AKS_NAME} in Resource Group ${AKS_RG}"
 echo "------------------------------------------------------------"
 . 04-deploy-keyvault.sh
 
 cd ../provision
-
-echo "------------------------------------------------------------"
-echo "Creating Resource Group ${AKS_RG}"
-echo "------------------------------------------------------------"
-az group create -n ${AKS_RG} -l ${AKS_REGION}
 
 echo "------------------------------------------------------------"
 echo "Creating Cluster ${AKS_NAME} in Resource Group ${AKS_RG}"
