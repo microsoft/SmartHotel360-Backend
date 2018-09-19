@@ -1,0 +1,32 @@
+﻿{
+  "urls": {
+    "hotels": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/hotels-api/",
+    "bookings": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/bookings-api/",
+    "suggestions": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/suggestions-api/",
+    "tasks": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/cfg/tasks-api/",
+    "notifications": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/notifications-api/",
+    "reviews": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/reviews-api/",
+    "discounts": "http://myapp.b967f3ac20524797b96a.eastus.aksapp.io/cfg/discounts-api/",
+    "images_base": "https://sh360publicimg.blob.core.windows.net/"
+  },
+  "tokens": {
+    "bingmaps": "9D6ZuqeGpcfZ9PVYR1BQ~ofsY_N_KDywcNM-Y0Io5aA~AvqaBtSnHxFfX7flAqux2Q6eYSIreLwDxnswabgPlEOXmoEXXt6u1O6In0hqICy8N"
+  },
+  "b2c": {
+    "tenant": "smarthotel360.onmicrosoft.com",
+    "policy": "B2C_1_SignUpInPolicy",
+    "client": "b3cfbe11-ac36-4dcb-af16-8656ee286dcc"
+  },
+  "analytics": {
+    "android": "f4754bd4-1edf-4bd8-83cd-b9f6539293da",
+    "ios": "f3584cf1-6c12-465e-9511-d8db225bd340",
+    "uwp": "fd822e0c-f6fd-446c-846c-622c3c229006"
+  },
+  "others": {
+    "fallbackMapsLocation": "40.762246,-73.986943"
+  },
+  "bot": {
+    "id": "897f3818-8da3-4d23-a613-9a0f9555f2ea",
+    "FacebookBotId": "120799875283148"
+  }
+}
