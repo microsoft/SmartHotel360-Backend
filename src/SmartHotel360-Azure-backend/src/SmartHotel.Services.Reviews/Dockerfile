@@ -5,6 +5,7 @@ FROM openjdk:8-jdk AS maven
 WORKDIR /src
 COPY . .
 RUN chmod +x ./mvnw
+RUN sed -i 's/\r$//' mvnw
 RUN ./mvnw install
 
 FROM maven as build

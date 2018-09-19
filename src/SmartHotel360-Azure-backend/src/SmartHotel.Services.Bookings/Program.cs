@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using SmartHotel.Services.Bookings.Extensions;
 using SmartHotel.Services.Bookings.Data;
 namespace SmartHotel.Services.Bookings
@@ -9,6 +10,9 @@ namespace SmartHotel.Services.Bookings
         public static void Main(string[] args)
         {
             BuildWebHost(args)
+                .MigrateDbContext<BookingsDbContext>((context, services) =>
+                {
+                })
                 .Run();
         }
 
