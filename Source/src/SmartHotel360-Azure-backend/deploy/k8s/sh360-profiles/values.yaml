@@ -1,0 +1,45 @@
+replicaCount: 1
+applicationName: sh360
+clusterName: sh360-aks
+pathBase: /profiles-api
+
+image:
+  repository: smarthotels/profiles
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+mssql:
+  user: sa
+  pwd: Password!
+#  host: sh360-sql-data   # Uncomment to override the generated host name
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+env:
+  configmap:
+    - name: ConnectionStrings__DefaultConnection
+      key: Profiles_ConnectionStrings__DefaultConnection
+  values:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development 

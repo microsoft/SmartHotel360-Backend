@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: microsoft/mssql-server-linux
+  tag: 2017-CU7
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 1433
+
+mssql:
+# host: sql-sh360   # Uncomment to override generated host name
+  pid: Developer
+  pwd: Password!
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

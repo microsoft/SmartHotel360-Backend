@@ -1,0 +1,19 @@
+{{- $name := include "sh360-bookings.fullname" . -}}
+{{- $sqlsrv := include "sql-name" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-bookings.name" . }}
+    chart: {{ template "sh360-bookings.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  Bookings_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=BookingsDb;Persist Security Info=False;User ID={{ .Values.mssql.user }};Password={{ .Values.mssql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;
+  Bookings_b2c__Tenant: smarthotel360.onmicrosoft.com
+  Bookings_b2c__ClientId: c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,c40d4573-4164-42be-9ef9-54f16ca15f2f
+  Bookings_b2c__Policy: B2C_1_SignUpInPolicy
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}

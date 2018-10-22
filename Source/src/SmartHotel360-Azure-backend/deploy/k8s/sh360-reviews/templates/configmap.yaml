@@ -1,0 +1,17 @@
+{{- $name := include "sh360-reviews.fullname" . -}}
+{{- $pg := include "reviews-postgres-name" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-reviews.name" . }}
+    chart: {{ template "sh360-reviews.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
+  Reviews_sql_server_url: jdbc:postgresql://{{ $pg }}:{{ .Values.pg.port }}/reviewsdb
+  Reviews_sql_user_name: {{ .Values.pg.usr }}
+  Reviews_sql_user_password: {{ .Values.pg.pwd }}

@@ -1,0 +1,13 @@
+urls:
+  images: ""      # URL of blob having images
+petsconfig:
+  blobname: ""
+  blobkey: ""
+  cosmosuri: ""
+  cosmoskey: ""
+  api:
+fakeauth:
+  name: "Scott Hanselman"
+  picurl: "https://pbs.twimg.com/profile_images/951729445009637376/0V25QMDk_400x400.jpg"
+  userid: "ALFKI"
+  

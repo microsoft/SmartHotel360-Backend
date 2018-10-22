@@ -1,0 +1,120 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "westus"
+    },
+    "servicePrincipalClientId": {
+      "metadata": {
+        "description": "Client ID (used by cloudprovider)"
+      },
+      "type": "securestring"
+    },
+    "servicePrincipalClientSecret": {
+      "metadata": {
+        "description": "The Service Principal Client Secret."
+      },
+      "type": "securestring"
+    }
+  },
+  "variables": {
+    "registry_name": "[concat('acr', uniqueString(resourceGroup().id))]",
+    "akscluster_name": "[concat('aks', uniqueString(resourceGroup().id))]",
+    "oms_workspace": "[concat('oms_workspace', uniqueString(resourceGroup().id))]",
+    "oms_solution": "[concat('oms_solution', uniqueString(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerRegistry/registries",
+      "sku": {
+        "name": "Standard"
+      },
+      "name": "[variables('registry_name')]",
+      "apiVersion": "2017-10-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "adminUserEnabled": true
+      }
+    },
+    {
+      "apiVersion": "2015-11-01-preview",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "name": "[variables('oms_workspace')]",
+      "location": "East US",
+      "properties": {
+        "sku": {
+          "name": "standalone"
+        }
+      }
+    },
+    {
+      "apiVersion": "2015-11-01-preview",
+      "type": "Microsoft.OperationsManagement/solutions",
+      "name": "[variables('oms_solution')]",
+      "location": "East US",
+      "dependsOn": [
+        "[concat('Microsoft.OperationalInsights/workspaces/', variables('oms_workspace'))]",
+        "[concat('Microsoft.ContainerService/managedClusters/', variables('akscluster_name'))]"
+      ],
+      "plan": {
+        "name": "ContainerInsights([variables('oms_solution')])",
+        "product": "OMSGallery/ContainerInsights",
+        "promotionCode": "",
+        "publisher": "Microsoft"
+      },
+      "properties": {
+        "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('oms_workspace'))]"
+      }
+    },
+    {
+      "apiVersion": "2018-03-31",
+      "type": "Microsoft.ContainerService/managedClusters",
+      "name": "[variables('akscluster_name')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.OperationalInsights/workspaces/', variables('oms_workspace'))]"
+      ],
+      "properties": {
+        "kubernetesVersion": "1.11.3",
+        "dnsPrefix": "[concat('smarthotel360', uniqueString(resourceGroup().id))]",
+        "addonProfiles": {
+          "httpApplicationRouting": {
+            "enabled": true
+          },
+          "omsagent": {
+            "enabled": true,
+            "config": {
+              "logAnalyticsWorkspaceResourceID": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('oms_workspace'))]"
+            }
+          }
+        },
+        "agentPoolProfiles": [
+          {
+            "name": "agentpool",
+            "osDiskSizeGB": 0,
+            "count": 1,
+            "vmSize": "Standard_DS4_v2",
+            "osType": "Linux",
+            "storageProfile": "ManagedDisks"
+          }
+        ],
+        "servicePrincipalProfile": {
+          "ClientId": "[parameters('servicePrincipalClientId')]",
+          "Secret": "[parameters('servicePrincipalClientSecret')]"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "AKS": {
+      "type": "string",
+      "value": "[variables('akscluster_name')]"
+    },
+    "ACR": {
+      "type": "string",
+      "value": "[variables('registry_name')]"
+    }
+  }
+}

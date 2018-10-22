@@ -1,0 +1,14 @@
+{{- $name := include "sh360-discounts.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-discounts.name" . }}
+    chart: {{ template "sh360-discounts.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
+  Discounts_profilesvc: http://profiles/

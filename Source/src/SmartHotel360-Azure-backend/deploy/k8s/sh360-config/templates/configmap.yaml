@@ -1,0 +1,13 @@
+{{- $name := include "sh360-config.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-config.name" . }}
+    chart: {{ template "sh360-config.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}

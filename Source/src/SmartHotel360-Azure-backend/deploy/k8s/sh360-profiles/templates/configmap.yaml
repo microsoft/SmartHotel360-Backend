@@ -1,0 +1,15 @@
+{{- $name := include "sh360-profiles.fullname" . -}}
+{{- $sqlsrv := include "sql-name" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-profiles.name" . }}
+    chart: {{ template "sh360-profiles.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}
+  Profiles_ConnectionStrings__DefaultConnection: Server={{ $sqlsrv }};Initial Catalog=ProfilesDb;Persist Security Info=False;User Id={{ .Values.mssql.user }};Password={{ .Values.mssql.pwd }};MultipleActiveResultSets=False;Connection Timeout=30;

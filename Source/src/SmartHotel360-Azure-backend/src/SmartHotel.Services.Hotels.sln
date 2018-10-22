@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Hotels", "SmartHotel.Services.Hotels\SmartHotel.Services.Hotels.csproj", "{9B8AE4E7-BBA6-4BAC-B3DD-2A665F21F265}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Seedwork", "SmartHotel.Services.Seedwork\SmartHotel.Services.Seedwork.csproj", "{1AF23848-7B86-4348-BF67-5838BBAA262C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.BookingProcesor", "SmartHotel.Services.BookingProcesor\SmartHotel.Services.BookingProcesor.csproj", "{0A44014A-C53F-4283-ACAA-D703AAF2864D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Bookings", "SmartHotel.Services.Bookings\SmartHotel.Services.Bookings.csproj", "{0C5CB330-9B93-4A43-9B6D-EE1BC149084B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Configuration", "SmartHotel.Services.Configuration\SmartHotel.Services.Configuration.csproj", "{66353ED8-9D65-4625-A996-D0B1CB7936B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Discount", "SmartHotel.Services.Discount\SmartHotel.Services.Discount.csproj", "{B8A81A1C-E269-4B3C-98C7-6D32AE77D218}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Notifications", "SmartHotel.Services.Notifications\SmartHotel.Services.Notifications.csproj", "{9C985161-BABD-456D-A9FC-41F6535BCC33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Profiles", "SmartHotel.Services.Profiles\SmartHotel.Services.Profiles.csproj", "{BF86AA05-BBF3-4625-86C9-0C3F5D78451B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.ReviewsNet", "SmartHotel.Services.ReviewsNet\SmartHotel.Services.ReviewsNet.csproj", "{C94AE83D-9B42-4C93-B8BE-42C96719CD84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHotel.Services.Seed.Images", "SmartHotel.Services.Seed.Images\SmartHotel.Services.Seed.Images.csproj", "{FE87A743-890A-4BAE-A7F5-30D66644774C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B8AE4E7-BBA6-4BAC-B3DD-2A665F21F265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B8AE4E7-BBA6-4BAC-B3DD-2A665F21F265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B8AE4E7-BBA6-4BAC-B3DD-2A665F21F265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B8AE4E7-BBA6-4BAC-B3DD-2A665F21F265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF23848-7B86-4348-BF67-5838BBAA262C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF23848-7B86-4348-BF67-5838BBAA262C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF23848-7B86-4348-BF67-5838BBAA262C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF23848-7B86-4348-BF67-5838BBAA262C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A44014A-C53F-4283-ACAA-D703AAF2864D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A44014A-C53F-4283-ACAA-D703AAF2864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A44014A-C53F-4283-ACAA-D703AAF2864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A44014A-C53F-4283-ACAA-D703AAF2864D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5CB330-9B93-4A43-9B6D-EE1BC149084B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5CB330-9B93-4A43-9B6D-EE1BC149084B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5CB330-9B93-4A43-9B6D-EE1BC149084B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5CB330-9B93-4A43-9B6D-EE1BC149084B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66353ED8-9D65-4625-A996-D0B1CB7936B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66353ED8-9D65-4625-A996-D0B1CB7936B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66353ED8-9D65-4625-A996-D0B1CB7936B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66353ED8-9D65-4625-A996-D0B1CB7936B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A81A1C-E269-4B3C-98C7-6D32AE77D218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A81A1C-E269-4B3C-98C7-6D32AE77D218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A81A1C-E269-4B3C-98C7-6D32AE77D218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A81A1C-E269-4B3C-98C7-6D32AE77D218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C985161-BABD-456D-A9FC-41F6535BCC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C985161-BABD-456D-A9FC-41F6535BCC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C985161-BABD-456D-A9FC-41F6535BCC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C985161-BABD-456D-A9FC-41F6535BCC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF86AA05-BBF3-4625-86C9-0C3F5D78451B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF86AA05-BBF3-4625-86C9-0C3F5D78451B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF86AA05-BBF3-4625-86C9-0C3F5D78451B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF86AA05-BBF3-4625-86C9-0C3F5D78451B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94AE83D-9B42-4C93-B8BE-42C96719CD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94AE83D-9B42-4C93-B8BE-42C96719CD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94AE83D-9B42-4C93-B8BE-42C96719CD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94AE83D-9B42-4C93-B8BE-42C96719CD84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE87A743-890A-4BAE-A7F5-30D66644774C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE87A743-890A-4BAE-A7F5-30D66644774C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE87A743-890A-4BAE-A7F5-30D66644774C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE87A743-890A-4BAE-A7F5-30D66644774C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ADF6C02-0CEE-4336-A462-27BB66348230}
+	EndGlobalSection
+EndGlobal

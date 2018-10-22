@@ -1,0 +1,54 @@
+{{- $pg := include "reviews-postgres-name" . -}}
+
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ $pg }}
+  labels:
+    app: {{ template "sh360-postgres.name" . }}
+    chart: {{ template "sh360-postgres.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    db: reviews
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "sh360-postgres.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        db: reviews
+        app: {{ template "sh360-postgres.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5432
+              protocol: TCP
+          env:
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.pg.pwd }}
+            - name: POSTGRES_USER
+              value: {{ .Values.pg.user }}
+            - name: POSTGRES_DB
+              value: {{ .Values.pg.dbs.reviews }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

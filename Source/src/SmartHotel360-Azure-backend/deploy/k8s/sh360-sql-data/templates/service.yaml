@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "sql-name" . }}
+  labels:
+    app: {{ template "sh360-sql-data.name" . }}
+    chart: {{ template "sh360-sql-data.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "sh360-sql-data.name" . }}
+    release: {{ .Release.Name }}

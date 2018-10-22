@@ -1,0 +1,56 @@
+replicaCount: 1
+applicationName: sh360
+clusterName: sh360-aks
+pathBase: /reviews-api
+
+image:
+  repository: smarthotel360/reviews
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+pg:
+#  hostReviews: tasks-sh360-pg    # Uncomment to override the postgreSQL host name generated
+  usr: sh360
+  pwd: Passw0rd!
+  port: 5432
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  configmap:
+    - name: APPLICATION_INSIGHTS_IKEY
+      key: APPLICATION_INSIGHTS_IKEY
+    - name: sql_server_url
+      key: Reviews_sql_server_url 
+    - name: sql_user_name
+      key: Reviews_sql_user_name
+    - name: sql_user_password
+      key: Reviews_sql_user_password
+  values:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development
+    - name: PORT
+      value: "80"
+

@@ -1,0 +1,65 @@
+replicaCount: 1
+applicationName: sh360
+clusterName: sh360-aks
+pathBase: /hotels-api
+
+image:
+  repository: smarthotels/hotels
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+mssql:
+  user: sa
+  pwd: Password!
+#  host: sh360-sql-data    ## This host name overrides the generated one
+
+# env defines the environment variables that will be declared in the pod
+env:
+  # configmap declares variables which value is taken from the config map defined in template configmap.yaml (name is name of var and key the key in configmap)
+  configmap:
+    - name: ApplicationInsights__InstrumentationKey
+      key: ApplicationInsights__InstrumentationKey
+    - name: ConnectionStrings__DefaultConnection
+      key: Hotels_ConnectionStrings__DefaultConnection
+    - name: b2c__Tenant
+      key: Hotels_b2c__Tenant
+    - name: b2c__ClientId
+      key: Hotels_b2c__ClientId
+    - name: b2c__Audiences
+      key: Hotels_b2c__Audiences
+    - name: b2c__Policy
+      key: Hotels_b2c__Policy
+    - name: currency__Badge
+      key: Hotels_currency__Badge
+    - name: currency__BaseConversion
+      key: Hotels_currency__BaseConversion
+    - name: discountsvc
+      key: Hotels_discountsvc
+  # values define environment variables with a fixed value (no configmap involved) (name is name of var, and value is its value)
+  values:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development

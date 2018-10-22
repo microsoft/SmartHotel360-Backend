@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.svc.profiles }}
+  labels:
+    app: {{ template "sh360-profiles.name" . }}
+    chart: {{ template "sh360-profiles.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "sh360-profiles.name" . }}
+    release: {{ .Release.Name }}

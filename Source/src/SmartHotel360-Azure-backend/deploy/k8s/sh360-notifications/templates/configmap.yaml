@@ -1,0 +1,17 @@
+{{- $name := include "sh360-notifications.fullname" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-notifications.name" . }}
+    chart: {{ template "sh360-notifications.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  Notifications_b2c__Tenant: smarthotel360.onmicrosoft.com
+  Notifications_b2c__ClientId: bd4133bb-d305-4927-baf3-35cb9bdc282c
+  Notifications_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,bd4133bb-d305-4927-baf3-35cb9bdc282c
+  Notifications_b2c__Policy: B2C_1_SignUpInPolicy
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}

@@ -1,0 +1,52 @@
+replicaCount: 1
+applicationName: sh360
+clusterName: sh360-aks
+pathBase: /suggestions-api
+
+image:
+  repository: smarthotels/suggestions
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+mssql:
+  user: sa
+  pwd: Password!
+#  host: sh360-sql-data    ## This host name overrides the generated one
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+   
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  configmap:
+    - name: APPLICATION_INSIGHTS_IKEY
+      key: APPLICATION_INSIGHTS_IKEY
+    - name: SUGGESTIONS_DATABASE_URL
+      key: SUGGESTIONS_DATABASE_URL
+
+  values:
+    - name: NODE_ENV
+      value: production
+    - name: PORT
+      value: "80"

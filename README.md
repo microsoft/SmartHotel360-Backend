@@ -1,16 +1,16 @@
 # SmartHotel360
-During **Connect(); 2017** event this year we presented beautiful app demos using Xamarin and many features of Azure. For //build/ 2018's keynote, we updated some components of the back-end API code to support **Azure Kubernetes Service (AKS)**. This repository contains the setup instructions and sample code needed to repeat the [AKS and Azure Dev Spaces demo](https://www.youtube.com/watch?v=rd0Rd8w3FZ0&feature=youtu.be&t=8890) from //build/ 2018. 
+During **Connect(); 2017** event this year we presented beautiful app demos using Xamarin and many features of Azure. For //build/ 2018's keynote, we updated some components of the back-end API code to support **Azure Kubernetes Service (AKS)**.
 
 # SmartHotel360 Repos
 For this reference app scenario, we built several consumer and line-of-business apps and an Azure backend. You can find all SmartHotel360 repos in the following locations:
 
 * [SmartHotel360 ](https://github.com/Microsoft/SmartHotel360)
-* [Backend Services V2 (AKS Optimized)](https://github.com/Microsoft/SmartHotel360-AKS-backend)
-* [Backend Services](https://github.com/Microsoft/SmartHotel360-Azure-backend)
-* [Public Website](https://github.com/Microsoft/SmartHotel360-public-web)
-* [Mobile Apps](https://github.com/Microsoft/SmartHotel360-mobile-desktop-apps)
-* [Sentiment Analysis](https://github.com/Microsoft/SmartHotel360-Sentiment-Analysis-App)
-* [Migrating Internal apps to Azure](https://github.com/Microsoft/SmartHotel360-internal-booking-apps)
+* [IoT](https://github.com/Microsoft/SmartHotel360-IoT)
+* [Backend](https://github.com/Microsoft/SmartHotel360-Backend)
+* [Website](https://github.com/Microsoft/SmartHotel360-Website)
+* [Mobile](https://github.com/Microsoft/SmartHotel360-Mobile)
+* [Sentiment Analysis](https://github.com/Microsoft/SmartHotel360-SentimentAnalysis)
+* [Registration](https://github.com/Microsoft/SmartHotel360-Registration)
 
 # SmartHotel360 - Backend Services
 
@@ -20,14 +20,7 @@ Welcome to the SmartHotel360 AKS repository. Here you'll find everything you nee
 
 SmartHotel360 uses a **microservice oriented** architecture implemented using containers. There are various services developed in different technologies: .NET Core 2, Java, and Node.js. These services use different data stores like PostgreSQL and SQL Server. The documentation is divided into the docs:
 
-1. [Demo Setup](docs/01-setup.md) - Create the Azure resources and demo environment setup, and deploy the SmartHotel360 services to the AKS Cluster.
-1. [Demo Script](docs/02-script.md) - Steps and video example for running the demo.
-
-End-to-end setup takes about an hour provided you have all of the development enviroment prerequisites met. 
-
-## Storyteller's Advice
-Here's an important note if you'd like to run the demo. 
-The AKS Container Health Dashboard is highlighted in this demo with a series of charts that show CPU data across the cluster and a detailed snapshot of how the APIs are running with extended log data over a period of time. If you want to mimic the demo, you'll want to run the [data-loading script](docs/03-preload.md) over a span of 12 hours. Otherwise the data represented in the chart will be quite minimal. 
+1. [Demo Setup](Documents/Setup.md) - Create the Azure resources and demo environment setup, and deploy the SmartHotel360 services to the AKS Cluster.
 
 # Contributing
 

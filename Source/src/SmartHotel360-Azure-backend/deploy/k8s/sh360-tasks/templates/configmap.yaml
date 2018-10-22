@@ -1,0 +1,17 @@
+{{- $name := include "sh360-tasks.fullname" . -}}
+{{- $pg := include "tasks-postgres-name" . -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "cfg-{{ $name }}"
+  labels:
+    app: {{ template "sh360-tasks.name" . }}
+    chart: {{ template "sh360-tasks.chart" .}}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
+  Tasks_sql_server_url: jdbc:postgresql://{{ $pg }}:{{ .Values.pg.port }}/tasksdb
+  Tasks_sql_user_name: {{ .Values.pg.usr }}
+  Tasks_sql_user_password: {{ .Values.pg.pwd }}
