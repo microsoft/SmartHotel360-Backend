@@ -26,8 +26,7 @@ namespace SmartHotel.Services.Hotels.Controllers
         {
             var cities = string.IsNullOrEmpty(name) ? 
                 await _citiesQueries.GetDefaultCities() :
-                _citiesQueries.GetDefaultCities().Result
-                    .Where(city => city.Name.StartsWith(name));
+                await _citiesQueries.Get(name);
 
             if (cities.Count() == 0)
                 _logger.LogWarning("City search {0} returned 0 results.", name);
