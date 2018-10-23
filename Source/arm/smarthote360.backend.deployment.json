@@ -113,7 +113,7 @@
                 "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('oms_workspace'))]"
               },
               "plan": {
-                "name": "[concat('ContainerInsights', '(', split(variables('oms_solution'),'/')[8], ')')]",
+                "name": "[variables('oms_solution')]",
                 "product": "OMSGallery/ContainerInsights",
                 "promotionCode": "",
                 "publisher": "Microsoft"
