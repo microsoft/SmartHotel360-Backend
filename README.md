@@ -18,7 +18,12 @@ Welcome to the SmartHotel360 AKS repository. Here you'll find everything you nee
 
 ## Getting Started
 
-SmartHotel360 uses a **microservice oriented** architecture implemented using containers. There are various services developed in different technologies: .NET Core 2, Java, and Node.js. These services use different data stores like PostgreSQL and SQL Server. The documentation is divided into the docs:
+SmartHotel360 uses a **microservice oriented** architecture implemented using containers. There are various services developed in different technologies: .NET Core 2, Java, and Node.js. These services use different data stores like PostgreSQL and SQL Server. 
+
+
+We have added an ARM template so you can automate the creation of the resources
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FSmartHotel360-Backend%2Fmaster%2FSource%2FARM%2Fsmarthote360.backend.deployment.json?target=_blank" target='_blank'><img src="/Documents/Images/deploy-to-azure.png" alt="Deploy to Azure"/></a>
 
 1. [Demo Setup](Documents/Setup.md) - Create the Azure resources and demo environment setup, and deploy the SmartHotel360 services to the AKS Cluster.
 

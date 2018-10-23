@@ -17,6 +17,10 @@
         "description": "The Service Principal Client Secret."
       },
       "type": "securestring"
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS4_v2"
     }
   },
   "variables": {
@@ -95,7 +99,7 @@
             "name": "agentpool",
             "osDiskSizeGB": 0,
             "count": 1,
-            "vmSize": "Standard_DS4_v2",
+            "vmSize": "[parameters('vmSize')]",
             "osType": "Linux",
             "storageProfile": "ManagedDisks"
           }
