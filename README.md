@@ -23,7 +23,7 @@ SmartHotel360 uses a **microservice oriented** architecture implemented using co
 
 We have added an ARM template so you can automate the creation of the resources
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fdasanagu%2fSmartHotel360-Backend%2fmaster%2fSource%2farm%2fsmarthote360.backend.deployment.json"><img src="/Documents/Images/deploy-to-azure.png" alt="Deploy to Azure"/></a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoft%2fSmartHotel360-Backend%2fmaster%2fSource%2farm%2fsmarthote360.backend.deployment.json"><img src="/Documents/Images/deploy-to-azure.png" alt="Deploy to Azure"/></a>
 
 1. [Demo Setup](Documents/Setup.md) - Create the Azure resources and demo environment setup, and deploy the SmartHotel360 services to the AKS Cluster.
 
