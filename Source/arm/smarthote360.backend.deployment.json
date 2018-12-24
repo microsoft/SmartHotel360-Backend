@@ -4,11 +4,11 @@
   "parameters": {
     "location": {
       "type": "string",
-      "defaultValue": "westus"
+      "defaultValue": "westus2"
     },
     "kubernetesVersion": {
       "type": "string",
-      "defaultValue": "1.11.3",
+      "defaultValue": "1.11.5",
       "metadata": {
         "description": "The version of Kubernetes."
       }
@@ -113,7 +113,7 @@
                 "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('oms_workspace'))]"
               },
               "plan": {
-                "name": "[variables('oms_solution')]",
+                "name": "[variables('oms_workspace')]",
                 "product": "OMSGallery/ContainerInsights",
                 "promotionCode": "",
                 "publisher": "Microsoft"

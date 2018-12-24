@@ -96,7 +96,7 @@ if (( $httpRouting == 1 ))
 then
   echo "Use of --httpRouting overrides -d"
   echo "Autodetecting DNS of $aksName in $aksRg"
-  dns=$(az resource show --api-version 2018-03-31 --id /subscriptions/${AKS_SUB}/resourceGroups/${AKS_RG}/providers/Microsoft.ContainerService/managedClusters/${AKS_NAME} --query properties.addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')
+  dns=$(az resource show --api-version 2018-03-31 --id /subscriptions/${AKS_SUB}/resourceGroups/${AKS_RG}/providers/Microsoft.ContainerService/managedClusters/${aksName} --query properties.addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')
   echo "DNS detected is: $dns"
   if [[ "$dns" == "" ]]
   then
@@ -111,7 +111,7 @@ then
   registry=$acrName.azurecr.io
 fi
 
-pushd ../src/SmartHotel360-Azure-backend/deploy/k8s
+pushd ../Backend/deploy/k8s
 
 
 if [[ "$acrName" != "" ]]
