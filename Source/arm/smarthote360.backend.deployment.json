@@ -33,8 +33,7 @@
   "variables": {
     "registry_name": "[concat('acr', uniqueString(resourceGroup().id))]",
     "akscluster_name": "[concat('aks', uniqueString(resourceGroup().id))]",
-    "oms_workspace": "[concat('workspace', uniqueString(resourceGroup().id))]",
-    "oms_solution": "[concat('solution', uniqueString(resourceGroup().id))]"
+    "oms_workspace": "[concat('workspace', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
