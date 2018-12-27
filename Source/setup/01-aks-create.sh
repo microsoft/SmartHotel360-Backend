@@ -12,21 +12,23 @@ echo "Creating KeyVault ${AKS_NAME} in Resource Group ${AKS_RG}"
 echo "------------------------------------------------------------"
 . 04-deploy-keyvault.sh
 
-cd ../provision
+pushd ../arm
 
 echo "------------------------------------------------------------"
-echo "Creating Cluster ${AKS_NAME} in Resource Group ${AKS_RG}"
+echo "Creating Cluster in Resource Group ${AKS_RG}"
 echo "------------------------------------------------------------"
-az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file 01-aks-create.json --parameters resourceName=${AKS_NAME} dnsPrefix=${AKS_NAME} servicePrincipalClientId=${SPN_CLIENT_ID} servicePrincipalClientSecret=${SPN_PW} workspaceRegion="Canada Central" enableHttpApplicationRouting=true enableOmsAgent=true
+outputs=$(az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file smarthote360.backend.deployment.json --parameters servicePrincipalClientId=${SPN_CLIENT_ID} servicePrincipalClientSecret=${SPN_PW})
+
+aksName=$(echo "$outputs" | jq ".properties.outputs.aks.value" | tr -d '""')
 
 echo "------------------------------------------------------------"
-echo "Getting credentials for cluster ${AKS_NAME}"
+echo "Getting credentials for cluster ${aksName}"
 echo "------------------------------------------------------------"
-az aks get-credentials -n ${AKS_NAME} -g ${AKS_RG}
+az aks get-credentials -n ${aksName} -g ${AKS_RG}
 
 echo "------------------------------------------------------------"
 echo "Initializing Helm"
 echo "------------------------------------------------------------"
 helm init
 
-cd ../setup
+popd
