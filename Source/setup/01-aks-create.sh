@@ -17,7 +17,7 @@ pushd ../arm
 echo "------------------------------------------------------------"
 echo "Creating Cluster in Resource Group ${AKS_RG}"
 echo "------------------------------------------------------------"
-outputs=$(az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file smarthote360.backend.deployment.json --parameters servicePrincipalClientId=${SPN_CLIENT_ID} servicePrincipalClientSecret=${SPN_PW})
+outputs=$(az group deployment create -n ${AKS_NAME}create -g ${AKS_RG} --template-file smarthote360.backend.deployment.json --parameters aksClusterName=${AKS_NAME} registryName=${ACR_NAME} servicePrincipalClientId=${SPN_CLIENT_ID} servicePrincipalClientSecret=${SPN_PW})
 
 aksName=$(echo "$outputs" | jq ".properties.outputs.aks.value" | tr -d '""')
 
