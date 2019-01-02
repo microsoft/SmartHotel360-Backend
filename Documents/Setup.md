@@ -76,7 +76,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
 1. CD into the `setup` directory (if not already there) and run this command:
 
     ```bash
-    ./02-deploy-apis.sh --httpRouting --aks-name <name of the AKS> --acr <name of the ACR>
+    ./02-deploy-apis.sh --httpRouting
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.  Details on this script can be found [here](deploy/02-deploy-apis.md), so you can customize creation if you desire. The script above should be enough once the environment variables are set in the previous step. 

@@ -28,11 +28,17 @@
     "vmSize": {
       "type": "string",
       "defaultValue": "Standard_D4s_v3"
+    },
+    "aksClusterName": {
+      "type": "string"
+    },
+    "registryName": {
+      "type": "string"
     }
   },
   "variables": {
-    "registry_name": "[concat('acr', uniqueString(resourceGroup().id))]",
-    "akscluster_name": "[concat('aks', uniqueString(resourceGroup().id))]",
+    "registry_name": "[if(empty(parameters('registryName')), concat('acr', uniqueString(resourceGroup().id)), parameters('registryName'))]",
+    "akscluster_name": "[if(empty(parameters('aksClusterName')), concat('aks', uniqueString(resourceGroup().id)), parameters('aksClusterName'))]",
     "oms_workspace": "[concat('workspace', uniqueString(resourceGroup().id))]"
   },
   "resources": [
