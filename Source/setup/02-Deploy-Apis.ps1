@@ -81,7 +81,7 @@ if(-not [string]::IsNullOrEmpty($acrName)){
     $acrPassword=(az acr credential show -n $acrName | ConvertFrom-Json).passwords[0].value 
     $acrLogin=(az acr credential show -n $acrName | ConvertFrom-Json).username
 
-    .\deploy-secret.sh -r $registry -p $acrPassword -u $acrLogin
+    .\Deploy-Secret.ps1 -registry $registry -password $acrPassword -user $acrLogin
 }
 
 if ([string]::IsNullOrEmpty($acrName) -and (-not [string]::IsNullOrEmpty($registry))) {
