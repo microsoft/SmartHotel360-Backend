@@ -90,7 +90,7 @@ In this step you'll create all of the Azure resources required by the demo. This
     For Powershell run this script:
 
     ```powershell
-    .\01-aks-create.sh
+    .\01-Aks-Create.ps1
     ```
 
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
