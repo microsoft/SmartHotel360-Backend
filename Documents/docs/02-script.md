@@ -27,7 +27,7 @@ Below, you'll see each step of the demo presented with three components - an ima
 
 In this demo, the presenter is a new developer working for SmartHotel360, a hotel company, who has been assigned a bug to fix in a huge AKS cluster with a variety of microservices written in Node.js. .NET Core, and Java. The developer is armed with a few pre-written queries to see logs and CPU usage, and a short description of a defect in the company's web site. 
 
-1. Open the public web site in a browser. It should be in the format `http://sh360.sh360.<guid>.<region>.aksapp.io`. 
+1. Open the web site in a browser. If you do not have one web site up and running, you can follow the instructions to create one in the Website repository. You can find the link to the Website repository in the [main page](../../Readme.md).
 1. Search for **New** (note the capitalization) using the city search feature on the public web site. 
 
     ![Search working](../media/demo-script/01-city-search-good.png)
