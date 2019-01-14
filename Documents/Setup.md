@@ -108,7 +108,7 @@ In this segment you'll build the images containing the SmartHotel360 back-end AP
     Or for Powershell:
 
     ```powershell
-    .\02-deploy-apis.sh --httpRouting $true
+    .\02-Deploy-Apis.ps1 --httpRouting $true
     ```
 
     The script will take some time to execute, but when it is complete the `az aks browse` command will be executed and the Kubernetes dashboard will open in your browser.  Details on this script can be found [here](docs/deploy/02-deploy-apis.md), so you can customize creation if you desire. The script above should be enough once the environment variables are set in the previous step. 
