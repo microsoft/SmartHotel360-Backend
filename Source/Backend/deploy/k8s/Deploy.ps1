@@ -5,16 +5,28 @@ Param(
     [Parameter(Mandatory=$false)][string] $release,
     [Parameter(Mandatory=$false)][string] $dockerOrg = "smarthotels",
     [Parameter(Mandatory=$false)][string] $appName,
-    [Parameter(Mandatory=$false)][string] $dns
+    [Parameter(Mandatory=$false)][string] $dns,
+    [parameter(Mandatory=$false)][string][ValidateSet('prod','staging', IgnoreCase=$false)]$tlsEnv = "staging"
 )
 
 if ($dns -eq "none") {
     $dns = ""
 }
 
+if ($tlsEnv -eq "staging") {
+    $tlsSecretName = "tt-letsencrypt-staging"
+}
+if ($tlsEnv -eq "prod") {
+    $tlsSecretName = "tt-letsencrypt-prod"
+}
+
 if([string]::IsNullOrEmpty($appName)){
     Write-Host "must provide a name using -appName" -ForegroundColor Red
     exit 1
+}
+
+if([string]::IsNullOrEmpty($imageTag)){
+    $imageTag = "latest"
 }
 
 Write-Host "Using registry: $registry, tag $imageTag & organization $dockerOrg" -ForegroundColor Yellow
@@ -65,6 +77,6 @@ foreach ($svc in $arr) {
     }
 
     Write-Host "Installing service $($array[0]) (image $currentImage)" -ForegroundColor Yellow
-    Write-Host "helm install $($array[0]) --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml -f infrastructure_values.yml" 
-    cmd /c "helm install $($array[0]) --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml -f infrastructure_values.yml"
+    Write-Host "helm install $($array[0]) --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} --set ingress.tls[0].secretName=$tlsSecretName --set ingress.tls[0].hosts={$dns} -f ingress_values.yml -f pull_secrets_conf.yml -f infrastructure_values.yml" 
+    cmd /c "helm install $($array[0]) --name=$fullrelease --set image.tag=$imageTag --set image.repository=$currentImage --set appName=$appName --set ingress.enabled=1 --set ingress.hosts={$dns} --set ingress.tls[0].secretName=$tlsSecretName --set ingress.tls[0].hosts={$dns}  -f ingress_values.yml -f pull_secrets_conf.yml -f infrastructure_values.yml"
 }

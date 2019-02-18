@@ -17,6 +17,8 @@ All of the back-end systems run inside of Docker containers. During the installa
 * The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing (Not necesary for Powershell environment) 
 * [Helm](https://helm.sh/) to ease Kubernetes deployment
 
+>**Note**: You can use the `add-tiller.sh` (bash) or `Add-Tiller.ps1` (Powershell) to install Tiller (Helm server component) in the cluster.
+
 ## Set up a Service Principal 
 
 [Create a service principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal?view=azure-cli-latest) and take note of the Application ID and key. The service principal will need to be added to the **Contributor** for the subscription.
@@ -94,6 +96,21 @@ In this step you'll create all of the Azure resources required by the demo. This
     ```
 
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
+
+## Deploy TLS certificate on cluster
+
+To allow https usage cert-manager needs to be configured against the cluster. For this just type:
+
+```powershell
+    .\Enable-Ssl.ps1
+```
+
+Script uses the environment variables to find the cluster to use and the resource group. You can pass following parameters to the script:
+
+* `name`: Smarthotel360 app name (defaults to env var `SH360_APPNAME`)
+* `aksName`: AKS to use (defaults to env var `AKS_NAME`)
+* `resourceGroup`: Resource group where AKS is (defaults to env var `AKS_RG`)
+* `sslSupport`: Must be `staging` or `prod` to use the Let's Encrypt staging or production environments. Only production environment issues valid certificates. Defaults to `staging`.
 
 ## Deploy the SmartHotel360 Backend APIs
 

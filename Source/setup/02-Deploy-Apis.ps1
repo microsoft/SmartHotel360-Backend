@@ -9,9 +9,9 @@ Param(
     [Parameter(Mandatory=$false)][string] $aksName = $env:AKS_NAME,
     [Parameter(Mandatory=$false)][string] $aksRg = $env:AKS_RG,
     [Parameter(Mandatory=$false)][boolean] $createAcr = $true,
-    [Parameter(Mandatory=$false)][boolean] $clean = $true,
     [Parameter(Mandatory=$false)][string] $dns = "none",
-    [Parameter(Mandatory=$false)][boolean] $httpRouting = $false
+    [Parameter(Mandatory=$false)][boolean] $httpRouting = $false,
+    [parameter(Mandatory=$false)][string][ValidateSet('prod','staging', IgnoreCase=$false)]$tlsEnv = "staging"
 )
 
 function validateParams{
@@ -98,14 +98,6 @@ if ([string]::IsNullOrEmpty($acrName) -and (-not [string]::IsNullOrEmpty($regist
     .\build-push.ps1 -r $registry -t $imageTag -user $customLogin -password $customPassword
 }
 
-if($clean){
-    Write-Host "Cleaning all previous releases" -ForegroundColor Yellow
-    .\clean.ps1
-}
-else {
-    Write-Host "Cleaning skipped (-clean to false used)" -ForegroundColor Yellow
-}
-
 Write-Host "------------------------------------------------------------" -ForegroundColor Yellow
 Write-Host "Deploying the code from registry '$registry'" -ForegroundColor Yellow
 Write-Host "Application Name used: $appName" -ForegroundColor Yellow
@@ -114,10 +106,10 @@ Write-Host "Ingress DNS: $dns" -ForegroundColor Yellow
 Write-Host "------------------------------------------------------------" -ForegroundColor Yellow
 
 if (-not [string]::IsNullOrEmpty($registry)) {
-    .\deploy.ps1  -registry $registry -release $appName -appName $appName -imageTag $imageTag -dns $dns
+    .\deploy.ps1  -registry $registry -release $appName -appName $appName -imageTag $imageTag -dns $dns -tlsEnv $tlsEnv
 }
 else {
-    .\deploy.ps1  -release $appName -appName $appName -imageTag $imageTag -dns $dns
+    .\deploy.ps1  -release $appName -appName $appName -imageTag $imageTag -dns $dns -tlsEnv $tlsEnv
 }
 
 Pop-Location
