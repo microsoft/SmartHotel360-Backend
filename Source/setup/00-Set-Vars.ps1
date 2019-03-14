@@ -66,7 +66,7 @@ if($PSBoundParameters.Count -eq 0){
     Write-Host "   -clusterName: Cluster name" -ForegroundColor Yellow
     Write-Host "   -registry: ACR name" -ForegroundColor Yellow
     Write-Host "   -location: Location (defaults to eastus)" -ForegroundColor Yellow
-    Write-Host "   -spnclientId: Service principal app id" -ForegroundColor Yellow
+    Write-Host "   -spnClientId: Service principal app id" -ForegroundColor Yellow
     Write-Host "   -spnPassword: Service principal pwd" -ForegroundColor Yellow
     Write-Host "   -sh360AppName: Name of the sh360 application to install (defaults to myapp)" -ForegroundColor Yellow
 
