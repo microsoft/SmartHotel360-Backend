@@ -16,7 +16,7 @@ Push-Location ../arm
 Write-Host "------------------------------------------------------------"
 Write-Host "Creating Cluster in Resource Group $env:AKS_RG"
 Write-Host "------------------------------------------------------------"
-$outputs=(az group deployment create -n $env:AKS_NAME -g $env:AKS_RG --template-file smarthote360.backend.deployment.json --parameters aksClusterName=${AKS_NAME} registryName=${ACR_NAME} servicePrincipalClientId=$env:SPN_CLIENT_ID servicePrincipalClientSecret=$env:SPN_PW)
+$outputs=(az group deployment create -n $env:AKS_NAME -g $env:AKS_RG --template-file smarthote360.backend.deployment.json --parameters aksClusterName=$env:AKS_NAME registryName=$env:ACR_NAME servicePrincipalClientId=$env:SPN_CLIENT_ID servicePrincipalClientSecret=$env:SPN_PW)
 
 $aksName=($outputs | ConvertFrom-Json).properties.outputs.aks.value
 
