@@ -33,7 +33,7 @@ then
 else
   while [ "$1" != "" ]; do
     case $1 in
-      -g | --resoure-group)   shift
+      -g | --resource-group)   shift
                               aks_rg=$1
                               ;;
       -s | --subscription)    shift
