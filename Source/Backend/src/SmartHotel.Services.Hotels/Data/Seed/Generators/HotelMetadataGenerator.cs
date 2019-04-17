@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SmartHotel.Services.Hotels.Data.Seed
 {
@@ -88,13 +85,13 @@ namespace SmartHotel.Services.Hotels.Data.Seed
 
         private static List<HotelSeedMetada> _data = new List<HotelSeedMetada>
             {
-                new HotelSeedMetada("Sh360 Platinum", 5,HotelType.Platinum, 1996),
-                new HotelSeedMetada("Sh360 Gold", 5,HotelType.Gold, 1998),
-                new HotelSeedMetada("Sh360 Spa", 5,HotelType.Spa, 2000),
-                new HotelSeedMetada("Sh360 Business", 4,HotelType.Business, 2006),
-                new HotelSeedMetada("Sh360 Family", 4,HotelType.Family, 2010),
-                new HotelSeedMetada("Sh360 Ressort", 4,HotelType.Ressort, 2008),
-                new HotelSeedMetada("Sh360 Economy", 3,HotelType.Economy, 2015)
+                new HotelSeedMetada("SmartHotel360 Platinum", 5,HotelType.Platinum, 1996),
+                new HotelSeedMetada("SmartHotel360 Gold", 5,HotelType.Gold, 1998),
+                new HotelSeedMetada("SmartHotel360 Spa", 5,HotelType.Spa, 2000),
+                new HotelSeedMetada("SmartHotel360 Business", 4,HotelType.Business, 2006),
+                new HotelSeedMetada("SmartHotel360 Family", 4,HotelType.Family, 2010),
+                new HotelSeedMetada("SmartHotel360 Ressort", 4,HotelType.Ressort, 2008),
+                new HotelSeedMetada("SmartHotel360 Economy", 3,HotelType.Economy, 2015)
             };
         public IEnumerable<HotelSeedMetada> Data => _data;
     }

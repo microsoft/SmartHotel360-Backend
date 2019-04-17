@@ -1,10 +1,8 @@
-﻿using SmartHotel.Services.Hotels.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartHotel.Services.Hotels.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
 using static System.Linq.Queryable;
-using System;
 
 namespace SmartHotel.Services.Hotels.Queries
 {
@@ -45,8 +43,8 @@ namespace SmartHotel.Services.Hotels.Queries
             {
                 new CityResult() { Id = 10, Name = "New York", Country = "United States"},
                 new CityResult() { Id = 11, Name = "Orlando", Country = "United States"},
-                new CityResult() { Id = 30,  Name = "Barcelona", Country = "Spain"},
-                new CityResult() { Id = 20,  Name = "Rome", Country = "Italy" }
+                new CityResult() { Id = 20,  Name = "Barcelona", Country = "Spain"},
+                new CityResult() { Id = 30,  Name = "Rome", Country = "Italy" }
             } as IEnumerable<CityResult>);
         }
     }
