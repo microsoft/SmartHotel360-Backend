@@ -113,3 +113,9 @@ else {
 }
 
 Pop-Location
+
+Write-Host "------------------------------------------------------------" -ForegroundColor Yellow
+Write-Host "Opening the dashboard"
+Write-Host "------------------------------------------------------------" -ForegroundColor Yellow
+
+az aks browse -n $aksName -g $aksRg
