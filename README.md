@@ -17,6 +17,8 @@ For this reference app scenario, we built several consumer and line-of-business 
 
 Welcome to the SmartHotel360 AKS repository. Here you'll find everything you need to run the backend services locally and/or deploy them in a AKS cluster.
 
+[![Build Status](https://dev.azure.com/smarthotel360/Backend/_apis/build/status/Backend-CI?branchName=master)](https://dev.azure.com/smarthotel360/Backend/_build/latest?definitionId=37&branchName=master)
+
 ## Getting Started
 
 SmartHotel360 uses a **microservice oriented** architecture implemented using containers. There are various services developed in different technologies: .NET Core 2, Java, and Node.js. These services use different data stores like PostgreSQL and SQL Server. 
