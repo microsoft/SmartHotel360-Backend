@@ -77,4 +77,4 @@ Also following ingress annotations are set:
 * `kubernetes.io/ingress.class` to `addon-http-application-routing` to use ingress controller provided by AKS
 * `ingress.kubernetes.io/ssl-redirect` to `false` to disallow http to https redirect
 
-Go to [Deploy Backend services on AKS main topic](../02-depkoy-apis.md)
+Go to [Deploy Backend services on AKS main topic](../02-deploy-apis.md)
