@@ -1,13 +1,10 @@
 kind: helm-release
-apiVersion: 1.0
+apiVersion: 1.1
 build:
   context: ..
   dockerfile: Dockerfile
 install:
-  chart: charts/hotels
-  values:
-  - values.dev.yaml?
-  - secrets.dev.yaml?
+  chart: ../../deploy/k8s/sh360-hotels
   set:
     image:
       tag: $(tag)
@@ -20,20 +17,36 @@ install:
     #   - $(spacePrefix)hotels$(domainSuffix)
     #   annotations:
     #     kubernetes.io/ingress.class: addon-http-application-routing
+  values:
+  - values.dev.yaml?
+  - secrets.dev.yaml?
+  - infrastructure_values.yaml
 configurations:
   develop:
     build:
-      dockerfile: Dockerfile.develop
       useGitIgnore: true
+      dockerfile: Dockerfile.develop
     container:
       syncTarget: /src
       sync:
-      - "**/Pages/**"
-      - "**/Views/**"
-      - "**/wwwroot/**"
-      - "!**/*.{sln,csproj}"
-      command:  [dotnet, run, --no-restore, --no-build, --no-launch-profile, -c, "${Configuration:-Debug}"]
+      - '**/Pages/**'
+      - '**/Views/**'
+      - '**/wwwroot/**'
+      - '!**/*.{sln,csproj}'
+      command:
+      - dotnet
+      - run
+      - --no-restore
+      - --no-build
+      - --no-launch-profile
+      - -c
+      - ${Configuration:-Debug}
       iterate:
-        processesToKill: [dotnet]
+        processesToKill:
+        - dotnet
         buildCommands:
-        - [dotnet, build, --no-restore, -c, "${Configuration:-Debug}"]
+        - - dotnet
+          - build
+          - --no-restore
+          - -c
+          - ${Configuration:-Debug}
