@@ -17,8 +17,6 @@ All of the back-end systems run inside of Docker containers. During the installa
 * The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing (Not necesary for Powershell environment) 
 * [Helm](https://helm.sh/) to ease Kubernetes deployment
 
->**Note**: You can use the `add-tiller.sh` (bash) or `Add-Tiller.ps1` (Powershell) to install Tiller (Helm server component) in the cluster.
-
 ## Set up a Service Principal 
 
 [Create a service principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal?view=azure-cli-latest) and take note of the Application ID and key. The service principal will need to be added to the **Contributor** for the subscription.
@@ -94,6 +92,8 @@ In this step you'll create all of the Azure resources required by the demo. This
     ```powershell
     .\01-Aks-Create.ps1
     ```
+
+    This will also install Tiller (Helm server component) in the cluster and configure Helm to use RBAC.
 
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
 

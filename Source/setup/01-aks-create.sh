@@ -26,9 +26,6 @@ echo "Getting credentials for cluster ${aksName}"
 echo "------------------------------------------------------------"
 az aks get-credentials -n ${aksName} -g ${AKS_RG}
 
-echo "------------------------------------------------------------"
-echo "Initializing Helm"
-echo "------------------------------------------------------------"
-helm init
-
 popd
+
+. add-tiller.sh
