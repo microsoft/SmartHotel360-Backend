@@ -116,6 +116,14 @@ Script uses the environment variables to find the cluster to use and the resourc
 
 In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
 
+>**OPTIONAL**
+You may want to get telemetry marks from the Javascript and Java based Backend APIs. For it, you need to edit the file `/src/SmartHotel360-Azure-backend/deploy/k8s/infrastructure_values.yml` and in this section:
+>```yaml
+>appinsights:
+>  id: "" 
+>```
+>update it with the _Instrumentation Key_ of your Application Insights (note that Application Insights it's not provisioned in the former step, so you must create it at this point or even use another one you have).
+
 1. CD into the `setup` directory (if not already there) and run this command for Bash terminal:
 
     ```bash
