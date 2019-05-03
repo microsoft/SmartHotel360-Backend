@@ -5,6 +5,9 @@ FROM openjdk:8-jdk AS maven
 WORKDIR /src
 COPY . .
 RUN chmod +x ./mvnw
+RUN chmod +x ./inject_appinsightkey_if_exists
+RUN sed -i 's/\r$//' inject_appinsightkey_if_exists
+RUN ./inject_appinsightkey_if_exists
 RUN sed -i 's/\r$//' mvnw
 RUN ./mvnw install
 
