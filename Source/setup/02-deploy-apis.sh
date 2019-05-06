@@ -96,7 +96,7 @@ if (( $httpRouting == 1 ))
 then
   echo "Use of --httpRouting overrides -d"
   echo "Autodetecting DNS of $aksName in $aksRg"
-  dns=$(az resource show --api-version 2018-03-31 --id /subscriptions/${AKS_SUB}/resourceGroups/${AKS_RG}/providers/Microsoft.ContainerService/managedClusters/${aksName} --query properties.addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')
+  dns=$(az aks show -n ${aksName} -g ${AKS_RG} --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName | tr -d '"')
   echo "DNS detected is: $dns"
   if [[ "$dns" == "" ]]
   then
@@ -136,7 +136,6 @@ then
   acrLogin=$(az acr credential show -n $acrName | jq .username | tr -d '"')
 
   ./deploy-secret.sh -r $registry -p $acrPassword -u $acrLogin
-
 fi
 
 if [[ "$acrName" == "" && "$registry" != "" ]]
@@ -180,11 +179,11 @@ fi
 
 popd 
 
-#if [[ "$aksName" != "" ]]
-#then
+if [[ "$aksName" != "" ]]
+then
 
-  #echo "------------------------------------------------------------"
-  #echo "Opening the dashboard"
-  #echo "------------------------------------------------------------"
-  #az aks browse -n $aksName -g $aksRg
-#fi
+  echo "------------------------------------------------------------"
+  echo "Opening the dashboard"
+  echo "------------------------------------------------------------"
+  az aks browse -n $aksName -g $aksRg
+fi
