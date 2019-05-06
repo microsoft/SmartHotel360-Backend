@@ -53,8 +53,7 @@ while [ "$1" != "" ]; do
         -d | --dns)                     shift
                                         dns=$1
                                         ;;
-        --httpRouting)                  shift
-                                        httpRouting=1
+        --httpRouting)                  httpRouting=1
                                         ;;
        * )                              echo "Invalid param. Use mandatory -n (or --name)"
                                         echo "Optionals -c (--clean), -r (--registry), -o (--org) or -t (--tag), .-a (--acr) or --release"
