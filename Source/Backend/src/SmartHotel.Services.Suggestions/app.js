@@ -9,8 +9,12 @@ var bodyParser = require('body-parser');
 
 const appInsights = require("applicationinsights");
 let appInsightsIK = process.env.APPLICATION_INSIGHTS_IKEY;
-appInsights.setup(appInsightsIK);
-appInsights.start();
+const isUsingAppInsights = (appInsightsIK) ? true : false;
+
+if(isUsingAppInsights) {
+    appInsights.setup(appInsightsIK);
+    appInsights.start();
+}
 
 var client = appInsights.defaultClient;
 
@@ -31,10 +35,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-    client.trackNodeHttpRequest({request: req, response: res});
-    next();
-});
+if(isUsingAppInsights) {
+    app.use(function (req, res, next) {
+        client.trackNodeHttpRequest({request: req, response: res});
+        next();
+    });
+}
 
 app.use('/', routes);
 app.use('/suggestions', suggestions);
@@ -87,4 +93,3 @@ else {
         debug('Express server listening on port ' + server.address().port);
     });    
 }
-

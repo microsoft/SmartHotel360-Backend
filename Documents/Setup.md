@@ -17,8 +17,6 @@ All of the back-end systems run inside of Docker containers. During the installa
 * The [jq](https://stedolan.github.io/jq/) package for bash, which enables jQuery processing (Not necesary for Powershell environment) 
 * [Helm](https://helm.sh/) to ease Kubernetes deployment
 
->**Note**: You can use the `add-tiller.sh` (bash) or `Add-Tiller.ps1` (Powershell) to install Tiller (Helm server component) in the cluster.
-
 ## Set up a Service Principal 
 
 [Create a service principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal?view=azure-cli-latest) and take note of the Application ID and key. The service principal will need to be added to the **Contributor** for the subscription.
@@ -95,6 +93,8 @@ In this step you'll create all of the Azure resources required by the demo. This
     .\01-Aks-Create.ps1
     ```
 
+    This will also install Tiller (Helm server component) in the cluster and configure Helm to use RBAC.
+
 Now that the AKS cluster has been created we can publish the SmartHotel360 microservice source code into it. 
 
 ## Deploy TLS certificate on cluster
@@ -115,6 +115,14 @@ Script uses the environment variables to find the cluster to use and the resourc
 ## Deploy the SmartHotel360 Backend APIs
 
 In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
+
+>**OPTIONAL**
+You may want to get telemetry marks from the Javascript and Java based Backend APIs. For it, you need to edit the file `/src/SmartHotel360-Azure-backend/deploy/k8s/infrastructure_values.yml` and in this section:
+>```yaml
+>appinsights:
+>  id: "" 
+>```
+>update it with the _Instrumentation Key_ of your Application Insights (note that Application Insights it's not provisioned in the former step, so you must create it at this point or even use another one you have).
 
 1. CD into the `setup` directory (if not already there) and run this command for Bash terminal:
 
