@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -z "$APPLICATION_INSIGHTS_IKEY" ]; then
+	exit 0;    
+fi
+echo azure.application-insights.instrumentation-key=$APPLICATION_INSIGHTS_IKEY >> ./src/main/resources/application.properties;

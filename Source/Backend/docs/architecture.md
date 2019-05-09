@@ -16,6 +16,6 @@ Althought most of the backend services can run locally (using directly Docker or
 ## For more info...
 
 * [How to run services locally](./run-locally.md)
-* [How to run deploy services on azure](./run-azure.md)
+* [How to run & deploy services on azure](../../../Documents/Setup.md)
 
-[Return to readme](../README.md)
+[Return to readme](../../../README.md)

@@ -29,9 +29,6 @@ Write-Host "Getting credentials for cluster $aksName"
 Write-Host "------------------------------------------------------------"
 az aks get-credentials -n $aksName -g $env:AKS_RG
 
-Write-Host "------------------------------------------------------------"
-Write-Host "Initializing Helm"
-Write-Host "------------------------------------------------------------"
-helm init
-
 Pop-Location
+
+.\Add-Tiller.ps1

@@ -16,10 +16,9 @@ public class AppInsightsConfig {
 
 //Initialize AI TelemetryConfiguration via Spring Beans
     @Bean
-    public String telemetryConfig() {
-        String telemetryKey = System.getenv("APPLICATION_INSIGHTS_IKEY");
-        if (telemetryKey != null) {
-            TelemetryConfiguration.getActive().setInstrumentationKey(telemetryKey);
+    public String telemetryConfig(@Value("${azure.application-insights.instrumentation-key}") String telemetryKey) {
+        if (telemetryKey != null && !StringUtils.isEmpty(telemetryKey)) {
+        	TelemetryConfiguration.getActive().setInstrumentationKey(telemetryKey);
         }
         return telemetryKey;
     }
