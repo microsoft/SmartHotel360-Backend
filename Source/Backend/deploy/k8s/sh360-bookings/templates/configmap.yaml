@@ -16,4 +16,4 @@ data:
   Bookings_b2c__ClientId: c40d4573-4164-42be-9ef9-54f16ca15f2f
   Bookings_b2c__Audiences: b3cfbe11-ac36-4dcb-af16-8656ee286dcc,c40d4573-4164-42be-9ef9-54f16ca15f2f
   Bookings_b2c__Policy: B2C_1_SignUpInPolicy
-  ApplicationInsights__InstrumentationKey: {{ .Values.appinsights.id }}
+  ApplicationInsights__InstrumentationKey: "{{ .Values.appinsights.id }}"
