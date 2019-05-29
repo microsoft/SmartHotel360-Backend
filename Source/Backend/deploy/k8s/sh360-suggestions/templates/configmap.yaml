@@ -11,5 +11,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
+  APPLICATION_INSIGHTS_IKEY: "{{ .Values.appinsights.id }}"
   SUGGESTIONS_DATABASE_URL:  mssql://{{.Values.mssql.user}}:{{.Values.mssql.pwd}}@{{ $sqlsrv }}:1433/SuggestionsDb
