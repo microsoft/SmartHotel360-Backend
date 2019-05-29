@@ -11,7 +11,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  APPLICATION_INSIGHTS_IKEY: "{{ .Values.appinsights.id }}"
+  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
   Tasks_sql_server_url: jdbc:postgresql://{{ $pg }}:{{ .Values.pg.port }}/tasksdb
   Tasks_sql_user_name: {{ .Values.pg.usr }}
   Tasks_sql_user_password: {{ .Values.pg.pwd }}

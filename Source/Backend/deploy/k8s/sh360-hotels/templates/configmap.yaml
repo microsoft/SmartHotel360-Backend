@@ -19,4 +19,4 @@ data:
   Hotels_discountsvc: http://discounts/
   Hotels_currency__Badge: $
   Hotels_currency__BaseConversion: "1.0"  
-  ApplicationInsights__InstrumentationKey:  "{{ .Values.appinsights.id }}"
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}

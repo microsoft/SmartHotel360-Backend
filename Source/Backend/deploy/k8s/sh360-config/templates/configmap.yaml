@@ -10,4 +10,4 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  ApplicationInsights__InstrumentationKey:  "{{ .Values.appinsights.id }}"
+  ApplicationInsights__InstrumentationKey:  {{ .Values.appinsights.id }}

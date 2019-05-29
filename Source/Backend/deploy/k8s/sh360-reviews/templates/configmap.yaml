@@ -11,7 +11,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  APPLICATION_INSIGHTS_IKEY: "{{ .Values.appinsights.id }}"
+  APPLICATION_INSIGHTS_IKEY: {{ .Values.appinsights.id }}
   Reviews_sql_server_url: jdbc:postgresql://{{ $pg }}:{{ .Values.pg.port }}/reviewsdb
   Reviews_sql_user_name: {{ .Values.pg.usr }}
   Reviews_sql_user_password: {{ .Values.pg.pwd }}
