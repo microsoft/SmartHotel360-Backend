@@ -44,8 +44,8 @@ In this step you'll create all of the Azure resources required by the demo. This
     chmod +x ./01-aks-create.sh
     chmod +x ./02-deploy-apis.sh
     chmod +x ./03-deploy-web.sh
-    chmod +x ../src/SmartHotel360-Azure-backend/deploy/k8s/build-push.sh
-    chmod +x ../src/SmartHotel360-Azure-backend/deploy/k8s/deploy.sh
+    chmod +x ../Backend/deploy/k8s/build-push.sh
+    chmod +x ../Backend/deploy/k8s/deploy.sh
     ```
 
 1. Set the environment variables. For Bash terminal, run the command below, replacing the parameters with your own values. The script expects following parameters:
@@ -117,7 +117,7 @@ Script uses the environment variables to find the cluster to use and the resourc
 In this segment you'll build the images containing the SmartHotel360 back-end APIs and publish them into ACR, from where they'll be pulled and pushed into AKS when you do your deployment. We've scripted the complex areas of this to streamline the setup process, but you're encouraged to look in the `.sh` files to see (or improve upon) what's happening. 
 
 >**OPTIONAL**
-You may want to get telemetry marks from the Javascript and Java based Backend APIs. For it, you need to edit the file `/src/SmartHotel360-Azure-backend/deploy/k8s/infrastructure_values.yml` and in this section:
+You may want to get telemetry marks from the Javascript and Java based Backend APIs. For it, you need to edit the file `/Source/Backend/deploy/k8s/infrastructure_values.yml` and in this section:
 >```yaml
 >appinsights:
 >  id: "" 
