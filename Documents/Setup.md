@@ -43,7 +43,6 @@ In this step you'll create all of the Azure resources required by the demo. This
     chmod +x ./00-set-vars.sh
     chmod +x ./01-aks-create.sh
     chmod +x ./02-deploy-apis.sh
-    chmod +x ./03-deploy-web.sh
     chmod +x ../Backend/deploy/k8s/build-push.sh
     chmod +x ../Backend/deploy/k8s/deploy.sh
     ```

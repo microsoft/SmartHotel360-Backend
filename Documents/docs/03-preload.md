@@ -1,6 +1,6 @@
 # Log and CPU Chart Pre-loader
 
-During the demo, the AKS Container Health Dashboard view is shown. The [demo queries](../queries) are provided as a part of this repository. An image of this segment of the demo is shown below, with some data after the cluster has been running for some time, to show the CPU time chart. 
+During the demo, the AKS Container Health Dashboard view is shown. The [demo queries](../../Source/queries) are provided as a part of this repository. An image of this segment of the demo is shown below, with some data after the cluster has been running for some time, to show the CPU time chart. 
 
 ![CPU Chart](../media/cpu-chart.png)
 
@@ -14,7 +14,7 @@ To generate these logs, a Node.js script has been provided. It simply hits the H
 If you want to run the preloader, you will need to do so in an environment that supports Node.js. So you'll either need to download Node.js from the [official Node.js web site](http://nodejs.org), or use another means to install such as [Chocolatey](https://chocolatey.org/) on Windows or [HomeBrew](https://brew.sh/) on Mac OS. 
 
 ## Customizing the Script for your Cluster(s)
-The code for the preload is contained in [`preloader/app.js`](../preloader/app.js), and requires one minor customization. The first line of code in [`preloader/app.js`](../preloader/app.js) is an array variable of URL bases (if you're doing this as demo it never hurts to have a backup environment). 
+The code for the preload is contained in [`preloader/app.js`](../../Source/preloader/app.js), and requires one minor customization. The first line of code in [`preloader/app.js`](../../Source/preloader/app.js) is an array variable of URL bases (if you're doing this as demo it never hurts to have a backup environment). 
 
 ```javascript
 const urlBases = ["http://sh360.<guid>.<region>.aksapp.io/"]
