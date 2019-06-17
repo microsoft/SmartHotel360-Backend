@@ -39,8 +39,8 @@ From Powershell terminal: Run the `02-deploy-apis.ps1` to build backend Docker i
 This scripts does the following:
 
 1. Creates the ACR (unless `-r` or `--acr-no-create` used)
-2. Runs the `/src/SmartHotel360-Azure-backend/deploy/k8s/build-push.sh` script to [build and push the backend services](../../src/SmartHotel360-Azure-backend/docs/build-and-push.md).
-3. Runs the `/src/SmartHotel360-Azure-backend/deploy/k8s/deploy-secret.sh` script to [Deploy login information in the cluster](../../src/SmartHotel360-Azure-backend/docs/deploy-secret.md)
-4. Runs the `/src/SmartHotel360-Azure-backend/deploy/k8s/clean.sh` script to [clean the Kubernetes cluster](../../src/SmartHotel360-Azure-backend/docs/clean-cluster.md), unless the `--no-clean` is used.
-5. Runs the  `/src/SmartHotel360-Azure-backend/deploy/k8s/deploy.sh` to [deploy the Backend services using Helm](.backend/deploy.md).
+2. Runs the `/Source/Backend/deploy/k8s/build-push.sh` script to [build and push the backend services](./backend/build-and-push.md).
+3. Runs the `/Source/Backend/deploy/k8s/deploy-secret.sh` script to [deploy login information in the cluster](./backend/deploy-secret.md)
+4. Runs the `/Source/Backend/deploy/k8s/clean.sh` script to [clean the Kubernetes cluster](./backend/clean-cluster.md), unless the `--no-clean` is used.
+5. Runs the  `/Source/Backend/deploy/k8s/deploy.sh` to [deploy the Backend services using Helm](./backend/deploy.md).
 

@@ -2,7 +2,7 @@
 There's a .NET Core 2.0 console project to seed the images needed by the API services' consumers.
 
 ## Customizing the Project
-The project's code is located in [`SeedImages/SmarthHotel.Services.Seed.Images`](../../Backend/src/SmartHotel.Services.Seed.Images), and requires one minor customization.
+The project's code is located in [`SeedImages/SmarthHotel.Services.Seed.Images`](../../Source/Backend/src/SmartHotel.Services.Seed.Images), and requires one minor customization.
 There are some env based appsettings file with the following keys:
 ```json
 {

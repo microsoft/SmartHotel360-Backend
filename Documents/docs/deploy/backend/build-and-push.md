@@ -11,7 +11,7 @@ Next steps:
 4. If using custom images: [docker login secret loaded into the cluster](./deploy-secret.md)
 5. [Create resources in cluster](./create-resources.md)¡
 
-**All tasks must be performed from `/src/SmartHotel360-Azure-backend/deploy/k8s` folder**
+**All tasks must be performed from `/Source/Backend/deploy/k8s` folder**
 
 ## Build and push the images on ACR
 
