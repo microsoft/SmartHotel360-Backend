@@ -6,7 +6,8 @@ Param(
     [Parameter(Mandatory=$false)][string] $dockerOrg = "smarthotels",
     [Parameter(Mandatory=$false)][string] $appName,
     [Parameter(Mandatory=$false)][string] $dns,
-    [parameter(Mandatory=$false)][string][ValidateSet('prod','staging', IgnoreCase=$false)]$tlsEnv = "staging"
+    [Parameter(Mandatory=$false)][string] $tlsSecretName,
+    [parameter(Mandatory=$false)][string][ValidateSet('prod','staging','custom', IgnoreCase=$false)]$tlsEnv = "staging"
 )
 
 if ($dns -eq "none") {
@@ -18,6 +19,11 @@ if ($tlsEnv -eq "staging") {
 }
 if ($tlsEnv -eq "prod") {
     $tlsSecretName = "tt-letsencrypt-prod"
+}
+
+if ($tlsEnv -eq "custom" -and [string]::IsNullOrEmpty($tlsSecretName)) {
+    Write-Host "If tlsEnv is 'custom', must set the name of Kubernetes TLS secret to use using tlsSecretName parameter" -ForegroundColor Red
+    exit 1
 }
 
 if([string]::IsNullOrEmpty($appName)){
