@@ -18,7 +18,7 @@
     "geolib": "^2.0.23",
     "morgan": "^1.7.0",
     "pug": "^2.0.0-beta6",
-    "sequelize": "^4.10.0",
+    "sequelize": "^5.15.1",
     "sequelize-cli": "^3.0.0-3",
     "serve-favicon": "^2.3.0",
     "tedious": "^2.0.0"
