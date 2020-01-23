@@ -1,3 +1,7 @@
+# **The project SmartHotel360 have been retired, we have archived it. It is no longer maintained. You still can fork the repository.**
+
+## For the latest sample references visit: https://aka.ms/tailwindtraders & https://aka.ms/rpsls 
+
 # SmartHotel360
 During **Connect(); 2017** event this year we presented beautiful app demos using Xamarin and many features of Azure. For //build/ 2018's keynote, we updated some components of the back-end API code to support **Azure Kubernetes Service (AKS)**.
 
@@ -17,12 +21,9 @@ For this reference app scenario, we built several consumer and line-of-business 
 
 Welcome to the SmartHotel360 AKS repository. Here you'll find everything you need to run the backend services locally and/or deploy them in a AKS cluster.
 
-[![Build Status](https://dev.azure.com/smarthotel360/Backend/_apis/build/status/Backend-CI?branchName=master)](https://dev.azure.com/smarthotel360/Backend/_build/latest?definitionId=37&branchName=master)
-
 ## Getting Started
 
 SmartHotel360 uses a **microservice oriented** architecture implemented using containers. There are various services developed in different technologies: .NET Core 2, Java, and Node.js. These services use different data stores like PostgreSQL and SQL Server. 
-
 
 We have added an ARM template so you can automate the creation of the resources
 
