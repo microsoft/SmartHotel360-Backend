@@ -1,3 +1,7 @@
+# **This project is retired, archived, and no longer supported. You are welcome to continue to use and fork the repository.**
+
+## For the latest sample references visit: https://aka.ms/tailwindtraders & https://aka.ms/rpsls 
+
 # SmartHotel360 AKS Demo Setup
 
 All of the back-end systems run inside of Docker containers. During the installation phase you will notice errors if you haven't set your Docker configuration to use 4 GB of memory. Changing this is simple within the Docker configuration dialog. Just set the memory higher and restart Docker.
